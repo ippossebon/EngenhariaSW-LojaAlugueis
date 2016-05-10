@@ -6,6 +6,7 @@ import model.Aluguel;
 import model.Cliente;
 import model.Data;
 import model.Peca;
+import view.LoginFrame;
 
 public class PesquisaController {
 	
@@ -17,7 +18,7 @@ public class PesquisaController {
 		
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
 		
-		for (Cliente c : Main.database_controller.getClientes()){
+		for (Cliente c : LoginFrame.database_controller.getClientes()){
 			if (c.getNome().equals(nome)){
 				resultado.add(c);
 			}
@@ -29,7 +30,7 @@ public class PesquisaController {
 		
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
 		
-		for (Cliente c : Main.database_controller.getClientes()){
+		for (Cliente c : LoginFrame.database_controller.getClientes()){
 			if (c.getCpf().equals(cpf)){
 				resultado.add(c);
 				return resultado;
@@ -42,7 +43,7 @@ public class PesquisaController {
 		
 		ArrayList<Peca> resultado = new ArrayList<Peca>();
 		
-		for (Peca p : Main.database_controller.getPecas()){
+		for (Peca p : LoginFrame.database_controller.getPecas()){
 			if (p.getCodigo_peca() == codigo){
 				if (filtro == 0){
 					resultado.add(p);
@@ -64,7 +65,7 @@ public class PesquisaController {
 		
 		ArrayList<Peca> resultado = new ArrayList<Peca>();
 		
-		for (Peca p : Main.database_controller.getPecas()){
+		for (Peca p : LoginFrame.database_controller.getPecas()){
 			if (p.getTipo().equals(tipo)){
 				if (filtro == 0){
 					resultado.add(p);
@@ -90,21 +91,21 @@ public class PesquisaController {
 		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
 		
 		if (data_inicio == null){
-			for (Aluguel a: Main.database_controller.getAlugueis()){
+			for (Aluguel a: LoginFrame.database_controller.getAlugueis()){
 				if (a.getData_fim().isEqual(data_fim)){
 					resultado.add(a);
 				}
 			}
 		}
 		else if (data_fim == null){
-			for (Aluguel a: Main.database_controller.getAlugueis()){
+			for (Aluguel a: LoginFrame.database_controller.getAlugueis()){
 				if (a.getData_inicio().isEqual(data_inicio)){
 					resultado.add(a);
 				}
 			}
 		}
 		else{
-			for (Aluguel a: Main.database_controller.getAlugueis()){
+			for (Aluguel a: LoginFrame.database_controller.getAlugueis()){
 				if (a.getData_inicio().isEqual(data_inicio)){
 					if (a.getData_fim().isEqual(data_fim)){
 						resultado.add(a);
@@ -121,7 +122,7 @@ public class PesquisaController {
 		
 		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
 		
-		for (Aluguel a : Main.database_controller.getAlugueis()){
+		for (Aluguel a : LoginFrame.database_controller.getAlugueis()){
 			if (a.getCpf_cliente().equals(cpf)){
 				resultado.add(a);
 			}

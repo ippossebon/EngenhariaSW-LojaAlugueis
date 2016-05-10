@@ -27,12 +27,27 @@ public class LoginController {
 		this.senha_usuario = senha_usuario;
 	}
 	
+	/* Retorna true se o formato está correto; false, caso contrário. */
+	public boolean validaFormatoCpf(){
+		
+		return false;
+	}
+	
+	/* Garante que o campo de senha não estará vazio. */
+	public boolean validaFormatoSenha(){
+		if (this.senha_usuario.isEmpty()){
+			return false;
+		}
+		return true;
+	}
+	
+	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário */
 	public boolean validaLogin(){
 		
 		// Cria PesquisaController();
 		// Verifica se funcionário consta no banco de dados
 		// Verifica se a senha fornecida corresponde à senha do funcionario.
-		// Cpf e senha ok: true; define variavel "gerente". false, caso contrário.
+		// Cpf e senha ok: true; setGerente(); s. false, caso contrário.
 		
 		return false;
 	}
