@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.Funcionario;
+
 public class LoginController {
 	
 	private String cpf_usuario;
@@ -44,11 +48,20 @@ public class LoginController {
 	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário */
 	public boolean validaLogin(){
 		
-		// Cria PesquisaController();
-		// Verifica se funcionário consta no banco de dados
-		// Verifica se a senha fornecida corresponde à senha do funcionario.
-		// Cpf e senha ok: true; setGerente(); s. false, caso contrário.
+		PesquisaController pesquisa_controller = new PesquisaController();
+		ArrayList<Funcionario> funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
 		
+		if (funcionarios.size() != 1){
+			Funcionario funcionario = funcionarios.get(0);
+			
+			if(funcionario.getSenha().equals(this.senha_usuario)){
+				
+				// TO DO: Verifica se é gerente. Seta a variavel gerente
+				
+				return true;
+			}
+		}
+
 		return false;
 	}
 

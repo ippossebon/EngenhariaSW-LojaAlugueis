@@ -14,15 +14,15 @@ import javax.swing.border.EmptyBorder;
 
 import controller.LoginController;
 import database.Database;
-import database.DatabaseController;
 
 public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	public static DatabaseController database_controller; //teste
-
+	public static Database database; //teste
+	
+	
 	// Launch application
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -33,7 +33,6 @@ public class LoginFrame extends JFrame {
 					
 					// Teste
 					Database database = new Database();
-					database_controller = new DatabaseController(database);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
