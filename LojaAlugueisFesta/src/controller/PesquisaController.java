@@ -6,7 +6,6 @@ import model.Aluguel;
 import model.Cliente;
 import model.Data;
 import model.Peca;
-import database.DatabaseController;
 
 public class PesquisaController {
 	

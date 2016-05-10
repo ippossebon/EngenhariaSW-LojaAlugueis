@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 
 import model.Peca;
-import database.DatabaseController;
 
 public class AluguelController {
 	

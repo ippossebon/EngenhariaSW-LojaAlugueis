@@ -9,90 +9,90 @@ import model.Gerente;
 import model.Peca;
 
 public class DatabaseController {
-	private Database database;
+	private static Database database;
 	
 	
 	public DatabaseController(Database db){
-		this.database = db;
+		database = db;
 	}
 
 	public Database getDatabase() {
 		return database;
 	}
 
-	public void setDatabase(Database database) {
-		this.database = database;
+	public void setDatabase(Database db) {
+		database = db;
 	}
 	
 	public ArrayList<Gerente> getGerentes() {
-		return this.database.getGerentes();
+		return database.getGerentes();
 	}
 
 	public void setGerentes(ArrayList<Gerente> gerentes) {
-		this.database.setGerentes(gerentes);
+		database.setGerentes(gerentes);
 	}
 
 	public ArrayList<Funcionario> getFuncionarios() {
-		return this.database.getFuncionarios();
+		return database.getFuncionarios();
 	}
 
 	public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
-		this.database.setFuncionarios(funcionarios);
+		database.setFuncionarios(funcionarios);
 	}
 
 	public ArrayList<Cliente> getClientes() {
-		return this.database.getClientes();
+		return database.getClientes();
 	}
 
 	public void setClientes(ArrayList<Cliente> clientes) {
-		this.database.setClientes(clientes);
+		database.setClientes(clientes);
 	}
 
 	public ArrayList<Aluguel> getAlugueis() {
-		return this.database.getAlugueis();
+		return database.getAlugueis();
 	}
 
 	public void setAlugueis(ArrayList<Aluguel> alugueis) {
-		this.database.setAlugueis(alugueis);
+		database.setAlugueis(alugueis);
 	}
 
 	public ArrayList<Peca> getPecas() {
-		return this.database.getPecas();
+		return database.getPecas();
 	}
 
 	public void setPecas(ArrayList<Peca> estoque) {
-		this.database.setPecas(estoque);
+		database.setPecas(estoque);
 	}
 	
 	public void cadastrarCliente(Cliente c){
-		this.database.adicionarCliente(c);
+		database.adicionarCliente(c);
 	}
 	
 	public void removerCliente(Cliente c){
-		this.database.getClientes().remove(c);
+		database.getClientes().remove(c);
 	}
 	
 	public void removerCliente(String cpf){
-		for (Cliente c : this.database.getClientes()){
+		for (Cliente c : database.getClientes()){
 			if (c.getCpf().equals(cpf)){
-				this.database.getClientes().remove(c); // Verificar se funciona
+				database.getClientes().remove(c); // TO DO: Verificar se funciona
 			}
 		}
 	}
 	
 	public void adicionarAluguel(Aluguel a){
-		this.database.getAlugueis().add(a);
+		database.getAlugueis().add(a);
 	}
 	
 	public void adicionarPecaEstoque(Peca p){
-		this.database.getPecas().add(p);
+		database.getPecas().add(p);
 	}
 	
 	public void removerPecaEstoque(int codigo){
 		
-		for(Peca p : this.database.getPecas()){
+		for(Peca p : database.getPecas()){
 			if (p.getCodigo_peca() == codigo){
-				this.database.getPecas().remove(p);
+				database.getPecas().remove(p);
 			}
 		}
 	}
