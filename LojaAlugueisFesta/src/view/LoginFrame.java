@@ -5,12 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.LoginController;
 import database.Database;
@@ -18,7 +19,6 @@ import database.Database;
 public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JPasswordField passwordField;
 	public static Database database; //teste
 	
@@ -32,7 +32,7 @@ public class LoginFrame extends JFrame {
 					frame.setVisible(true);
 					
 					// Teste
-					Database database = new Database();
+					database = new Database();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,11 +52,6 @@ public class LoginFrame extends JFrame {
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		textField = new JTextField();
-		textField.setBounds(90, 37, 200, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(90, 84, 200, 28);
 		contentPane.add(passwordField);
@@ -69,18 +64,36 @@ public class LoginFrame extends JFrame {
 		lblSenha.setBounds(30, 90, 61, 16);
 		contentPane.add(lblSenha);
 		
+		JFormattedTextField cpf_formatted_text_field = new JFormattedTextField(mascara("###.###.###-##"));
+		cpf_formatted_text_field.setBounds(90, 37, 200, 28);
+		contentPane.add(cpf_formatted_text_field);
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(173, 130, 117, 29);
-		btnLogin.addActionListener(new LoginAction(textField, passwordField));
+		btnLogin.addActionListener(new LoginAction(cpf_formatted_text_field, passwordField));
 		contentPane.add(btnLogin);
+	}
+	
+	public  MaskFormatter mascara(String Mascara){
+	    MaskFormatter F_Mascara = new MaskFormatter();
+	    try{
+	        F_Mascara.setMask(Mascara); // Atribui a mascara
+	        F_Mascara.setPlaceholderCharacter(' '); // Caractere para preencimento 
+	    }
+	    catch (Exception excecao) {
+	    excecao.printStackTrace();
+	    } 
+	    return F_Mascara;
 	}
 }
 
+
+
 class LoginAction implements ActionListener{
-	private JTextField text_field;
+	private JFormattedTextField text_field;
 	private JPasswordField password_field;
 	
-	public LoginAction(JTextField text, JPasswordField password){
+	public LoginAction(JFormattedTextField text, JPasswordField password){
 		this.text_field = text;
 		this.password_field = password;
 	}
@@ -94,14 +107,14 @@ class LoginAction implements ActionListener{
 		
 		LoginController login_controller = new LoginController(cpf_usuario, password_usuario);
 		
-		if(login_controller.validaFormatoCpf()){
+		if(login_controller.validarFormatoCpf()){
 			
-			if (login_controller.validaFormatoSenha()){
+			if (login_controller.validarFormatoSenha()){
 				
-				if(login_controller.validaLogin()){
+				if(login_controller.validarLogin()){
 					
 					// Cria a interface correspondente ao tipo de usuário
-					if (login_controller.isGerente()){
+					if (login_controller.isAtivar_interface_gerente()){
 						GerenteFrame gerente_frame = new GerenteFrame();
 						gerente_frame.setVisible(true);
 					}

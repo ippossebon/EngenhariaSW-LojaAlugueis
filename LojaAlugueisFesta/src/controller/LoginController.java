@@ -3,16 +3,18 @@ package controller;
 import java.util.ArrayList;
 
 import model.Funcionario;
+import model.Gerente;
 
 public class LoginController {
 	
 	private String cpf_usuario;
 	private String senha_usuario;
-	private boolean gerente; // indica se a interface que devemos utilizar é a de gerente ou funcionario
+	private boolean ativar_interface_gerente; 
 	
 	public LoginController(String cpf, String senha){
 		this.cpf_usuario = cpf;
 		this.senha_usuario = senha;
+		this.ativar_interface_gerente = false;
 	}
 
 	public String getCpf_usuario() {
@@ -32,21 +34,21 @@ public class LoginController {
 	}
 	
 	/* Retorna true se o formato está correto; false, caso contrário. */
-	public boolean validaFormatoCpf(){
+	public boolean validarFormatoCpf(){
 		
-		return false;
+		return true;
 	}
 	
 	/* Garante que o campo de senha não estará vazio. */
-	public boolean validaFormatoSenha(){
+	public boolean validarFormatoSenha(){
 		if (this.senha_usuario.isEmpty()){
 			return false;
 		}
 		return true;
 	}
 	
-	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário */
-	public boolean validaLogin(){
+	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário. Seta a variável "gerente" */
+	public boolean validarLogin(){
 		
 		PesquisaController pesquisa_controller = new PesquisaController();
 		ArrayList<Funcionario> funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
@@ -55,9 +57,9 @@ public class LoginController {
 			Funcionario funcionario = funcionarios.get(0);
 			
 			if(funcionario.getSenha().equals(this.senha_usuario)){
-				
-				// TO DO: Verifica se é gerente. Seta a variavel gerente
-				
+				if (funcionario instanceof Gerente){
+					setAtivar_interface_gerente(true);
+				}
 				return true;
 			}
 		}
@@ -65,12 +67,12 @@ public class LoginController {
 		return false;
 	}
 
-	public boolean isGerente() {
-		return gerente;
+	public boolean isAtivar_interface_gerente() {
+		return ativar_interface_gerente;
 	}
 
-	public void setGerente(boolean gerente) {
-		this.gerente = gerente;
+	public void setAtivar_interface_gerente(boolean gerente) {
+		this.ativar_interface_gerente = gerente;
 	}
 	
 }

@@ -20,5 +20,15 @@ public class AluguelController {
 		// add aluguel ao banco de dados
 	}
 
-
+	public void confirmarPagamento(){
+		
+	}
+	
+	public void confirmarPagamentoMulta(){
+		
+	}
+	
+	public void calcularMulta(){
+		
+	}
 }

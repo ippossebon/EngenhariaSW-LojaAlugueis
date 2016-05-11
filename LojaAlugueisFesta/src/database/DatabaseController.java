@@ -96,4 +96,12 @@ public class DatabaseController {
 			}
 		}
 	}
+	
+	public void adicionarFuncionario(Funcionario f){
+		
+	}
+	
+	public void adicionarCliente(Cliente c){
+		
+	}
 }

@@ -72,6 +72,10 @@ public class Database {
 		this.clientes.add(c);
 	}
 	
+	public void adicionarFuncionario(Funcionario f){
+		this.funcionarios.add(f);
+	}
+	
 	public Database getDatabase() {
 		return database;
 	}
@@ -104,7 +108,15 @@ public class Database {
 		Database.pesquisa_alugadas = pesquisa_alugadas;
 	}
 	
-	
+	public void popularDatabase(){
+		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", 33332211);
+		this.database.adicionarCliente(c1);
+		
+		Funcionario f1 = new Funcionario("Isadora", "03445512027", "isadorapossebon@gmail.com", "Rua B 123", 91613712, "senha");
+		this.database.adicionarFuncionario(f1);
+		
+		
+	}
 }
 
 

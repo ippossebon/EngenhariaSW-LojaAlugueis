@@ -18,20 +18,5 @@ public class Funcionario extends Pessoa{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
-	/*** ERRADOS ****/
-	public boolean verificarStatusCliente(String cpf_cliente){
-		
-		// Procura cliente a partir do seu cpf
-		
-		
-		// teste
-		return false;
-	}
-	
-	public void confirmarPagamento(){
-		
-	}
 
 }
