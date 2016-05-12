@@ -109,10 +109,10 @@ public class Database {
 	}
 	
 	public void popularDatabase(){
-		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", 33332211);
+		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
 		this.database.adicionarCliente(c1);
 		
-		Funcionario f1 = new Funcionario("Isadora", "03445512027", "isadorapossebon@gmail.com", "Rua B 123", 91613712, "senha");
+		Funcionario f1 = new Funcionario("Isadora", "03445512027", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
 		this.database.adicionarFuncionario(f1);
 		
 		

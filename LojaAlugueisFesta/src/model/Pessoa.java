@@ -5,9 +5,9 @@ public class Pessoa {
 	private String cpf;
 	private String email;
 	private String endereco;
-	private int telefone;
+	private String telefone;
 	
-	public Pessoa(String nome, String cpf, String email, String endereco, int telefone){
+	public Pessoa(String nome, String cpf, String email, String endereco, String telefone){
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -39,10 +39,10 @@ public class Pessoa {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	
