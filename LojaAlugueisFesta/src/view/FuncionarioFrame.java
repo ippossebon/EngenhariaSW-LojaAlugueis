@@ -110,9 +110,14 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnPessoa.setBounds(216, 50, 141, 23);
 		contentPane.add(rdbtnPessoa);
 		
-		// Testar!!
-		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
+		rdbtnFuncionario.setBounds(348, 50, 141, 23);
+		contentPane.add(rdbtnFuncionario);
+		
+		/* Testar!! */
+		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnFuncionario.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
 		
 		resultados_table = new JTable();
 		resultados_table.setBackground(SystemColor.window);
@@ -120,9 +125,7 @@ public class FuncionarioFrame extends JFrame {
 		resultados_table.setBounds(36, 184, 474, 330);
 		contentPane.add(resultados_table);
 		
-		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
-		rdbtnFuncionario.setBounds(349, 153, 141, 23);
-		contentPane.add(rdbtnFuncionario);
+		
 	}
 }
 
