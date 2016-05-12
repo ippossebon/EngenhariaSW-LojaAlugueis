@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButton;
 
-public class UpdateOptionsActionListener implements ActionListener{
+public class UpdateOptionsAL implements ActionListener{
 	private JRadioButton button_peca;
 	private JRadioButton button_pessoa;
 	private JRadioButton button_funcionario;
@@ -16,7 +16,7 @@ public class UpdateOptionsActionListener implements ActionListener{
 	private JRadioButton b_alugadas;
 	
 	
-	public UpdateOptionsActionListener(JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton button_funcionario, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_todas, JRadioButton b_disp, JRadioButton b_alug){
+	public UpdateOptionsAL(JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton button_funcionario, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_todas, JRadioButton b_disp, JRadioButton b_alug){
 		this.button_peca = button_peca;
 		this.button_pessoa = button_pessoa;
 		this.button_funcionario = button_funcionario;

@@ -11,7 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import view.actionlisteners.LoginActionListener;
+import view.actionlisteners.LoginAL;
 import database.Database;
 
 public class LoginFrame extends JFrame {
@@ -68,7 +68,7 @@ public class LoginFrame extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(173, 130, 117, 29);
-		btnLogin.addActionListener(new LoginActionListener(cpf_formatted_text_field, passwordField));
+		btnLogin.addActionListener(new LoginAL(cpf_formatted_text_field, passwordField));
 		contentPane.add(btnLogin);
 	}
 	

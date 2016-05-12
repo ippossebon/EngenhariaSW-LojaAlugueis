@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import view.MensagemErroFrame;
 import controller.PesquisaController;
 
-class BotaoPesquisarActionListener implements ActionListener{
+class BotaoPesquisarAL implements ActionListener{
 	private JRadioButton button_peca;
 	private JRadioButton button_pessoa;
 	private JRadioButton b_nome;
@@ -19,7 +19,7 @@ class BotaoPesquisarActionListener implements ActionListener{
 	private JRadioButton b_alugadas;
 	private JTextField text;
 	
-	public BotaoPesquisarActionListener (JTextField text, JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_tipo, JRadioButton b_disp, JRadioButton b_alug){
+	public BotaoPesquisarAL (JTextField text, JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_tipo, JRadioButton b_disp, JRadioButton b_alug){
 		this.button_peca = button_peca;
 		this.button_pessoa = button_pessoa;
 		this.b_nome = b_nome;

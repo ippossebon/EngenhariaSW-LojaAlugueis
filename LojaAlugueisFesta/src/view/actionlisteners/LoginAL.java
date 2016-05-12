@@ -11,11 +11,11 @@ import view.GerenteFrame;
 import view.MensagemErroFrame;
 import controller.LoginController;
 
-public class LoginActionListener implements ActionListener{
+public class LoginAL implements ActionListener{
 	private JFormattedTextField text_field;
 	private JPasswordField password_field;
 	
-	public LoginActionListener(JFormattedTextField text, JPasswordField password){
+	public LoginAL(JFormattedTextField text, JPasswordField password){
 		this.text_field = text;
 		this.password_field = password;
 	}

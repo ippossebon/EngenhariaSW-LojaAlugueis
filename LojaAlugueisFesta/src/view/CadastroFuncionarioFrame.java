@@ -65,7 +65,6 @@ public class CadastroFuncionarioFrame extends CadastroFrame {
 		button_group.add(rdbtnFuncionario);
 		button_group.add(rdbtnGerente);
 		
-		
 		super.getButtonOk().setBounds(278, 367, 117, 29);
 	}
 

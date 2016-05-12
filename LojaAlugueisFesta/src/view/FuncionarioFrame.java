@@ -3,11 +3,15 @@ package view;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
@@ -19,23 +23,28 @@ import javax.swing.border.LineBorder;
 
 import view.actionlisteners.DisableFiltrosPecaAL;
 import view.actionlisteners.DisableFiltrosPessoaAL;
+import view.actionlisteners.SelecaoCadastrarClienteAL;
+import view.actionlisteners.SelecaoCadastrarFuncionarioAL;
+import view.actionlisteners.SelecaoNovoAluguelAL;
+import view.actionlisteners.SelecaoRegistrarDevolucaoAL;
 
 public class FuncionarioFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable resultados_table;
+	private JMenuBar menuBar;
 
 	public FuncionarioFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 688, 562);
+		setBounds(100, 100, 664, 645);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(110, 18, 400, 28);
+		textField.setBounds(110, 29, 400, 28);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -44,76 +53,60 @@ public class FuncionarioFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(522, 18, 166, 29);
+		btnNewButton.setBounds(522, 30, 112, 29);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisa:");
-		lblPesquisa.setBounds(36, 22, 61, 16);
+		lblPesquisa.setBounds(36, 35, 61, 16);
 		contentPane.add(lblPesquisa);
 		
-		JButton btnCadastrarCliente = new JButton("Cadastrar cliente");
-		btnCadastrarCliente.setBounds(522, 184, 166, 29);
-		contentPane.add(btnCadastrarCliente);
-		
-		JButton btnNovoFuncionrio = new JButton("Cadastrar funcionário");
-		btnNovoFuncionrio.setBounds(522, 225, 166, 29);
-		contentPane.add(btnNovoFuncionrio);
-		
-		JButton btnNovoAluguel = new JButton("Novo aluguel");
-		btnNovoAluguel.setBounds(522, 307, 166, 29);
-		contentPane.add(btnNovoAluguel);
-		
-		JButton btnRegistrarPagamento = new JButton("Registrar pagamento");
-		btnRegistrarPagamento.setBounds(522, 266, 166, 29);
-		contentPane.add(btnRegistrarPagamento);
-		
 		JLabel lblResultados = new JLabel("Resultados");
-		lblResultados.setBounds(36, 95, 73, 16);
+		lblResultados.setBounds(36, 116, 73, 16);
 		contentPane.add(lblResultados);
 		
 		JLabel lblFiltrarPor = new JLabel("Filtrar por:");
-		lblFiltrarPor.setBounds(36, 122, 84, 16);
+		lblFiltrarPor.setBounds(36, 144, 84, 16);
 		contentPane.add(lblFiltrarPor);
 		
 		JRadioButton rdbtnNome = new JRadioButton("Nome");
 		rdbtnNome.setToolTipText("Pessoa");
-		rdbtnNome.setBounds(110, 153, 84, 23);
+		rdbtnNome.setBounds(110, 196, 84, 23);
 		contentPane.add(rdbtnNome);
 		
 		JRadioButton rdbtnCpf = new JRadioButton("CPF");
 		rdbtnNome.setToolTipText("Pessoa");
-		rdbtnCpf.setBounds(216, 153, 73, 23);
+		rdbtnCpf.setBounds(217, 196, 73, 23);
 		contentPane.add(rdbtnCpf);
 		
 		JRadioButton rdbtnTodas = new JRadioButton("Todas");
 		rdbtnNome.setToolTipText("Peça");
-		rdbtnTodas.setBounds(110, 118, 90, 23);
+		rdbtnTodas.setBounds(110, 161, 90, 23);
 		contentPane.add(rdbtnTodas);
 		
 		JRadioButton rdbtnDisponiveis = new JRadioButton("Disponíveis");
 		rdbtnNome.setToolTipText("Peça");
-		rdbtnDisponiveis.setBounds(216, 118, 141, 23);
+		rdbtnDisponiveis.setBounds(217, 161, 121, 23);
 		contentPane.add(rdbtnDisponiveis);
 		
 		JRadioButton rdbtnAlugadas = new JRadioButton("Alugadas");
 		rdbtnNome.setToolTipText("Peça");
-		rdbtnAlugadas.setBounds(349, 118, 141, 23);
+		rdbtnAlugadas.setBounds(348, 161, 95, 23);
 		contentPane.add(rdbtnAlugadas);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(6, 80, 682, 12);
+		separator.setBounds(6, 104, 682, 12);
 		contentPane.add(separator);
 		
 		JRadioButton rdbtnPeca = new JRadioButton("Peça");
-		rdbtnPeca.setBounds(110, 50, 73, 23);
+		rdbtnPeca.setBounds(109, 69, 73, 23);
 		contentPane.add(rdbtnPeca);
 		
 		JRadioButton rdbtnPessoa = new JRadioButton("Pessoa");
-		rdbtnPessoa.setBounds(216, 50, 141, 23);
+		rdbtnPessoa.setBounds(217, 69, 141, 23);
 		contentPane.add(rdbtnPessoa);
 		
 		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
-		rdbtnFuncionario.setBounds(348, 50, 141, 23);
+		rdbtnFuncionario.setBounds(348, 69, 141, 23);
 		contentPane.add(rdbtnFuncionario);
 		
 		ButtonGroup button_group_pesquisa = new ButtonGroup();
@@ -136,10 +129,43 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnFuncionario.addActionListener(new DisableFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
 		
 		resultados_table = new JTable();
-		resultados_table.setBackground(SystemColor.window);
+		resultados_table.setBackground(UIManager.getColor("InternalFrame.inactiveTitleBackground"));
 		resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
-		resultados_table.setBounds(36, 184, 474, 330);
-		contentPane.add(resultados_table);		
+		resultados_table.setBounds(36, 231, 598, 330);
+		contentPane.add(resultados_table);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBorderPainted(false);
+		menuBar.setBackground(SystemColor.windowBorder);
+		menuBar.setBounds(0, 0, 132, 22);
+		
+	    /* Menu cadastro - Atalho: C */
+	    JMenu cadastroMenu = new JMenu("Cadastro");
+	    cadastroMenu.setMnemonic(KeyEvent.VK_C);
+	    menuBar.add(cadastroMenu);
+
+	    JMenuItem itemCadastrarCliente = new JMenuItem("Cadastrar cliente");
+	    itemCadastrarCliente.addActionListener(new SelecaoCadastrarClienteAL());
+	    cadastroMenu.add(itemCadastrarCliente);
+	    
+	    JMenuItem itemCadastrarFuncionario = new JMenuItem("Cadastrar funcionário");
+	    itemCadastrarFuncionario.addActionListener(new SelecaoCadastrarFuncionarioAL());
+	    cadastroMenu.add(itemCadastrarFuncionario);
+	    
+	    /* Menu aluguel - Atalho: A */
+	    JMenu aluguelMenu = new JMenu("Aluguel");
+	    aluguelMenu.setMnemonic(KeyEvent.VK_A);
+	    menuBar.add(aluguelMenu);
+	    
+	    JMenuItem itemNovoAluguel = new JMenuItem("Novo aluguel");
+	    itemNovoAluguel.addActionListener(new SelecaoNovoAluguelAL());
+	    aluguelMenu.add(itemNovoAluguel);
+	    
+	    JMenuItem itemRegistrarDevolucao = new JMenuItem("Registrar devolucao");
+	    itemRegistrarDevolucao.addActionListener(new SelecaoRegistrarDevolucaoAL());
+	    aluguelMenu.add(itemRegistrarDevolucao);
+
+	    this.setJMenuBar(menuBar);
 	}
 }
 
