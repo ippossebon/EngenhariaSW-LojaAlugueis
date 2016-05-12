@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +12,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import controller.PesquisaController;
-import javax.swing.UIManager;
+import view.actionlisteners.UpdateOptionsActionListener;
 
 public class FuncionarioFrame extends JFrame {
 
@@ -112,118 +111,18 @@ public class FuncionarioFrame extends JFrame {
 		contentPane.add(rdbtnPessoa);
 		
 		// Testar!!
-		rdbtnPeca.addActionListener(new UpdateOptions(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnPessoa.addActionListener(new UpdateOptions(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
 		
 		resultados_table = new JTable();
 		resultados_table.setBackground(SystemColor.window);
 		resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
 		resultados_table.setBounds(36, 184, 474, 330);
 		contentPane.add(resultados_table);
+		
+		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
+		rdbtnFuncionario.setBounds(349, 153, 141, 23);
+		contentPane.add(rdbtnFuncionario);
 	}
 }
 
-class UpdateOptions implements ActionListener{
-	private JRadioButton button_peca;
-	private JRadioButton button_pessoa;
-	private JRadioButton b_nome;
-	private JRadioButton b_cpf;
-	private JRadioButton b_tipo;
-	private JRadioButton b_disponiveis;
-	private JRadioButton b_alugadas;
-	
-	public UpdateOptions(JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_tipo, JRadioButton b_disp, JRadioButton b_alug){
-		this.button_peca = button_peca;
-		this.button_pessoa = button_pessoa;
-		this.b_nome = b_nome;
-		this.b_cpf = b_cpf;
-		this.b_cpf = b_tipo;
-		this.b_disponiveis = b_disp;
-		this.b_alugadas = b_alug;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (this.button_peca.isSelected()){
-			this.b_nome.setEnabled(false);
-			this.b_cpf.setEnabled(false);
-		}
-		
-		if(this.button_pessoa.isSelected()){
-			this.b_tipo.setEnabled(false);
-			this.b_disponiveis.setEnabled(false);
-			this.b_alugadas.setEnabled(false);
-		}
-		
-	}
-}
-
-class ActionBotaoPesquisar implements ActionListener{
-	private JRadioButton button_peca;
-	private JRadioButton button_pessoa;
-	private JRadioButton b_nome;
-	private JRadioButton b_cpf;
-	private JRadioButton b_tipo;
-	private JRadioButton b_disponiveis;
-	private JRadioButton b_alugadas;
-	private JTextField text;
-	
-	public ActionBotaoPesquisar (JTextField text, JRadioButton button_peca, JRadioButton button_pessoa, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_tipo, JRadioButton b_disp, JRadioButton b_alug){
-		this.button_peca = button_peca;
-		this.button_pessoa = button_pessoa;
-		this.b_nome = b_nome;
-		this.b_cpf = b_cpf;
-		this.b_cpf = b_tipo;
-		this.b_disponiveis = b_disp;
-		this.b_alugadas = b_alug;
-		this.text = text;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		PesquisaController pesquisa_controller = new PesquisaController();
-		
-		if (this.button_peca.isSelected()){
-			// Pesquisa por peça
-			
-			if (this.b_tipo.isSelected()){
-				if (this.b_disponiveis.isSelected()){
-					//pesquisa pela palavra
-					
-				}else if(this.b_alugadas.isSelected()){
-					// pesquisa pela palavra
-					
-				}else{
-					// Pesquisa pela palavra em todo o banco de dados
-				}
-			}
-			else{
-				if (this.b_disponiveis.isSelected()){
-					//pesquisa pela palavra
-					
-				}else if(this.b_alugadas.isSelected()){
-					// pesquisa pela palavra
-					
-				}
-			}
-		}
-		else if (this.button_pessoa.isSelected()){ // Pesquisa por pessoa
-			if (this.b_nome.isSelected()){
-				// Pesquisa pessoa pelo nome
-				
-			}else if (this.b_cpf.isSelected()){
-				// Pesquisa pessoa pelo cpf
-				
-			}else{
-				MensagemErroFrame msg = new MensagemErroFrame("Selecione um filtro.");
-				msg.setVisible(true);
-			}
-		}
-		else{
-			MensagemErroFrame msg = new MensagemErroFrame("Selecione uma opção de pesquisa.");
-			msg.setVisible(true);
-		}
-		
-	}
-	
-}

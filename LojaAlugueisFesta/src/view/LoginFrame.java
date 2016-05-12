@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -13,7 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import controller.LoginController;
+import view.actionlisteners.LoginActionListener;
 import database.Database;
 
 public class LoginFrame extends JFrame {
@@ -70,7 +68,7 @@ public class LoginFrame extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(173, 130, 117, 29);
-		btnLogin.addActionListener(new LoginAction(cpf_formatted_text_field, passwordField));
+		btnLogin.addActionListener(new LoginActionListener(cpf_formatted_text_field, passwordField));
 		contentPane.add(btnLogin);
 	}
 	
@@ -88,56 +86,3 @@ public class LoginFrame extends JFrame {
 }
 
 
-
-class LoginAction implements ActionListener{
-	private JFormattedTextField text_field;
-	private JPasswordField password_field;
-	
-	public LoginAction(JFormattedTextField text, JPasswordField password){
-		this.text_field = text;
-		this.password_field = password;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		String cpf_usuario = this.text_field.getText();
-		String password_usuario = this.password_field.getPassword().toString();
-		
-		LoginController login_controller = new LoginController(cpf_usuario, password_usuario);
-		
-		if(login_controller.validarFormatoCpf()){
-			
-			if (login_controller.validarFormatoSenha()){
-				
-				if(login_controller.validarLogin()){
-					
-					// Cria a interface correspondente ao tipo de usuário
-					if (login_controller.isAtivar_interface_gerente()){
-						GerenteFrame gerente_frame = new GerenteFrame();
-						gerente_frame.setVisible(true);
-					}
-					else{
-						FuncionarioFrame funcionario_frame = new FuncionarioFrame();
-						funcionario_frame.setVisible(true);
-					}
-				}
-				else{
-					MensagemErroFrame erro_frame = new MensagemErroFrame("Login inválido. Verifique seu CPF ou senha.");
-					erro_frame.setVisible(true);
-				}
-			}
-			else{
-				MensagemErroFrame erro_frame = new MensagemErroFrame("Senha inválida.");
-				erro_frame.setVisible(true);
-			}
-		}
-		else{
-			MensagemErroFrame erro_frame = new MensagemErroFrame("CPF no formato errado"); // TO DO: verificar como vai ser o formato em que o usuário insere.
-			erro_frame.setVisible(true); 
-		}
-		
-	}
-	
-}
