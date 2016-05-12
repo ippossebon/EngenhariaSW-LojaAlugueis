@@ -1,4 +1,6 @@
 package controller;
+//import database.DatabaseController;
+//package database;
 
 import model.Cliente;
 
@@ -11,8 +13,33 @@ public class CadastroController {
 		// criar Cliente()
 		// adicionar ao databasecontroller
 		
+		if(!this.validaNome(nome)) {
+			
+			return;
+		}
+		
+		if(!this.validaCpf(cpf)) {
+			
+			return;
+		}
+		
+		if(!this.validaEmail(cpf)) {
+			
+			return;
+		}
+		
+		if(!this.validaTelefone(telefone)) {
+			
+			return;
+		}
+		
+		if(!this.validaEndereco(endereco)) {
+			
+			return;
+		}
 		
 		cliente = new Cliente(nome, cpf, email, endereco, telefone);
+		//DatabaseController dbController = new DatabaseController();
 	}
 	
 	public boolean validaNome(String nome) {
@@ -27,20 +54,40 @@ public class CadastroController {
 	
 	public boolean validaCpf(String cpf) {
 		
+		if(this.stringVazia(cpf) || this.contemLetras(cpf)) {
+			
+			return false;
+		}
+		
 		return true;
 	}
 	
 	public boolean validaEmail(String email) {
+		
+		if(this.stringVazia(email)) {
+			
+			return false;
+		}
 		
 		return true;
 	}
 	
 	public boolean validaTelefone(String telefone){
 		
+		if(this.stringVazia(telefone) || this.contemLetras(telefone)) {
+			
+			return false;
+		}
+		
 		return true;
 	}
 
 	public boolean validaEndereco(String endereco) {
+		
+		if(this.stringVazia(endereco)) {
+			
+			return false;
+		}
 		
 		return true;
 	}
