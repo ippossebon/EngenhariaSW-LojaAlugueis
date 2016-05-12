@@ -3,16 +3,14 @@ package controller;
 //package database;
 
 import model.Cliente;
+import database.Database;
+import database.DatabaseController;
 
 public class CadastroController {
 
 	private Cliente cliente;
 	
 	public CadastroController(String nome, String cpf, String email, String telefone, String endereco){
-		// verificar se dados sao validos
-		// criar Cliente()
-		// adicionar ao databasecontroller
-		
 		if(!this.validaNome(nome)) {
 			
 			return;
