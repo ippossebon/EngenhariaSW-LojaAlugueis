@@ -4,6 +4,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,19 +51,19 @@ public class FuncionarioFrame extends JFrame {
 		contentPane.add(lblPesquisa);
 		
 		JButton btnCadastrarCliente = new JButton("Cadastrar cliente");
-		btnCadastrarCliente.setBounds(522, 95, 166, 29);
+		btnCadastrarCliente.setBounds(522, 184, 166, 29);
 		contentPane.add(btnCadastrarCliente);
 		
 		JButton btnNovoFuncionrio = new JButton("Cadastrar funcionário");
-		btnNovoFuncionrio.setBounds(522, 136, 166, 29);
+		btnNovoFuncionrio.setBounds(522, 225, 166, 29);
 		contentPane.add(btnNovoFuncionrio);
 		
 		JButton btnNovoAluguel = new JButton("Novo aluguel");
-		btnNovoAluguel.setBounds(522, 218, 166, 29);
+		btnNovoAluguel.setBounds(522, 307, 166, 29);
 		contentPane.add(btnNovoAluguel);
 		
 		JButton btnRegistrarPagamento = new JButton("Registrar pagamento");
-		btnRegistrarPagamento.setBounds(522, 177, 166, 29);
+		btnRegistrarPagamento.setBounds(522, 266, 166, 29);
 		contentPane.add(btnRegistrarPagamento);
 		
 		JLabel lblResultados = new JLabel("Resultados");
@@ -83,10 +84,10 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnCpf.setBounds(216, 153, 73, 23);
 		contentPane.add(rdbtnCpf);
 		
-		JRadioButton rdbtnTipo = new JRadioButton("Tipo");
+		JRadioButton rdbtnTodas = new JRadioButton("Todas");
 		rdbtnNome.setToolTipText("Peça");
-		rdbtnTipo.setBounds(110, 118, 141, 23);
-		contentPane.add(rdbtnTipo);
+		rdbtnTodas.setBounds(110, 118, 90, 23);
+		contentPane.add(rdbtnTodas);
 		
 		JRadioButton rdbtnDisponiveis = new JRadioButton("Disponíveis");
 		rdbtnNome.setToolTipText("Peça");
@@ -114,18 +115,30 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnFuncionario.setBounds(348, 50, 141, 23);
 		contentPane.add(rdbtnFuncionario);
 		
+		ButtonGroup button_group_pesquisa = new ButtonGroup();
+		button_group_pesquisa.add(rdbtnPeca);
+		button_group_pesquisa.add(rdbtnPessoa);
+		button_group_pesquisa.add(rdbtnFuncionario);
+		
+		ButtonGroup bg_filtro_pessoa = new ButtonGroup();
+		bg_filtro_pessoa.add(rdbtnCpf);
+		bg_filtro_pessoa.add(rdbtnNome);
+		
+		ButtonGroup bg_filtro_peca = new ButtonGroup();
+		bg_filtro_peca.add(rdbtnAlugadas);
+		bg_filtro_peca.add(rdbtnDisponiveis);
+		bg_filtro_peca.add(rdbtnTodas);
+		
 		/* Testar!! */
-		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnFuncionario.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTipo, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnFuncionario.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
 		
 		resultados_table = new JTable();
 		resultados_table.setBackground(SystemColor.window);
 		resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
 		resultados_table.setBounds(36, 184, 474, 330);
-		contentPane.add(resultados_table);
-		
-		
+		contentPane.add(resultados_table);		
 	}
 }
 
