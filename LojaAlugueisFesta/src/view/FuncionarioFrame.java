@@ -17,7 +17,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import view.actionlisteners.UpdateOptionsActionListener;
+import view.actionlisteners.DisableFiltrosPecaAL;
+import view.actionlisteners.DisableFiltrosPessoaAL;
 
 public class FuncionarioFrame extends JFrame {
 
@@ -130,9 +131,9 @@ public class FuncionarioFrame extends JFrame {
 		bg_filtro_peca.add(rdbtnTodas);
 		
 		/* Testar!! */
-		rdbtnPeca.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnPessoa.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnFuncionario.addActionListener(new UpdateOptionsActionListener(rdbtnPeca, rdbtnPessoa, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPeca.addActionListener(new DisableFiltrosPessoaAL(rdbtnNome, rdbtnCpf));
+		rdbtnPessoa.addActionListener(new DisableFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnFuncionario.addActionListener(new DisableFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
 		
 		resultados_table = new JTable();
 		resultados_table.setBackground(SystemColor.window);

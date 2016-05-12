@@ -15,12 +15,13 @@ public class CadastroFrame extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JButton btnOk;
 
 	
 	public CadastroFrame() {
 		setTitle("Novo cadastro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 366);
+		setBounds(100, 100, 430, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,8 +71,12 @@ public class CadastroFrame extends JFrame {
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(278, 307, 117, 29);
+		btnOk = new JButton("OK");
+		btnOk.setBounds(277, 227, 117, 29);
 		contentPane.add(btnOk);
+	}
+	
+	public JButton getButtonOk(){
+		return this.btnOk;
 	}
 }
