@@ -11,33 +11,40 @@ public class CadastroController {
 	private Cliente cliente;
 	
 	public CadastroController(String nome, String cpf, String email, String telefone, String endereco){
+		
+	}
+	
+	public void cadastraCliente(String nome, String cpf, String email, String telefone, String endereco) {
+		
 		if(!this.validaNome(nome)) {
 			
-			return;
+			throw new NomeInvalidoException("Nome invalido.");
 		}
+
 		
 		if(!this.validaCpf(cpf)) {
 			
-			return;
+			throw new CPFInvalidoException("CPF invalido.");
 		}
 		
-		if(!this.validaEmail(cpf)) {
+		if(!this.validaEmail(email)) {
 			
-			return;
+			throw new EmailInvalidoException("Email invalido.");
 		}
 		
 		if(!this.validaTelefone(telefone)) {
 			
-			return;
+			throw new TelefoneInvalidoException("Telefone invalido.");
 		}
 		
 		if(!this.validaEndereco(endereco)) {
 			
-			return;
+			throw new EnderecoInvalidoException("Endereco invalido.");
 		}
 		
 		cliente = new Cliente(nome, cpf, email, endereco, telefone);
 		//DatabaseController dbController = new DatabaseController();
+		
 	}
 	
 	public boolean validaNome(String nome) {
