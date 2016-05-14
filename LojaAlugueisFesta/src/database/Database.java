@@ -13,19 +13,26 @@ public class Database {
 	private static int pesquisa_disponiveis = 1;
 	private static int pesquisa_alugadas = 2;
 	
-	private Database database;
+	private static Database database;
 	private ArrayList<Gerente> gerentes;
 	private ArrayList<Funcionario> funcionarios;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Aluguel> alugueis;
 	private ArrayList<Peca> pecas;
 	
-	public Database(){
+	private Database(){
 		this.setGerentes(new ArrayList<Gerente>());
 		this.setFuncionarios(new ArrayList<Funcionario>());
 		this.setClientes(new ArrayList<Cliente>());
 		this.setAlugueis(new ArrayList<Aluguel>());
 		this.setPecas(new ArrayList<Peca>());
+	}
+	
+	public static synchronized Database getInstance() {
+		if (database == null)
+			database = new Database();
+
+		return database;
 	}
 
 	public ArrayList<Gerente> getGerentes() {
@@ -81,7 +88,7 @@ public class Database {
 	}
 
 	public void setDatabase(Database database) {
-		this.database = database;
+		Database.database = database;
 	}
 
 	public static int getPesquisa_todas() {
@@ -110,10 +117,10 @@ public class Database {
 	
 	public void popularDatabase(){
 		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
-		this.database.adicionarCliente(c1);
+		Database.database.adicionarCliente(c1);
 		
 		Funcionario f1 = new Funcionario("Isadora", "03445512027", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
-		this.database.adicionarFuncionario(f1);
+		Database.database.adicionarFuncionario(f1);
 		
 		
 	}

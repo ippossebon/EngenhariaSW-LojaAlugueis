@@ -43,8 +43,8 @@ public class CadastroController {
 		}
 		
 		cliente = new Cliente(nome, cpf, email, endereco, telefone);
-		//DatabaseController dbController = new DatabaseController();
-		
+		DatabaseController dbController = new DatabaseController(Database.getInstance());
+		dbController.cadastrarCliente(cliente);
 	}
 	
 	public boolean validaNome(String nome) {
