@@ -1,15 +1,13 @@
 package controller;
 
 import model.Cliente;
-<<<<<<< HEAD
+import model.Funcionario;
 import view.MensagemFrame;
 import controller.exceptions.CPFInvalidoException;
 import controller.exceptions.EmailInvalidoException;
 import controller.exceptions.EnderecoInvalidoException;
+import controller.exceptions.NomeInvalidoException;
 import controller.exceptions.TelefoneInvalidoException;
-=======
-import model.Funcionario;
->>>>>>> origin/master
 import database.Database;
 import database.DatabaseController;
 
