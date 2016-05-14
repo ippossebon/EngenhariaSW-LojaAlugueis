@@ -18,26 +18,6 @@ public class LoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-	public static Database database; //teste
-	
-	
-	// Launch application
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginFrame frame = new LoginFrame();
-					frame.setVisible(true);
-					
-					// Teste
-					database = new Database();
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	// Create frame
 	public LoginFrame() {
@@ -62,7 +42,7 @@ public class LoginFrame extends JFrame {
 		lblSenha.setBounds(30, 90, 61, 16);
 		contentPane.add(lblSenha);
 		
-		JFormattedTextField cpf_formatted_text_field = new JFormattedTextField(mascara("###.###.###-##"));
+		JFormattedTextField cpf_formatted_text_field = new JFormattedTextField(Operacoes.aplicaMascara("###.###.###-##"));
 		cpf_formatted_text_field.setBounds(90, 37, 200, 28);
 		contentPane.add(cpf_formatted_text_field);
 		
@@ -72,17 +52,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(btnLogin);
 	}
 	
-	public  MaskFormatter mascara(String Mascara){
-	    MaskFormatter F_Mascara = new MaskFormatter();
-	    try{
-	        F_Mascara.setMask(Mascara); // Atribui a mascara
-	        F_Mascara.setPlaceholderCharacter(' '); // Caractere para preencimento 
-	    }
-	    catch (Exception excecao) {
-	    excecao.printStackTrace();
-	    } 
-	    return F_Mascara;
-	}
+
 }
 
 

@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class EmailInvalidoException extends RuntimeException {
 
-	EmailInvalidoException(String message) {
+	public EmailInvalidoException(String message) {
 		super(message);
 	}
 }

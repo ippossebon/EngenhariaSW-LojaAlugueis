@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class CPFInvalidoException extends RuntimeException {
 	
-	CPFInvalidoException(String message) {
+	public CPFInvalidoException(String message) {
 		super(message);
 	}
 

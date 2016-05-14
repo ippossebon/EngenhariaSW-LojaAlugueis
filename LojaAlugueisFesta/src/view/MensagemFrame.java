@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
-public class MensagemErroFrame extends JFrame {
+public class MensagemFrame extends JFrame {
 
 	private JPanel contentPane;
 
-	public MensagemErroFrame(String mensagem) {
-		setTitle("Erro");
+	public MensagemFrame(String mensagem) {
+		setTitle("Mensagem");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 340, 183);
 		contentPane = new JPanel();
@@ -24,10 +24,6 @@ public class MensagemErroFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JLabel lblErro = new JLabel("Erro:");
-		lblErro.setBounds(19, 40, 61, 16);
-		contentPane.add(lblErro);
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {

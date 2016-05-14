@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class NomeInvalidoException extends RuntimeException {
 	
-	NomeInvalidoException(String message) {
+	public NomeInvalidoException(String message) {
 		super(message);
 	}
 

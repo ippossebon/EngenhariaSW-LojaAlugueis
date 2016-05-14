@@ -8,7 +8,7 @@ import javax.swing.JPasswordField;
 
 import view.FuncionarioFrame;
 import view.GerenteFrame;
-import view.MensagemErroFrame;
+import view.MensagemFrame;
 import controller.LoginController;
 
 public class LoginAL implements ActionListener{
@@ -46,17 +46,17 @@ public class LoginAL implements ActionListener{
 					}
 				}
 				else{
-					MensagemErroFrame erro_frame = new MensagemErroFrame("Login inválido. Verifique seu CPF ou senha.");
+					MensagemFrame erro_frame = new MensagemFrame("Login inválido. Verifique seu CPF ou senha.");
 					erro_frame.setVisible(true);
 				}
 			}
 			else{
-				MensagemErroFrame erro_frame = new MensagemErroFrame("Senha inválida.");
+				MensagemFrame erro_frame = new MensagemFrame("Senha inválida.");
 				erro_frame.setVisible(true);
 			}
 		}
 		else{
-			MensagemErroFrame erro_frame = new MensagemErroFrame("CPF no formato errado"); // TO DO: verificar como vai ser o formato em que o usuário insere.
+			MensagemFrame erro_frame = new MensagemFrame("CPF no formato errado"); // TO DO: verificar como vai ser o formato em que o usuário insere.
 			erro_frame.setVisible(true); 
 		}
 		

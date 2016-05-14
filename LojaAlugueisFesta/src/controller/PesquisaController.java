@@ -7,7 +7,7 @@ import model.Cliente;
 import model.Data;
 import model.Funcionario;
 import model.Peca;
-import view.LoginFrame;
+import database.Database;
 import database.DatabaseController;
 
 public class PesquisaController {
@@ -18,7 +18,7 @@ public class PesquisaController {
 	
 	public ArrayList<Cliente> pesquisarClientePorNome(String nome){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
 		
 		for (Cliente c : database_controller.getClientes()){
@@ -31,7 +31,7 @@ public class PesquisaController {
 	
 	public ArrayList<Cliente> pesquisarClientePorCPF(String cpf){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
 		
 		for (Cliente c : database_controller.getClientes()){
@@ -45,7 +45,7 @@ public class PesquisaController {
 	
 	public ArrayList<Funcionario> pesquisarFuncionarioPorCPF(String cpf){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Funcionario> resultado = new ArrayList<Funcionario>();
 		
 		for (Funcionario f : database_controller.getFuncionarios()){
@@ -60,7 +60,7 @@ public class PesquisaController {
 	
 	public ArrayList<Peca> pesquisarPeca(int codigo, int filtro){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Peca> resultado = new ArrayList<Peca>();
 		
 		for (Peca p : database_controller.getPecas()){
@@ -83,7 +83,7 @@ public class PesquisaController {
 	
 	public ArrayList<Peca> pesquisarPeca(String tipo, int filtro){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Peca> resultado = new ArrayList<Peca>();
 		
 		for (Peca p : database_controller.getPecas()){
@@ -109,7 +109,7 @@ public class PesquisaController {
 	 * fim. Se a data de início estiver vazia, retorna todos os alugueis que têm início na mesma data.*/
 	public ArrayList<Aluguel> pesquisarAluguelPorData(Data data_inicio, Data data_fim){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
 		
 		if (data_inicio == null){
@@ -142,7 +142,7 @@ public class PesquisaController {
 	
 	public ArrayList<Aluguel> pesquisarAluguelPorCliente(String cpf){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
 		
 		for (Aluguel a : database_controller.getAlugueis()){
@@ -156,7 +156,7 @@ public class PesquisaController {
 	
 	public boolean existeFuncionario(String cpf){
 		
-		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		for (Cliente c : database_controller.getClientes()){
 			if (c.getCpf().equals(cpf)){
 				return true;

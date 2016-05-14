@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.EventQueue;
+
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -8,15 +10,33 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import view.actionlisteners.BotaoCadastrarClienteAL;
+
 public class CadastroFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField text_field_nome;
+	private JTextField text_field_email;
+	private JTextField text_field_telefone;
+	private JTextField text_field_endereco;
+	JFormattedTextField formatted_text_field_cpf;
 	private JButton btnOk;
 
+	
+	// Launch application
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CadastroFrame frame = new CadastroFrame();
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	public CadastroFrame() {
 		setTitle("Novo cadastro");
@@ -31,48 +51,50 @@ public class CadastroFrame extends JFrame {
 		lblNome.setBounds(27, 33, 61, 16);
 		contentPane.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setBounds(95, 27, 300, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		text_field_nome = new JTextField();
+		text_field_nome.setBounds(95, 27, 300, 28);
+		contentPane.add(text_field_nome);
+		text_field_nome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(27, 71, 61, 16);
 		contentPane.add(lblCpf);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(95, 67, 300, 28);
-		contentPane.add(formattedTextField);
+		formatted_text_field_cpf = new JFormattedTextField(Operacoes.aplicaMascara("###.###.###-##"));
+		formatted_text_field_cpf.setBounds(95, 67, 300, 28);
+		
+		contentPane.add(formatted_text_field_cpf);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(27, 108, 61, 16);
 		contentPane.add(lblEmail);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(95, 107, 300, 28);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		text_field_email = new JTextField();
+		text_field_email.setBounds(95, 107, 300, 28);
+		contentPane.add(text_field_email);
+		text_field_email.setColumns(10);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setBounds(27, 149, 61, 16);
 		contentPane.add(lblTelefone);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(95, 147, 300, 28);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		text_field_telefone = new JTextField();
+		text_field_telefone.setBounds(95, 147, 300, 28);
+		contentPane.add(text_field_telefone);
+		text_field_telefone.setColumns(10);
 		
 		JLabel lblEndereco = new JLabel("Endereço:");
 		lblEndereco.setBounds(27, 190, 61, 16);
 		contentPane.add(lblEndereco);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(95, 187, 300, 28);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		text_field_endereco = new JTextField();
+		text_field_endereco.setBounds(95, 187, 300, 28);
+		contentPane.add(text_field_endereco);
+		text_field_endereco.setColumns(10);
 		
 		btnOk = new JButton("OK");
 		btnOk.setBounds(277, 227, 117, 29);
+		btnOk.addActionListener(new BotaoCadastrarClienteAL(this, this.text_field_nome, this.formatted_text_field_cpf, this.text_field_email, this.text_field_telefone, this.text_field_endereco));
 		contentPane.add(btnOk);
 	}
 	

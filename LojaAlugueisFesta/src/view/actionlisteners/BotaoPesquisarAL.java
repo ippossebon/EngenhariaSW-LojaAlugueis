@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import view.MensagemErroFrame;
+import view.MensagemFrame;
 import controller.PesquisaController;
 
 class BotaoPesquisarAL implements ActionListener{
@@ -66,12 +66,12 @@ class BotaoPesquisarAL implements ActionListener{
 				// Pesquisa pessoa pelo cpf
 				
 			}else{
-				MensagemErroFrame msg = new MensagemErroFrame("Selecione um filtro.");
+				MensagemFrame msg = new MensagemFrame("Selecione um filtro.");
 				msg.setVisible(true);
 			}
 		}
 		else{
-			MensagemErroFrame msg = new MensagemErroFrame("Selecione uma opção de pesquisa.");
+			MensagemFrame msg = new MensagemFrame("Selecione uma opção de pesquisa.");
 			msg.setVisible(true);
 		}
 		

@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class TelefoneInvalidoException extends RuntimeException {
 	
-	TelefoneInvalidoException(String message) {
+	public TelefoneInvalidoException(String message) {
 		super(message);
 	}
 

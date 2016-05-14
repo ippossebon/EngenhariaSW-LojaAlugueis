@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class EnderecoInvalidoException extends RuntimeException {
 	
-	EnderecoInvalidoException(String message) {
+	public EnderecoInvalidoException(String message) {
 		super(message);
 	}
 
