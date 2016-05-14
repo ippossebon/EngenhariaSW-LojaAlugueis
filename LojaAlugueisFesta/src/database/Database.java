@@ -83,6 +83,10 @@ public class Database {
 		this.funcionarios.add(f);
 	}
 	
+	public void adicionarGerente(Gerente g){
+		this.gerentes.add(g);
+	}
+	
 	public Database getDatabase() {
 		return database;
 	}
@@ -119,10 +123,38 @@ public class Database {
 		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
 		Database.database.adicionarCliente(c1);
 		
-		Funcionario f1 = new Funcionario("Isadora", "03445512027", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
+		Funcionario f1 = new Funcionario("Isadora", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
 		Database.database.adicionarFuncionario(f1);
 		
+		Gerente g1 = new Gerente("Isadora", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
+		Database.database.adicionarGerente(g1);
+	}
+	
+	public void printDatabase(){
+		System.out.println("** Database **");
+		System.out.println("GERENTES:");
+		for(Gerente g: this.gerentes){
+			System.out.println(g.getNome());
+		}
+		System.out.println(" ");
 		
+		System.out.println("FUNCIONARIOS:");
+		for(Funcionario f: this.funcionarios){
+			System.out.println(f.getNome());
+		}
+		System.out.println();
+		
+		System.out.println("CLIENTES:");
+		for(Cliente c: this.clientes){
+			System.out.println(c.getNome());
+		}
+		System.out.println();
+		
+		System.out.print("PEÇAS:");
+		for(Peca p: this.pecas){
+			System.out.println(p.getTipo());
+		}
+		System.out.println();
 	}
 }
 

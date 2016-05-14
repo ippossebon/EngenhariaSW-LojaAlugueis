@@ -101,11 +101,11 @@ public class DatabaseController {
 		}
 	}
 	
-	public void adicionarFuncionario(Funcionario f){
-		
+	public void cadastrarGerente(Gerente g){
+		database.adicionarGerente(g);
 	}
 	
-	public void adicionarCliente(Cliente c){
-		
+	public void printDatabase(){
+		database.printDatabase();
 	}
 }

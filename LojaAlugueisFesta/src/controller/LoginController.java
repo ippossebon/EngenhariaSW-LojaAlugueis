@@ -36,6 +36,10 @@ public class LoginController {
 	/* Retorna true se o formato está correto; false, caso contrário. */
 	public boolean validarFormatoCpf(){
 		
+		if(this.cpf_usuario.isEmpty() || this.contemLetra(this.cpf_usuario) || !this.contemNumero(this.cpf_usuario)){
+			return false;
+		}
+		
 		return true;
 	}
 	
@@ -49,11 +53,13 @@ public class LoginController {
 	
 	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário. Seta a variável "gerente" */
 	public boolean validarLogin(){
-		
 		PesquisaController pesquisa_controller = new PesquisaController();
 		ArrayList<Funcionario> funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
 		
-		if (funcionarios.size() != 1){
+		if(funcionarios.size() == 0){
+			return false;
+		}
+		else if (funcionarios.size() != 1){
 			Funcionario funcionario = funcionarios.get(0);
 			
 			if(funcionario.getSenha().equals(this.senha_usuario)){
@@ -75,4 +81,14 @@ public class LoginController {
 		this.ativar_interface_gerente = gerente;
 	}
 	
+	private boolean contemLetra(String s){
+		
+		return s.matches(".*?[a-zA-Z].*?");
+	}
+	
+	private boolean contemNumero(String str) {
+		
+		return str.matches(".*\\d.*");
+	
+	}
 }

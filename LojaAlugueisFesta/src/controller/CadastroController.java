@@ -77,6 +77,7 @@ public class CadastroController {
 		cliente = new Cliente(nome, cpf, email, endereco, telefone);
 		DatabaseController dbController = new DatabaseController(Database.getInstance());
 		dbController.cadastrarCliente(cliente);
+		dbController.printDatabase();
 		
 		MensagemFrame mensagem_frame = new MensagemFrame("Cliente cadastrado com sucesso.");
 		mensagem_frame.setVisible(true);
@@ -137,8 +138,6 @@ public class CadastroController {
 	}
 	
 	public boolean validaCpf(String cpf) {
-		System.out.println(cpf);
-		
 		if(this.stringVazia(cpf) || !this.contemNumero(cpf) || this.contemLetra(cpf)) {
 			
 			return false;

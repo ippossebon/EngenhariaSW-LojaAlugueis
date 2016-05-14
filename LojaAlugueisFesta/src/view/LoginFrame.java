@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
 
 import view.actionlisteners.LoginAL;
 import database.Database;
@@ -19,6 +18,22 @@ public class LoginFrame extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 
+	// Launch application
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Database.getInstance().popularDatabase();
+					LoginFrame frame = new LoginFrame();
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	// Create frame
 	public LoginFrame() {
 		setTitle("Login");

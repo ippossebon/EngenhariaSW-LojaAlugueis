@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -21,22 +19,6 @@ public class CadastroFrame extends JFrame {
 	private JTextField text_field_endereco;
 	JFormattedTextField formatted_text_field_cpf;
 	private JButton btnOk;
-
-	
-	// Launch application
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroFrame frame = new CadastroFrame();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public CadastroFrame() {
 		setTitle("Novo cadastro");
