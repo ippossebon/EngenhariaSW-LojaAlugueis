@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class PessoaCadastradaException extends RuntimeException {
 
-	PessoaCadastradaException(String message) {
+	public PessoaCadastradaException(String message) {
 		super(message);
 	}
 

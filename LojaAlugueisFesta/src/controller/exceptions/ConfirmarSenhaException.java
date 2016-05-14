@@ -1,8 +1,8 @@
-package controller;
+package controller.exceptions;
 
 public class ConfirmarSenhaException extends RuntimeException {
 	
-	ConfirmarSenhaException(String message) {
+	public ConfirmarSenhaException(String message) {
 		super(message);
 	}
 

@@ -4,12 +4,15 @@ import model.Cliente;
 import model.Funcionario;
 import view.MensagemFrame;
 import controller.exceptions.CPFInvalidoException;
+import controller.exceptions.ConfirmarSenhaException;
 import controller.exceptions.EmailInvalidoException;
 import controller.exceptions.EnderecoInvalidoException;
 import controller.exceptions.NomeInvalidoException;
+import controller.exceptions.PessoaCadastradaException;
 import controller.exceptions.TelefoneInvalidoException;
 import database.Database;
 import database.DatabaseController;
+
 
 public class CadastroController {
 
@@ -134,8 +137,9 @@ public class CadastroController {
 	}
 	
 	public boolean validaCpf(String cpf) {
+		System.out.println(cpf);
 		
-		if(this.stringVazia(cpf) || this.contemLetras(cpf)) {
+		if(this.stringVazia(cpf) || !this.contemNumero(cpf) || this.contemLetra(cpf)) {
 			
 			return false;
 		}
@@ -155,7 +159,7 @@ public class CadastroController {
 	
 	public boolean validaTelefone(String telefone){
 		
-		if(this.stringVazia(telefone) || this.contemLetras(telefone)) {
+		if(this.stringVazia(telefone) || !this.contemApenasNumeros(telefone)) {
 			
 			return false;
 		}
@@ -181,17 +185,24 @@ public class CadastroController {
 	// contém caracteres 0-9
 	public boolean contemNumero(String str) {
 		
-		return str.contains("^[0-9]");
+		return str.matches(".*\\d.*");
+	
 	}
 	
 	// contém caracteres a-z A-Z
-	public boolean contemLetras(String str) {
+	public boolean contemApenasNumeros(String str) {
 		
-		return str.contains("^[a-Z]");
+		return str.matches("[0-9]+");
+		
 	}
 	
 	public boolean contemArroba(String s){
 		return s.contains("@");
+	}
+	
+	public boolean contemLetra(String s){
+	
+		return s.matches(".*?[a-zA-Z].*?");
 	}
 	
 }
