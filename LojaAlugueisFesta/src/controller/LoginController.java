@@ -3,7 +3,11 @@ package controller;
 import java.util.ArrayList;
 
 import model.Funcionario;
-import model.Gerente;
+import view.FuncionarioFrame;
+import view.GerenteFrame;
+import view.MensagemFrame;
+import database.Database;
+import database.DatabaseController;
 
 public class LoginController {
 	
@@ -39,7 +43,6 @@ public class LoginController {
 		if(this.cpf_usuario.isEmpty() || this.contemLetra(this.cpf_usuario) || !this.contemNumero(this.cpf_usuario)){
 			return false;
 		}
-		
 		return true;
 	}
 	
@@ -54,16 +57,17 @@ public class LoginController {
 	/* Retorna true se o login está correto (cpf e senha têm correspondência) ; false, caso contrário. Seta a variável "gerente" */
 	public boolean validarLogin(){
 		PesquisaController pesquisa_controller = new PesquisaController();
+		DatabaseController db_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Funcionario> funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
 		
 		if(funcionarios.size() == 0){
 			return false;
 		}
-		else if (funcionarios.size() != 1){
+		else if (funcionarios.size() == 1){
 			Funcionario funcionario = funcionarios.get(0);
 			
 			if(funcionario.getSenha().equals(this.senha_usuario)){
-				if (funcionario instanceof Gerente){
+				if (db_controller.isGerente(this.cpf_usuario)){
 					setAtivar_interface_gerente(true);
 				}
 				return true;
@@ -71,6 +75,31 @@ public class LoginController {
 		}
 
 		return false;
+	}
+	
+	public void login(){
+		if(validarFormatoCpf()){
+			if (validarLogin()){
+				if(this.ativar_interface_gerente){
+					//Cria interface para gerente
+					GerenteFrame frame = new GerenteFrame();
+					frame.setVisible(true);
+				}
+				else{
+					//Cria interface para funcionario
+					FuncionarioFrame frame = new FuncionarioFrame();
+					frame.setVisible(true);
+				}
+			}
+			else{
+				MensagemFrame msg = new MensagemFrame("Login inválido.");
+				msg.setVisible(true);
+			}
+		}
+		else{
+			MensagemFrame msg = new MensagemFrame("CPF inválido.");
+			msg.setVisible(true);
+		}
 	}
 
 	public boolean isAtivar_interface_gerente() {

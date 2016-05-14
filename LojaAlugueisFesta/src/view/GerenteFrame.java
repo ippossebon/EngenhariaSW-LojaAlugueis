@@ -17,7 +17,6 @@ public class GerenteFrame extends FuncionarioFrame {
 
 	public GerenteFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(contentPane);
 		
 		 /* Menu Estoque - Atalho: E */
 	    JMenu estoqueMenu = new JMenu("Estoque");

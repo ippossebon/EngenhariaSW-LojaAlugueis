@@ -108,4 +108,8 @@ public class DatabaseController {
 	public void printDatabase(){
 		database.printDatabase();
 	}
+	
+	public boolean isGerente(String cpf){
+		return database.isGerente(cpf);
+	}
 }

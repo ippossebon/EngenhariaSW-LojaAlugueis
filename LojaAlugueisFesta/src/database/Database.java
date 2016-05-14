@@ -156,6 +156,17 @@ public class Database {
 		}
 		System.out.println();
 	}
+	
+	public boolean isGerente(String cpf){
+		
+		for (Gerente g: this.gerentes){
+			if(g.getCpf().equals(cpf)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
 
 

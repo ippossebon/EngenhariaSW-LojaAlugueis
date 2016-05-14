@@ -25,41 +25,10 @@ public class LoginAL implements ActionListener{
 		// TODO Auto-generated method stub
 		
 		String cpf_usuario = this.text_field.getText();
-		String password_usuario = this.password_field.getPassword().toString();
+		String password_usuario = this.password_field.getText();
 		
 		LoginController login_controller = new LoginController(cpf_usuario, password_usuario);
-		
-		if(login_controller.validarFormatoCpf()){
-			
-			if (login_controller.validarFormatoSenha()){
-				
-				if(login_controller.validarLogin()){
-					
-					// Cria a interface correspondente ao tipo de usuário
-					if (login_controller.isAtivar_interface_gerente()){
-						GerenteFrame gerente_frame = new GerenteFrame();
-						gerente_frame.setVisible(true);
-					}
-					else{
-						FuncionarioFrame funcionario_frame = new FuncionarioFrame();
-						funcionario_frame.setVisible(true);
-					}
-				}
-				else{
-					MensagemFrame erro_frame = new MensagemFrame("Login inválido. Verifique seu CPF ou senha.");
-					erro_frame.setVisible(true);
-				}
-			}
-			else{
-				MensagemFrame erro_frame = new MensagemFrame("Senha inválida.");
-				erro_frame.setVisible(true);
-			}
-		}
-		else{
-			MensagemFrame erro_frame = new MensagemFrame("CPF no formato errado"); // TO DO: verificar como vai ser o formato em que o usuário insere.
-			erro_frame.setVisible(true); 
-		}
-		
+		login_controller.login();
 	}
 	
 }
