@@ -156,7 +156,22 @@ public class PesquisaController {
 	
 	public boolean existeFuncionario(String cpf){
 		
+<<<<<<< HEAD
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+=======
+		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+		for (Funcionario f : database_controller.getFuncionarios()){
+			if (f.getCpf().equals(cpf)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeCliente(String cpf){
+		
+		DatabaseController database_controller = new DatabaseController(LoginFrame.database);
+>>>>>>> origin/master
 		for (Cliente c : database_controller.getClientes()){
 			if (c.getCpf().equals(cpf)){
 				return true;
@@ -164,5 +179,6 @@ public class PesquisaController {
 		}
 		return false;
 	}
+	
 	
 }

@@ -1,17 +1,22 @@
 package controller;
 
 import model.Cliente;
+<<<<<<< HEAD
 import view.MensagemFrame;
 import controller.exceptions.CPFInvalidoException;
 import controller.exceptions.EmailInvalidoException;
 import controller.exceptions.EnderecoInvalidoException;
 import controller.exceptions.TelefoneInvalidoException;
+=======
+import model.Funcionario;
+>>>>>>> origin/master
 import database.Database;
 import database.DatabaseController;
 
 public class CadastroController {
 
 	private Cliente cliente;
+	private Funcionario funcionario;
 	
 	public CadastroController(){
 		
@@ -35,6 +40,13 @@ public class CadastroController {
 			MensagemFrame msg = new MensagemFrame("CPF inválido.");
 			msg.setVisible(true);
 			return false;
+		}
+		
+		PesquisaController pController = new PesquisaController();
+		
+		if(pController.existeCliente(cpf)) {
+			
+			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema");
 		}
 		
 		if(!this.validaEmail(email)) {
@@ -68,6 +80,49 @@ public class CadastroController {
 		MensagemFrame mensagem_frame = new MensagemFrame("Cliente cadastrado com sucesso.");
 		mensagem_frame.setVisible(true);
 		return true;
+	}
+	
+	public void cadastraFuncionario(String nome, String cpf, String email, String telefone, String endereco, String senha, String confirmarSenha) {
+		
+		if(!this.validaNome(nome)) {
+			
+			throw new NomeInvalidoException("Nome invalido.");
+		}
+
+		if(!this.validaCpf(cpf)) {
+			
+			throw new CPFInvalidoException("CPF invalido.");
+		}
+		
+		PesquisaController pController = new PesquisaController();
+		
+		if(pController.existeFuncionario(cpf)) {
+			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema.");
+		}
+		
+		if(!this.validaEmail(email)) {
+			
+			throw new EmailInvalidoException("Email invalido.");
+		}
+		
+		if(!this.validaTelefone(telefone)) {
+			
+			throw new TelefoneInvalidoException("Telefone invalido.");
+		}
+		
+		if(!this.validaEndereco(endereco)) {
+			
+			throw new EnderecoInvalidoException("Endereco invalido.");
+		}
+		
+		if(!senha.equals(confirmarSenha)) {
+			
+			throw new ConfirmarSenhaException("lol");
+		}
+		
+		funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
+		DatabaseController dbController = new DatabaseController(Database.getInstance());
+		dbController.cadastrarFuncionario(funcionario);
 	}
 	
 	public boolean validaNome(String nome) {
