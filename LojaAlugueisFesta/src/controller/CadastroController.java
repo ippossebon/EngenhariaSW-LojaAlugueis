@@ -29,6 +29,13 @@ public class CadastroController {
 			throw new CPFInvalidoException("CPF invalido.");
 		}
 		
+		PesquisaController pController = new PesquisaController();
+		
+		if(pController.existeCliente(cpf)) {
+			
+			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema");
+		}
+		
 		if(!this.validaEmail(email)) {
 			
 			throw new EmailInvalidoException("Email invalido.");
@@ -51,15 +58,20 @@ public class CadastroController {
 	
 	public void cadastraFuncionario(String nome, String cpf, String email, String telefone, String endereco, String senha, String confirmarSenha) {
 		
-if(!this.validaNome(nome)) {
+		if(!this.validaNome(nome)) {
 			
 			throw new NomeInvalidoException("Nome invalido.");
 		}
 
-		
 		if(!this.validaCpf(cpf)) {
 			
 			throw new CPFInvalidoException("CPF invalido.");
+		}
+		
+		PesquisaController pController = new PesquisaController();
+		
+		if(pController.existeFuncionario(cpf)) {
+			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema.");
 		}
 		
 		if(!this.validaEmail(email)) {
