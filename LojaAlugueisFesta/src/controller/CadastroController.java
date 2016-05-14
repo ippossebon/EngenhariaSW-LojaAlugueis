@@ -3,12 +3,14 @@ package controller;
 //package database;
 
 import model.Cliente;
+import model.Funcionario;
 import database.Database;
 import database.DatabaseController;
 
 public class CadastroController {
 
 	private Cliente cliente;
+	private Funcionario funcionario;
 	
 	public CadastroController(String nome, String cpf, String email, String telefone, String endereco){
 		
@@ -45,6 +47,44 @@ public class CadastroController {
 		cliente = new Cliente(nome, cpf, email, endereco, telefone);
 		DatabaseController dbController = new DatabaseController(Database.getInstance());
 		dbController.cadastrarCliente(cliente);
+	}
+	
+	public void cadastraFuncionario(String nome, String cpf, String email, String telefone, String endereco, String senha, String confirmarSenha) {
+		
+if(!this.validaNome(nome)) {
+			
+			throw new NomeInvalidoException("Nome invalido.");
+		}
+
+		
+		if(!this.validaCpf(cpf)) {
+			
+			throw new CPFInvalidoException("CPF invalido.");
+		}
+		
+		if(!this.validaEmail(email)) {
+			
+			throw new EmailInvalidoException("Email invalido.");
+		}
+		
+		if(!this.validaTelefone(telefone)) {
+			
+			throw new TelefoneInvalidoException("Telefone invalido.");
+		}
+		
+		if(!this.validaEndereco(endereco)) {
+			
+			throw new EnderecoInvalidoException("Endereco invalido.");
+		}
+		
+		if(!senha.equals(confirmarSenha)) {
+			
+			throw new ConfirmarSenhaException("lol");
+		}
+		
+		funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
+		DatabaseController dbController = new DatabaseController(Database.getInstance());
+		dbController.cadastrarFuncionario(funcionario);
 	}
 	
 	public boolean validaNome(String nome) {

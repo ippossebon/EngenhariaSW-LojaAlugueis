@@ -80,6 +80,10 @@ public class DatabaseController {
 		}
 	}
 	
+	public void cadastrarFuncionario(Funcionario f){
+		database.adicionarFuncionario(f);
+	}
+	
 	public void adicionarAluguel(Aluguel a){
 		database.getAlugueis().add(a);
 	}
