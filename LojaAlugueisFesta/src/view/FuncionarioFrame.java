@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
@@ -14,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,12 +20,12 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import view.actionlisteners.DisableFiltrosPecaAL;
-import view.actionlisteners.DisableFiltrosPessoaAL;
 import view.actionlisteners.SelecaoCadastrarClienteAL;
 import view.actionlisteners.SelecaoCadastrarFuncionarioAL;
 import view.actionlisteners.SelecaoNovoAluguelAL;
 import view.actionlisteners.SelecaoRegistrarDevolucaoAL;
+import view.actionlisteners.SetFiltrosPecaAL;
+import view.actionlisteners.SetFiltrosPessoaAL;
 
 public class FuncionarioFrame extends JFrame {
 
@@ -49,10 +48,7 @@ public class FuncionarioFrame extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Pesquisar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton.addActionListener(new BotaoPesquisarAL());
 		btnNewButton.setBounds(522, 30, 112, 29);
 		contentPane.add(btnNewButton);
 		
@@ -101,9 +97,9 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnPeca.setBounds(109, 69, 73, 23);
 		contentPane.add(rdbtnPeca);
 		
-		JRadioButton rdbtnPessoa = new JRadioButton("Pessoa");
-		rdbtnPessoa.setBounds(217, 69, 141, 23);
-		contentPane.add(rdbtnPessoa);
+		JRadioButton rdbtnCliente = new JRadioButton("Cliente");
+		rdbtnCliente.setBounds(217, 69, 90, 23);
+		contentPane.add(rdbtnCliente);
 		
 		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
 		rdbtnFuncionario.setBounds(348, 69, 141, 23);
@@ -111,7 +107,7 @@ public class FuncionarioFrame extends JFrame {
 		
 		ButtonGroup button_group_pesquisa = new ButtonGroup();
 		button_group_pesquisa.add(rdbtnPeca);
-		button_group_pesquisa.add(rdbtnPessoa);
+		button_group_pesquisa.add(rdbtnCliente);
 		button_group_pesquisa.add(rdbtnFuncionario);
 		
 		ButtonGroup bg_filtro_pessoa = new ButtonGroup();
@@ -124,15 +120,19 @@ public class FuncionarioFrame extends JFrame {
 		bg_filtro_peca.add(rdbtnTodas);
 		
 		/* Testar!! */
-		rdbtnPeca.addActionListener(new DisableFiltrosPessoaAL(rdbtnNome, rdbtnCpf));
-		rdbtnPessoa.addActionListener(new DisableFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
-		rdbtnFuncionario.addActionListener(new DisableFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		rdbtnPeca.addActionListener(new SetFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
+		rdbtnCliente.addActionListener(new SetFiltrosPessoaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
+		rdbtnFuncionario.addActionListener(new SetFiltrosPessoaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
 		
+
 		resultados_table = new JTable();
 		resultados_table.setBackground(UIManager.getColor("InternalFrame.inactiveTitleBackground"));
 		resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
 		resultados_table.setBounds(36, 231, 598, 330);
-		contentPane.add(resultados_table);
+		
+		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
+		resultados_scroll_pane.setBounds(36, 231, 598, 330);
+		contentPane.add(resultados_scroll_pane);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);

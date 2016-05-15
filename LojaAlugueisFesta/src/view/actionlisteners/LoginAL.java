@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
-import view.FuncionarioFrame;
-import view.GerenteFrame;
-import view.MensagemFrame;
 import controller.LoginController;
 
 public class LoginAL implements ActionListener{
