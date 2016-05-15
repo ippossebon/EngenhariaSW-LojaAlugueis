@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import view.actionlisteners.BotaoCadastrarClienteAL;
+import controller.actionlisteners.BotaoCadastrarClienteAL;
 
 public class CadastroFrame extends JFrame {
 

@@ -12,6 +12,10 @@ import database.DatabaseController;
 
 public class PesquisaController {
 	
+	public static int pesquisa_todas = 0;
+	public static int pesquisa_disponiveis = 1;
+	public static int pesquisa_alugadas = 2;
+	
 	public PesquisaController(){
 		
 	}
@@ -38,6 +42,19 @@ public class PesquisaController {
 			if (c.getCpf().equals(cpf)){
 				resultado.add(c);
 				return resultado;
+			}
+		}
+		return resultado;
+	}
+	
+	public ArrayList<Funcionario> pesquisarFuncionarioPorNome(String nome){
+		
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		ArrayList<Funcionario> resultado = new ArrayList<Funcionario>();
+		
+		for (Funcionario f : database_controller.getFuncionarios()){
+			if (f.getNome().equals(nome)){
+				resultado.add(f);
 			}
 		}
 		return resultado;

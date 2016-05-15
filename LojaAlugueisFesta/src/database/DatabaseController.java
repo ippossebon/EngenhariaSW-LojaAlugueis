@@ -112,4 +112,13 @@ public class DatabaseController {
 	public boolean isGerente(String cpf){
 		return database.isGerente(cpf);
 	}
+	
+	public ArrayList<Peca> getPecasDisponiveis(){
+		return database.getPecasDisponiveis();
+	}
+	
+	public ArrayList<Peca> getPecasAlugadas(){
+		return database.getPecasAlugadas();
+	}
+	
 }

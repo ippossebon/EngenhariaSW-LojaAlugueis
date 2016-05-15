@@ -9,9 +9,6 @@ import model.Gerente;
 import model.Peca;
 
 public class Database {
-	private static int pesquisa_todas = 0;
-	private static int pesquisa_disponiveis = 1;
-	private static int pesquisa_alugadas = 2;
 	
 	private static Database database;
 	private ArrayList<Gerente> gerentes;
@@ -94,30 +91,6 @@ public class Database {
 	public void setDatabase(Database database) {
 		Database.database = database;
 	}
-
-	public static int getPesquisa_todas() {
-		return pesquisa_todas;
-	}
-
-	public static void setPesquisa_todas(int pesquisa_todas) {
-		Database.pesquisa_todas = pesquisa_todas;
-	}
-
-	public static int getPesquisa_disponiveis() {
-		return pesquisa_disponiveis;
-	}
-
-	public static void setPesquisa_disponiveis(int pesquisa_disponiveis) {
-		Database.pesquisa_disponiveis = pesquisa_disponiveis;
-	}
-
-	public static int getPesquisa_alugadas() {
-		return pesquisa_alugadas;
-	}
-
-	public static void setPesquisa_alugadas(int pesquisa_alugadas) {
-		Database.pesquisa_alugadas = pesquisa_alugadas;
-	}
 	
 	public void popularDatabase(){
 		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
@@ -166,6 +139,28 @@ public class Database {
 		}
 		
 		return false;
+	}
+	
+	public ArrayList<Peca> getPecasDisponiveis(){
+		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		
+		for(Peca p : this.pecas){
+			if(p.isDisponivel()){
+				resultado.add(p);
+			}
+		}
+		return resultado;
+	}
+	
+	public ArrayList<Peca> getPecasAlugadas(){
+		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		
+		for(Peca p : this.pecas){
+			if(!p.isDisponivel()){
+				resultado.add(p);
+			}
+		}
+		return resultado;
 	}
 }
 

@@ -20,12 +20,13 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import view.actionlisteners.SelecaoCadastrarClienteAL;
-import view.actionlisteners.SelecaoCadastrarFuncionarioAL;
-import view.actionlisteners.SelecaoNovoAluguelAL;
-import view.actionlisteners.SelecaoRegistrarDevolucaoAL;
-import view.actionlisteners.SetFiltrosPecaAL;
-import view.actionlisteners.SetFiltrosPessoaAL;
+import controller.actionlisteners.SelecaoCadastrarClienteAL;
+import controller.actionlisteners.SelecaoCadastrarFuncionarioAL;
+import controller.actionlisteners.SelecaoNovoAluguelAL;
+import controller.actionlisteners.SelecaoRegistrarDevolucaoAL;
+import controller.actionlisteners.SetFiltrosPecaAL;
+import controller.actionlisteners.SetFiltrosPessoaAL;
+import controller.actionlisteners.BotaoPesquisarAL;
 
 public class FuncionarioFrame extends JFrame {
 
@@ -46,11 +47,6 @@ public class FuncionarioFrame extends JFrame {
 		textField.setBounds(110, 29, 400, 28);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Pesquisar");
-		btnNewButton.addActionListener(new BotaoPesquisarAL());
-		btnNewButton.setBounds(522, 30, 112, 29);
-		contentPane.add(btnNewButton);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisa:");
 		lblPesquisa.setBounds(36, 35, 61, 16);
@@ -133,6 +129,11 @@ public class FuncionarioFrame extends JFrame {
 		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
 		resultados_scroll_pane.setBounds(36, 231, 598, 330);
 		contentPane.add(resultados_scroll_pane);
+		
+		JButton btnNewButton = new JButton("Pesquisar");
+		btnNewButton.addActionListener(new BotaoPesquisarAL(resultados_table, textField, rdbtnPeca, rdbtnCliente, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		btnNewButton.setBounds(522, 30, 112, 29);
+		contentPane.add(btnNewButton);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);

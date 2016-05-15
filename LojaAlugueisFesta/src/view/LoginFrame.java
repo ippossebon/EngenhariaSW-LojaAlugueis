@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import view.actionlisteners.LoginAL;
+import controller.actionlisteners.LoginAL;
 import database.Database;
 
 public class LoginFrame extends JFrame {
