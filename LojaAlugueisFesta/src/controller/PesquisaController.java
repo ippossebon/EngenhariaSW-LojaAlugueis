@@ -26,7 +26,7 @@ public class PesquisaController {
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
 		
 		for (Cliente c : database_controller.getClientes()){
-			if (c.getNome().equals(nome)){
+			if (c.getNome().toLowerCase().contains(nome.toLowerCase())){
 				resultado.add(c);
 			}
 		}
@@ -53,7 +53,7 @@ public class PesquisaController {
 		ArrayList<Funcionario> resultado = new ArrayList<Funcionario>();
 		
 		for (Funcionario f : database_controller.getFuncionarios()){
-			if (f.getNome().equals(nome)){
+			if (f.getNome().toLowerCase().contains(nome.toLowerCase())){
 				resultado.add(f);
 			}
 		}
@@ -104,7 +104,7 @@ public class PesquisaController {
 		ArrayList<Peca> resultado = new ArrayList<Peca>();
 		
 		for (Peca p : database_controller.getPecas()){
-			if (p.getTipo().equals(tipo)){
+			if (p.getTipo().toLowerCase().contains(tipo.toLowerCase())){
 				if (filtro == 0){
 					resultado.add(p);
 				}else if (filtro == 1){
@@ -118,7 +118,6 @@ public class PesquisaController {
 				}
 			}
 		}
-		
 		return resultado;
 	}
 	

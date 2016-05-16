@@ -15,9 +15,6 @@ import database.DatabaseController;
 
 
 public class CadastroController {
-
-	private Cliente cliente;
-	private Funcionario funcionario;
 	
 	public CadastroController(){
 		
@@ -74,7 +71,7 @@ public class CadastroController {
 			return false;
 		}
 		
-		cliente = new Cliente(nome, cpf, email, endereco, telefone);
+		Cliente cliente = new Cliente(nome, cpf, email, endereco, telefone);
 		DatabaseController dbController = new DatabaseController(Database.getInstance());
 		dbController.cadastrarCliente(cliente);
 		dbController.printDatabase();
@@ -122,7 +119,7 @@ public class CadastroController {
 			throw new ConfirmarSenhaException("lol");
 		}
 		
-		funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
+		Funcionario funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
 		DatabaseController dbController = new DatabaseController(Database.getInstance());
 		dbController.cadastrarFuncionario(funcionario);
 	}

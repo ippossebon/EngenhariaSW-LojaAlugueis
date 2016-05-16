@@ -72,15 +72,15 @@ public class Database {
 		this.pecas = estoque;
 	}
 	
-	public void adicionarCliente(Cliente c){
+	public void cadastrarCliente(Cliente c){
 		this.clientes.add(c);
 	}
 	
-	public void adicionarFuncionario(Funcionario f){
+	public void cadastrarFuncionario(Funcionario f){
 		this.funcionarios.add(f);
 	}
 	
-	public void adicionarGerente(Gerente g){
+	public void cadastrarGerente(Gerente g){
 		this.gerentes.add(g);
 	}
 	
@@ -93,14 +93,38 @@ public class Database {
 	}
 	
 	public void popularDatabase(){
-		Cliente c1 = new Cliente("Ana", "12345612323", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
-		Database.database.adicionarCliente(c1);
 		
-		Funcionario f1 = new Funcionario("Isadora", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
-		Database.database.adicionarFuncionario(f1);
+		/* Clientes */
+		Cliente c1 = new Cliente("Ana", "123.233.111-11", "ana@gmail.com", "Rua A, 123", "(51) 3333 3333");
+		Database.database.cadastrarCliente(c1);
 		
+		Cliente c2 = new Cliente("João Pedro", "000.000.111-23", "joao@gmail.com", "Rua B, 123", "(51) 2222 3333");
+		Database.database.cadastrarCliente(c2);
+		
+		Cliente c3 = new Cliente("Joana", "443.233.111-11", "joana@gmail.com", "Rua X, 22", "(51) 2222 8888");
+		Database.database.cadastrarCliente(c3);
+		
+		Cliente c4 = new Cliente("Marcos X. Almeida", "888.888.122-23", "marcosx@gmail.com", "Rua SSS, 123", "(51) 8181 3333");
+		Database.database.cadastrarCliente(c4);
+		
+		/* Funcionários */
+		Funcionario f1 = new Funcionario("Isadora Possebon", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
+		Database.database.cadastrarFuncionario(f1);
+		
+		Funcionario f2 = new Funcionario("Victoria Simonetti", "000.000.000-00", "victoria@gmail.com", "Rua Bento Goncalves 99", "(51) 2222 9999", "senha");
+		Database.database.cadastrarFuncionario(f2);
+		
+		Funcionario f3 = new Funcionario("Lucas", "111.111.111-11", "lucas@gmail.com", "Rua A 12223", "(51) 8888 7777", "senha");
+		Database.database.cadastrarFuncionario(f3);
+		
+		/* Gerentes */
 		Gerente g1 = new Gerente("Isadora", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
-		Database.database.adicionarGerente(g1);
+		Database.database.cadastrarGerente(g1);
+		
+		Gerente g2 = new Gerente("Victoria Simonetti", "000.000.000-00", "victoria@gmail.com", "Rua Bento Goncalves 99", "(51) 2222 9999", "senha");
+		Database.database.cadastrarGerente(g2);
+		
+		/* Peças */
 	}
 	
 	public void printDatabase(){

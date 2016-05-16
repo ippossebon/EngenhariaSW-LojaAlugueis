@@ -31,9 +31,9 @@ import controller.actionlisteners.BotaoPesquisarAL;
 public class FuncionarioFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField pesquisa_text_field;
 	private JTable resultados_table;
-	private JMenuBar menuBar;
+	private JMenuBar menu_bar;
 
 	public FuncionarioFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,10 +43,10 @@ public class FuncionarioFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(110, 29, 400, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		pesquisa_text_field = new JTextField();
+		pesquisa_text_field.setBounds(110, 29, 400, 28);
+		contentPane.add(pesquisa_text_field);
+		pesquisa_text_field.setColumns(10);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisa:");
 		lblPesquisa.setBounds(36, 35, 61, 16);
@@ -131,19 +131,19 @@ public class FuncionarioFrame extends JFrame {
 		contentPane.add(resultados_scroll_pane);
 		
 		JButton btnNewButton = new JButton("Pesquisar");
-		btnNewButton.addActionListener(new BotaoPesquisarAL(resultados_table, textField, rdbtnPeca, rdbtnCliente, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		btnNewButton.addActionListener(new BotaoPesquisarAL(resultados_table, pesquisa_text_field, rdbtnPeca, rdbtnCliente, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
 		btnNewButton.setBounds(522, 30, 112, 29);
 		contentPane.add(btnNewButton);
 		
-		menuBar = new JMenuBar();
-		menuBar.setBorderPainted(false);
-		menuBar.setBackground(SystemColor.windowBorder);
-		menuBar.setBounds(0, 0, 132, 22);
+		menu_bar = new JMenuBar();
+		menu_bar.setBorderPainted(false);
+		menu_bar.setBackground(SystemColor.windowBorder);
+		menu_bar.setBounds(0, 0, 132, 22);
 		
 	    /* Menu cadastro - Atalho: C */
 	    JMenu cadastroMenu = new JMenu("Cadastro");
 	    cadastroMenu.setMnemonic(KeyEvent.VK_C);
-	    menuBar.add(cadastroMenu);
+	    menu_bar.add(cadastroMenu);
 
 	    JMenuItem itemCadastrarCliente = new JMenuItem("Cadastrar cliente");
 	    itemCadastrarCliente.addActionListener(new SelecaoCadastrarClienteAL());
@@ -156,7 +156,7 @@ public class FuncionarioFrame extends JFrame {
 	    /* Menu aluguel - Atalho: A */
 	    JMenu aluguelMenu = new JMenu("Aluguel");
 	    aluguelMenu.setMnemonic(KeyEvent.VK_A);
-	    menuBar.add(aluguelMenu);
+	    menu_bar.add(aluguelMenu);
 	    
 	    JMenuItem itemNovoAluguel = new JMenuItem("Novo aluguel");
 	    itemNovoAluguel.addActionListener(new SelecaoNovoAluguelAL());
@@ -166,7 +166,7 @@ public class FuncionarioFrame extends JFrame {
 	    itemRegistrarDevolucao.addActionListener(new SelecaoRegistrarDevolucaoAL());
 	    aluguelMenu.add(itemRegistrarDevolucao);
 
-	    this.setJMenuBar(menuBar);
+	    this.setJMenuBar(menu_bar);
 	}
 }
 

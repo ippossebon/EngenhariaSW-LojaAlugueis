@@ -65,7 +65,7 @@ public class DatabaseController {
 	}
 	
 	public void cadastrarCliente(Cliente c){
-		database.adicionarCliente(c);
+		database.cadastrarCliente(c);
 	}
 	
 	public void removerCliente(Cliente c){
@@ -81,7 +81,7 @@ public class DatabaseController {
 	}
 	
 	public void cadastrarFuncionario(Funcionario f){
-		database.adicionarFuncionario(f);
+		database.cadastrarFuncionario(f);
 	}
 	
 	public void adicionarAluguel(Aluguel a){
@@ -102,7 +102,7 @@ public class DatabaseController {
 	}
 	
 	public void cadastrarGerente(Gerente g){
-		database.adicionarGerente(g);
+		database.cadastrarGerente(g);
 	}
 	
 	public void printDatabase(){
@@ -121,4 +121,7 @@ public class DatabaseController {
 		return database.getPecasAlugadas();
 	}
 	
+	public void popularDatabase(){
+		database.popularDatabase();
+	}
 }

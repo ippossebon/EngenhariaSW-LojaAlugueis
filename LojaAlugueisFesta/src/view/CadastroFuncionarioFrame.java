@@ -11,8 +11,8 @@ import javax.swing.SwingConstants;
 public class CadastroFuncionarioFrame extends CadastroFrame {
 
 	private JPanel contentPane;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JPasswordField password_field;
+	private JPasswordField password_confirmation_field;
 
 	public CadastroFuncionarioFrame() {
 		getButtonOk().setLocation(278, 357);
@@ -25,10 +25,10 @@ public class CadastroFuncionarioFrame extends CadastroFrame {
 		contentPane.add(lblSenha);
 		super.add(lblSenha);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(95, 227, 300, 28);
-		contentPane.add(passwordField);
-		super.add(passwordField);
+		password_field = new JPasswordField();
+		password_field.setBounds(95, 227, 300, 28);
+		contentPane.add(password_field);
+		super.add(password_field);
 		
 		JLabel lblConfirmarSenha = new JLabel("Confirmar");
 		lblConfirmarSenha.setHorizontalAlignment(SwingConstants.LEFT);
@@ -41,10 +41,10 @@ public class CadastroFuncionarioFrame extends CadastroFrame {
 		contentPane.add(lblSenha_1);
 		super.add(lblSenha_1);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(95, 267, 300, 28);
-		contentPane.add(passwordField_1);
-		super.add(passwordField_1);
+		password_confirmation_field = new JPasswordField();
+		password_confirmation_field.setBounds(95, 267, 300, 28);
+		contentPane.add(password_confirmation_field);
+		super.add(password_confirmation_field);
 		
 		JLabel lblCargo = new JLabel("Cargo:");
 		lblCargo.setBounds(27, 327, 61, 16);

@@ -30,7 +30,6 @@ public class SetFiltrosPecaAL implements ActionListener{
 		this.b_todas.setEnabled(true);
 		this.b_disponiveis.setEnabled(true);
 		this.b_alugadas.setEnabled(true);
-		
 	}
 
 

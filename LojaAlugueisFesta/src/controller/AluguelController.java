@@ -13,11 +13,6 @@ public class AluguelController {
 	
 	public void alugarPeca(ArrayList<Peca> carrinho, String cpf_cliente){
 		
-		
-		
-		// Adiciona cada um dos items do carrinho de compras ao aluguel.
-		// cria novo aluguel
-		// add aluguel ao banco de dados
 	}
 
 	public void confirmarPagamento(){
