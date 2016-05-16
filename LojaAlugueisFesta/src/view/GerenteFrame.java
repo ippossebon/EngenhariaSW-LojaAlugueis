@@ -23,7 +23,7 @@ public class GerenteFrame extends FuncionarioFrame {
 	    estoqueMenu.setMnemonic(KeyEvent.VK_E);
 	    super.getJMenuBar().add(estoqueMenu);
 	    
-	    JMenuItem gerenciarEstoqueItem = new JMenuItem("Gerenciar estoque");
+	    JMenuItem gerenciarEstoqueItem = new JMenuItem("Gerenciar estoque...");
 	    gerenciarEstoqueItem.addActionListener(new SelecaoGerenciarEstoqueAL());
 	    estoqueMenu.add(gerenciarEstoqueItem);
 	    
@@ -32,7 +32,7 @@ public class GerenteFrame extends FuncionarioFrame {
 	    relatoriosMenu.setMnemonic(KeyEvent.VK_R);
 	    super.getJMenuBar().add(relatoriosMenu);
 	    
-	    JMenuItem itemGerarRelatorios = new JMenuItem("Gerar relatórios");
+	    JMenuItem itemGerarRelatorios = new JMenuItem("Gerar relatórios...");
 	    itemGerarRelatorios.addActionListener(new SelecaoRelatoriosAL());
 	    relatoriosMenu.add(itemGerarRelatorios);
 	    

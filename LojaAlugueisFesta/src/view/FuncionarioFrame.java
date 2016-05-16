@@ -145,11 +145,11 @@ public class FuncionarioFrame extends JFrame {
 	    cadastroMenu.setMnemonic(KeyEvent.VK_C);
 	    menu_bar.add(cadastroMenu);
 
-	    JMenuItem itemCadastrarCliente = new JMenuItem("Cadastrar cliente");
+	    JMenuItem itemCadastrarCliente = new JMenuItem("Cadastrar cliente...");
 	    itemCadastrarCliente.addActionListener(new SelecaoCadastrarClienteAL());
 	    cadastroMenu.add(itemCadastrarCliente);
 	    
-	    JMenuItem itemCadastrarFuncionario = new JMenuItem("Cadastrar funcionário");
+	    JMenuItem itemCadastrarFuncionario = new JMenuItem("Cadastrar funcionário...");
 	    itemCadastrarFuncionario.addActionListener(new SelecaoCadastrarFuncionarioAL());
 	    cadastroMenu.add(itemCadastrarFuncionario);
 	    
@@ -158,11 +158,11 @@ public class FuncionarioFrame extends JFrame {
 	    aluguelMenu.setMnemonic(KeyEvent.VK_A);
 	    menu_bar.add(aluguelMenu);
 	    
-	    JMenuItem itemNovoAluguel = new JMenuItem("Novo aluguel");
+	    JMenuItem itemNovoAluguel = new JMenuItem("Novo aluguel...");
 	    itemNovoAluguel.addActionListener(new SelecaoNovoAluguelAL());
 	    aluguelMenu.add(itemNovoAluguel);
 	    
-	    JMenuItem itemRegistrarDevolucao = new JMenuItem("Registrar devolucao");
+	    JMenuItem itemRegistrarDevolucao = new JMenuItem("Registrar devolucao...");
 	    itemRegistrarDevolucao.addActionListener(new SelecaoRegistrarDevolucaoAL());
 	    aluguelMenu.add(itemRegistrarDevolucao);
 
