@@ -92,7 +92,77 @@ public class Database {
 		Database.database = database;
 	}
 	
-	public void popularDatabase(){
+	
+	
+	public void printDatabase(){
+		System.out.println("** Database **");
+		System.out.println("GERENTES:");
+		for(Gerente g: this.gerentes){
+			System.out.println(g.getNome());
+		}
+		System.out.println(" ");
+		
+		System.out.println("FUNCIONARIOS:");
+		for(Funcionario f: this.funcionarios){
+			System.out.println(f.getNome());
+		}
+		System.out.println();
+		
+		System.out.println("CLIENTES:");
+		for(Cliente c: this.clientes){
+			System.out.println(c.getNome());
+		}
+		System.out.println();
+		
+		System.out.print("PEÇAS:");
+		for(Peca p: this.pecas){
+			System.out.println(p.getTipo());
+		}
+		System.out.println();
+	}
+	
+	public boolean isGerente(String cpf){
+		
+		for (Gerente g: this.gerentes){
+			if(g.getCpf().equals(cpf)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public ArrayList<Peca> getPecasDisponiveis(){
+		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		
+		for(Peca p : this.pecas){
+			if(p.isDisponivel()){
+				resultado.add(p);
+			}
+		}
+		return resultado;
+	}
+	
+	public ArrayList<Peca> getPecasAlugadas(){
+		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		
+		for(Peca p : this.pecas){
+			if(!p.isDisponivel()){
+				resultado.add(p);
+			}
+		}
+		return resultado;
+	}
+	
+	public void adicionarPeca(Peca p){
+		this.pecas.add(p);
+	}
+	
+	public void removerPeca(Peca p){
+		this.pecas.remove(p);
+	}
+	
+public void popularDatabase(){
 		
 		/* Clientes */
 		Cliente c1 = new Cliente("Ana Ribeiro", "123.233.111-11", "anar@gmail.com", "Rua A, 123", "(51) 3333 3333");
@@ -186,7 +256,7 @@ public class Database {
 		Database.database.cadastrarCliente(c30);
 		
 		/* Funcionários */
-		Funcionario f1 = new Funcionario("Isadora Possebon", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
+		Funcionario f1 = new Funcionario("Isadora Possebon", "222.222.222-22", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
 		Database.database.cadastrarFuncionario(f1);
 		
 		Funcionario f2 = new Funcionario("Victoria Simonetti", "000.000.000-00", "victoria@gmail.com", "Rua Bento Goncalves 99", "(51) 2222 9999", "senha");
@@ -196,73 +266,158 @@ public class Database {
 		Database.database.cadastrarFuncionario(f3);
 		
 		/* Gerentes */
-		Gerente g1 = new Gerente("Isadora", "034.455.120-28", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
+		Gerente g1 = new Gerente("Isadora Possebon", "222.222.222-22", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
 		Database.database.cadastrarGerente(g1);
 		
 		Gerente g2 = new Gerente("Victoria Simonetti", "000.000.000-00", "victoria@gmail.com", "Rua Bento Goncalves 99", "(51) 2222 9999", "senha");
 		Database.database.cadastrarGerente(g2);
 		
 		/* Peças */
-	}
-	
-	public void printDatabase(){
-		System.out.println("** Database **");
-		System.out.println("GERENTES:");
-		for(Gerente g: this.gerentes){
-			System.out.println(g.getNome());
-		}
-		System.out.println(" ");
+		// Codigo, tamanho, tipo, valor
+		Peca p1 = new Peca(1, 40, "Gravata normal", (float)15.00);
+		Database.database.adicionarPeca(p1);
 		
-		System.out.println("FUNCIONARIOS:");
-		for(Funcionario f: this.funcionarios){
-			System.out.println(f.getNome());
-		}
-		System.out.println();
+		Peca p2 = new Peca(2, 42, "Gravata normal", (float)15.00);
+		Database.database.adicionarPeca(p2);
 		
-		System.out.println("CLIENTES:");
-		for(Cliente c: this.clientes){
-			System.out.println(c.getNome());
-		}
-		System.out.println();
+		Peca p3 = new Peca(3, 42, 1, "Gravata normal", (float)15.00, false);
+		Database.database.adicionarPeca(p3);
 		
-		System.out.print("PEÇAS:");
-		for(Peca p: this.pecas){
-			System.out.println(p.getTipo());
-		}
-		System.out.println();
-	}
-	
-	public boolean isGerente(String cpf){
+		Peca p4 = new Peca(4, 44, "Gravata borboleta", (float)15.00);
+		Database.database.adicionarPeca(p4);
 		
-		for (Gerente g: this.gerentes){
-			if(g.getCpf().equals(cpf)){
-				return true;
-			}
-		}
+		Peca p5 = new Peca(5, 40, "Gravata borboleta", (float)15.00);
+		Database.database.adicionarPeca(p5);
 		
-		return false;
-	}
-	
-	public ArrayList<Peca> getPecasDisponiveis(){
-		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		Peca p6 = new Peca(6, 42, "Gravata borboleta", (float)15.00);
+		Database.database.adicionarPeca(p6);
 		
-		for(Peca p : this.pecas){
-			if(p.isDisponivel()){
-				resultado.add(p);
-			}
-		}
-		return resultado;
-	}
-	
-	public ArrayList<Peca> getPecasAlugadas(){
-		ArrayList<Peca> resultado = new ArrayList<Peca>();
+		Peca p7 = new Peca(7, 38, "Sapato masculino", (float)25.00);
+		Database.database.adicionarPeca(p7);
 		
-		for(Peca p : this.pecas){
-			if(!p.isDisponivel()){
-				resultado.add(p);
-			}
-		}
-		return resultado;
+		Peca p8 = new Peca(8, 40, "Sapato masculino", (float)25.00);
+		Database.database.adicionarPeca(p8);
+		
+		Peca p9 = new Peca(9, 41, "Sapato masculino", (float)25.00);
+		Database.database.adicionarPeca(p9);
+		
+		Peca p10 = new Peca(10, 43, "Sapato masculino", (float)25.00);
+		Database.database.adicionarPeca(p10);
+		
+		Peca p11 = new Peca(11, 40, "Terno com corte italiano", (float)100.00);
+		Database.database.adicionarPeca(p11);
+		
+		Peca p12 = new Peca(12, 42, "Terno com corte italiano", (float)100.00);
+		Database.database.adicionarPeca(p12);
+		
+		Peca p13 = new Peca(13, 42, "Terno com corte inglês", (float)85.00);
+		Database.database.adicionarPeca(p13);
+		
+		Peca p14 = new Peca(14, 50, "Terno com corte inglês", (float)85.00);
+		Database.database.adicionarPeca(p14);
+		
+		Peca p15 = new Peca(15, 52, "Terno com corte tradicional", (float)70.00);
+		Database.database.adicionarPeca(p15);
+		
+		Peca p16 = new Peca(16, 48, "Terno com corte tradicional", (float)70.00);
+		Database.database.adicionarPeca(p16);
+		
+		Peca p17 = new Peca(17, 44, "Fraque", (float)120.00);
+		Database.database.adicionarPeca(p17);
+		
+		Peca p18 = new Peca(18, 42, "Fraque", (float)120.00);
+		Database.database.adicionarPeca(p18);
+		
+		Peca p20 = new Peca(20, 46, "Calça social básica", (float)40.00);
+		Database.database.adicionarPeca(p20);
+		
+		Peca p19 = new Peca(19, 40, "Calça social básica", (float)40.00);
+		Database.database.adicionarPeca(p19);
+		
+		Peca p21 = new Peca(21, 42, "Calça social larga", (float)50.00);
+		Database.database.adicionarPeca(p21);
+		
+		Peca p22 = new Peca(22, 44, "Calça social larga", (float)50.00);
+		Database.database.adicionarPeca(p22);
+		
+		Peca p23 = new Peca(23, 44, "Calça social em microfibra", (float)65.00);
+		Database.database.adicionarPeca(p23);
+		
+		Peca p24 = new Peca(24, 40, "Calça social em microfibra", (float)65.00);
+		Database.database.adicionarPeca(p24);
+		
+		Peca p25 = new Peca(25, 40, "Camisa social de colarinho de pontas abertas", (float)25.00);
+		Database.database.adicionarPeca(p25);
+		
+		Peca p26 = new Peca(26, 42, "Camisa social de colarinho de pontas abertas", (float)25.00);
+		Database.database.adicionarPeca(p26);
+		
+		Peca p27 = new Peca(27, 44, "Camisa social de colarinho de pontas abertas", (float)25.00);
+		Database.database.adicionarPeca(p27);
+		
+		Peca p28 = new Peca(28, 40, "Camisa social de presilha", (float)35.00);
+		Database.database.adicionarPeca(p28);
+		
+		Peca p29 = new Peca(29, 42, "Camisa social de presilha", (float)35.00);
+		Database.database.adicionarPeca(p29);
+		
+		Peca p30 = new Peca(30, 44, "Camisa social de presilha", (float)35.00);
+		Database.database.adicionarPeca(p30);
+		
+		Peca p31 = new Peca(31, 40, "Camisa social de colarinho arredondado", (float)40.00);
+		Database.database.adicionarPeca(p31);
+		
+		Peca p32 = new Peca(32, 42, "Camisa social de colarinho arredondado", (float)40.00);
+		Database.database.adicionarPeca(p32);
+		
+		Peca p33 = new Peca(33, 46, "Camisa social de colarinho arredondado", (float)40.00);
+		Database.database.adicionarPeca(p33);
+		
+		Peca p34 = new Peca(34, 34, "Vestido longo", (float)200.00);
+		Database.database.adicionarPeca(p34);
+		
+		Peca p35 = new Peca(35, 38, "Vestido longo", (float)200.00);
+		Database.database.adicionarPeca(p35);
+		
+		Peca p36 = new Peca(36, 42, "Vestido longo", (float)200.00);
+		Database.database.adicionarPeca(p36);
+		
+		Peca p37 = new Peca(37, 40, "Vestido longo bordado", (float)250.00);
+		Database.database.adicionarPeca(p37);
+		
+		Peca p38 = new Peca(38, 38, "Vestido longo bordado", (float)250.00);
+		Database.database.adicionarPeca(p38);
+		
+		Peca p39 = new Peca(39, 44, "Vestido longo bordado", (float)250.00);
+		Database.database.adicionarPeca(p39);
+		
+		Peca p40 = new Peca(40, 42, "Vestido curto", (float)150.00);
+		Database.database.adicionarPeca(p40);
+		
+		Peca p41 = new Peca(41, 40, "Vestido curto", (float)150.00);
+		Database.database.adicionarPeca(p41);
+		
+		Peca p42 = new Peca(42, 38, "Vestido curto", (float)150.00);
+		Database.database.adicionarPeca(p42);
+		
+		Peca p43 = new Peca(43, 38, "Vestido curto bordado", (float)175.00);
+		Database.database.adicionarPeca(p43);
+		
+		Peca p44 = new Peca(44, 42, "Vestido curto bordado", (float)175.00);
+		Database.database.adicionarPeca(p44);
+		
+		Peca p45 = new Peca(45, 46, "Vestido curto bordado", (float)175.00);
+		Database.database.adicionarPeca(p45);
+		
+		Peca p46 = new Peca(46, 38, "Sapato feminino", (float)25.00);
+		Database.database.adicionarPeca(p46);
+		
+		Peca p47 = new Peca(47, 35, "Sapato feminino", (float)25.00);
+		Database.database.adicionarPeca(p47);
+		
+		Peca p48 = new Peca(48, 39, "Sapato feminino", (float)25.00);
+		Database.database.adicionarPeca(p48);
+		
 	}
 }
 

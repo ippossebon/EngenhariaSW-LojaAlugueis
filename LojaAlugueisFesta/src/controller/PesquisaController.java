@@ -72,7 +72,7 @@ public class PesquisaController {
 			}
 		}
 		
-		return null;
+		return resultado;
 	}
 	
 	public ArrayList<Peca> pesquisarPeca(int codigo, int filtro){

@@ -58,7 +58,8 @@ public class LoginController {
 	public boolean validarLogin(){
 		PesquisaController pesquisa_controller = new PesquisaController();
 		DatabaseController db_controller = new DatabaseController(Database.getInstance());
-		ArrayList<Funcionario> funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
+		ArrayList<Funcionario> funcionarios =  new ArrayList<Funcionario>();
+		funcionarios = pesquisa_controller.pesquisarFuncionarioPorCPF(this.cpf_usuario);
 		
 		if(funcionarios.size() == 0){
 			return false;
