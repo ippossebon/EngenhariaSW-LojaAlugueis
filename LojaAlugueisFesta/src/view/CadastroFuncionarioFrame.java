@@ -16,7 +16,7 @@ public class CadastroFuncionarioFrame extends CadastroFrame {
 
 	public CadastroFuncionarioFrame() {
 		getButtonOk().setLocation(278, 357);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 430, 430);
 		setContentPane(contentPane);
 		

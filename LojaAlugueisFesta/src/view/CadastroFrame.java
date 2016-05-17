@@ -22,7 +22,7 @@ public class CadastroFrame extends JFrame {
 	
 	public CadastroFrame() {
 		setTitle("Novo cadastro");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 430, 294);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -43,6 +43,7 @@ public class CadastroFrame extends JFrame {
 		contentPane.add(lblCpf);
 		
 		formatted_text_field_cpf = new JFormattedTextField(Operacoes.aplicaMascara("###.###.###-##"));
+		formatted_text_field_cpf.setColumns(14);
 		formatted_text_field_cpf.setBounds(95, 67, 300, 28);
 		
 		contentPane.add(formatted_text_field_cpf);

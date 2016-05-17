@@ -37,13 +37,13 @@ public class LoginFrame extends JFrame {
 	// Create frame
 	public LoginFrame() {
 		setTitle("Login");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 327, 207);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(90, 84, 200, 28);
@@ -58,6 +58,7 @@ public class LoginFrame extends JFrame {
 		contentPane.add(lblSenha);
 		
 		JFormattedTextField cpf_formatted_text_field = new JFormattedTextField(Operacoes.aplicaMascara("###.###.###-##"));
+		cpf_formatted_text_field.setColumns(14);
 		cpf_formatted_text_field.setBounds(90, 37, 200, 28);
 		contentPane.add(cpf_formatted_text_field);
 		

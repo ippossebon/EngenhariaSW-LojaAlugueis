@@ -16,7 +16,7 @@ public class MensagemFrame extends JFrame {
 
 	public MensagemFrame(String mensagem) {
 		setTitle("Mensagem");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

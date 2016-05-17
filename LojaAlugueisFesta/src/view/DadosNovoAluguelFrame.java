@@ -17,7 +17,7 @@ public class DadosNovoAluguelFrame extends JFrame {
 	private JPanel contentPane;
 
 	public DadosNovoAluguelFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 351, 334);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -29,6 +29,7 @@ public class DadosNovoAluguelFrame extends JFrame {
 		contentPane.add(lblCPFCliente);
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setColumns(14);
 		formattedTextField.setBounds(118, 6, 219, 28);
 		contentPane.add(formattedTextField);
 		

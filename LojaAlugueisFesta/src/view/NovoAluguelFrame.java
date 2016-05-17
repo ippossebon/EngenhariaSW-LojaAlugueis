@@ -18,7 +18,7 @@ public class NovoAluguelFrame extends JFrame {
 	private JTextField pesquisa_text_field;
 
 	public NovoAluguelFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 926, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
