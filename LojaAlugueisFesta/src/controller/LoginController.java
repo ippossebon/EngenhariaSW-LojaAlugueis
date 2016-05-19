@@ -3,9 +3,9 @@ package controller;
 import java.util.ArrayList;
 
 import model.Funcionario;
-import view.FuncionarioFrame;
-import view.GerenteFrame;
 import view.MensagemFrame;
+import view.inicial.FuncionarioFrame;
+import view.inicial.GerenteFrame;
 import database.Database;
 import database.DatabaseController;
 

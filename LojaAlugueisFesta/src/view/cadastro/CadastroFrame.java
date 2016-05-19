@@ -1,4 +1,4 @@
-package view;
+package view.cadastro;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import view.Operacoes;
 import controller.actionlisteners.BotaoCadastrarClienteAL;
 
 public class CadastroFrame extends JFrame {

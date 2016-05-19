@@ -3,7 +3,7 @@ package controller.actionlisteners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.NovoAluguelFrame;
+import view.aluguel.NovoAluguelFrame;
 
 public class SelecaoNovoAluguelAL implements ActionListener{
 

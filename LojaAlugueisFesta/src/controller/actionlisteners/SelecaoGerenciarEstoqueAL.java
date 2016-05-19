@@ -3,7 +3,7 @@ package controller.actionlisteners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.EstoqueFrame;
+import view.estoque.EstoqueFrame;
 
 public class SelecaoGerenciarEstoqueAL implements ActionListener{
 

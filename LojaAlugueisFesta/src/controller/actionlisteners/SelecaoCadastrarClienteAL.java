@@ -3,7 +3,7 @@ package controller.actionlisteners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.CadastroFrame;
+import view.cadastro.CadastroFrame;
 
 public class SelecaoCadastrarClienteAL implements ActionListener{
 

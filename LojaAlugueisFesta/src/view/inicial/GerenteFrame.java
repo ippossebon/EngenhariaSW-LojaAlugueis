@@ -1,4 +1,4 @@
-package view;
+package view.inicial;
 
 import java.awt.event.KeyEvent;
 

@@ -1,4 +1,4 @@
-package view;
+package view.estoque;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

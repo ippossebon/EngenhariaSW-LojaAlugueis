@@ -1,4 +1,4 @@
-package view;
+package view.cadastro;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
