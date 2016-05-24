@@ -26,4 +26,8 @@ public class AluguelController {
 	public void calcularMulta(){
 		
 	}
+	
+	public void registrarPagamento(){
+		
+	}
 }
