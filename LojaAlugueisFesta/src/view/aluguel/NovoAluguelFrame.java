@@ -1,16 +1,14 @@
 package view.aluguel;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class NovoAluguelFrame extends JFrame {
 
@@ -69,5 +67,13 @@ public class NovoAluguelFrame extends JFrame {
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setBounds(795, 437, 117, 29);
 		contentPane.add(btnConfirmar);
+		
+		JButton buttonAdicionarCarrinho = new JButton(">>");
+		buttonAdicionarCarrinho.setBounds(430, 184, 70, 29);
+		contentPane.add(buttonAdicionarCarrinho);
+		
+		JButton btnRemoverCarrinho = new JButton("<<");
+		btnRemoverCarrinho.setBounds(430, 220, 70, 29);
+		contentPane.add(btnRemoverCarrinho);
 	}
 }
