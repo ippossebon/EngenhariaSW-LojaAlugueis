@@ -4,124 +4,103 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JRadioButton;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import model.Cliente;
 import model.Funcionario;
 import model.Peca;
 import view.MensagemFrame;
+import view.inicial.FuncionarioFrame;
 import controller.PesquisaController;
 import database.Database;
 import database.DatabaseController;
 
 public class BotaoPesquisarAL implements ActionListener{
-	private JRadioButton button_peca;
-	private JRadioButton button_cliente;
-	private JRadioButton button_funcionario;
-	private JRadioButton b_nome;
-	private JRadioButton b_cpf;
-	private JRadioButton b_disponiveis;
-	private JRadioButton b_alugadas;
-	private JRadioButton b_todas;
-	private JTextField text;
-	private JTable table;
+	private FuncionarioFrame frame;
 	
-	public BotaoPesquisarAL (JTable table, JTextField text, JRadioButton button_peca, JRadioButton button_cliente, JRadioButton button_funcionario, JRadioButton b_nome, JRadioButton b_cpf, JRadioButton b_todas, JRadioButton b_disp, JRadioButton b_alug){
-		this.button_peca = button_peca;
-		this.button_cliente = button_cliente;
-		this.button_funcionario = button_funcionario;
-		this.b_nome = b_nome;
-		this.b_cpf = b_cpf;
-		this.b_disponiveis = b_disp;
-		this.b_alugadas = b_alug;
-		this.text = text;
-		this.b_todas = b_todas;
-		this.table = table;
+	public BotaoPesquisarAL (FuncionarioFrame frame){
+		this.frame = frame;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		PesquisaController pesquisa_controller = new PesquisaController();
 
-		if (this.button_peca.isSelected()){ // Pesquisa por peça
+		if (this.frame.getRdbtnPeca().isSelected()){ // Pesquisa por peça
 			
-			if (this.text.getText().isEmpty()){
+			if (this.frame.getPesquisa_text_field().getText().isEmpty()){
 				DatabaseController db = new DatabaseController(Database.getInstance());
 				
-				if (this.b_disponiveis.isSelected()){
+				if (this.frame.getRdbtnDisponiveis().isSelected()){
 					ArrayList<Peca> pecas_encontradas = db.getPecasDisponiveis();
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 				}
-				else if (this.b_alugadas.isSelected()){
+				else if (this.frame.getRdbtnAlugadas().isSelected()){
 					ArrayList<Peca> pecas_encontradas = db.getPecasAlugadas();
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
 				}
-				else if(this.b_todas.isSelected()){
+				else if(this.frame.getRdbtnTodas().isSelected()){
 					ArrayList<Peca> pecas_encontradas = db.getPecas();
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 				}
 			}
 			else{
-				if (this.b_disponiveis.isSelected()){
+				if (this.frame.getRdbtnDisponiveis().isSelected()){
 					// Pesquisa pelo tipo informado em todas as peças disponíveis.
-					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.text.getText(), PesquisaController.pesquisa_disponiveis);
+					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_disponiveis);
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
-				}else if(this.b_alugadas.isSelected()){
+				}else if(this.frame.getRdbtnAlugadas().isSelected()){
 					// Pesquisa pelo tipo informado em todas as peças alugadas.
-					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.text.getText(), PesquisaController.pesquisa_alugadas);
+					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_alugadas);
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
-				}else if (this.b_todas.isSelected()){
+				}else if (this.frame.getRdbtnTodas().isSelected()){
 					// Pesquisa pela palavra em todo o banco de dados
-					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.text.getText(), PesquisaController.pesquisa_todas);
+					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_todas);
 					DefaultTableModel dft = gerarDefaultTableModelPeca(pecas_encontradas);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 				}
 			}
 		}
-		else if (this.button_cliente.isSelected()){ // Pesquisa por cliente
+		else if (this.frame.getRdbtnCliente().isSelected()){ // Pesquisa por cliente
 			
-			if (this.text.getText().isEmpty()){
+			if (this.frame.getPesquisa_text_field().getText().isEmpty()){
 				// Lista todos os clientes.
 				DatabaseController db = new DatabaseController(Database.getInstance());
 				ArrayList<Cliente> clientes_encontrados = db.getClientes();
 				DefaultTableModel dft = gerarDefaultTableModelCliente(clientes_encontrados);
-				table.setModel(dft);
-				table.repaint();
+				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 			
 			}
 			else{
-				if (this.b_nome.isSelected()){
+				if (this.frame.getRdbtnNome().isSelected()){
 					// Pesquisa cliente pelo nome
-					ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorNome(this.text.getText());
+					ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorNome(this.frame.getPesquisa_text_field().getText());
 					DefaultTableModel dft = gerarDefaultTableModelCliente(clientes_encontrados);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
 				}
-				else if (this.b_cpf.isSelected()){
+				else if (this.frame.getRdbtnCpf().isSelected()){
 					// Pesquisa cliente pelo cpf
-					ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorCPF(this.text.getText());
+					ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorCPF(this.frame.getPesquisa_text_field().getText());
 					DefaultTableModel dft = gerarDefaultTableModelCliente(clientes_encontrados);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 				}
 				else{
 					MensagemFrame msg = new MensagemFrame("Erro: Selecione um filtro.");
@@ -129,31 +108,31 @@ public class BotaoPesquisarAL implements ActionListener{
 				}
 			}
 		}
-		else if(this.button_funcionario.isSelected()){ // Pesquisa por funcionário
+		else if(this.frame.getRdbtnFuncionario().isSelected()){ // Pesquisa por funcionário
 			
-			if(this.text.getText().isEmpty()){
+			if(this.frame.getPesquisa_text_field().getText().isEmpty()){
 				// Lista todos os clientes.
 				DatabaseController db = new DatabaseController(Database.getInstance());
 				ArrayList<Funcionario> funcionarios_encontrados = db.getFuncionarios();
 				DefaultTableModel dft = gerarDefaultTableModelFuncionario(funcionarios_encontrados);
-				table.setModel(dft);
-				table.repaint();
+				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 			}
 			else{
-				if (this.b_nome.isSelected()){
+				if (this.frame.getRdbtnNome().isSelected()){
 					// Pesquisa funcionario pelo nome
-					ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorNome(this.text.getText());
+					ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorNome(this.frame.getPesquisa_text_field().getText());
 					DefaultTableModel dft = gerarDefaultTableModelFuncionario(funcionarios_encontrados);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
 				}
-				else if (this.b_cpf.isSelected()){
+				else if (this.frame.getRdbtnCpf().isSelected()){
 					// Pesquisa funcionario pelo cpf
-					ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorCPF(this.text.getText());
+					ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorCPF(this.frame.getPesquisa_text_field().getText());
 					DefaultTableModel dft = gerarDefaultTableModelFuncionario(funcionarios_encontrados);
-					table.setModel(dft);
-					table.repaint();
+					this.frame.getResultados_table().setModel(dft);
+					this.frame.getResultados_table().repaint();
 					
 				}
 				else{

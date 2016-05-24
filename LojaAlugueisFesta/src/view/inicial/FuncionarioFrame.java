@@ -34,86 +34,94 @@ public class FuncionarioFrame extends JFrame {
 	private JTextField pesquisa_text_field;
 	private JTable resultados_table;
 	private JMenuBar menu_bar;
+	private JRadioButton rdbtnNome;
+	private JRadioButton rdbtnCpf;
+	private JRadioButton rdbtnTodas;
+	private JRadioButton rdbtnDisponiveis;
+	private JRadioButton rdbtnAlugadas;
+	private JRadioButton rdbtnPeca;
+	private JRadioButton rdbtnCliente;
+	private JRadioButton rdbtnFuncionario;
 
 	public FuncionarioFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 645);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.contentPane = new JPanel();
+		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(this.contentPane);
+		this.contentPane.setLayout(null);
 		
-		pesquisa_text_field = new JTextField();
-		pesquisa_text_field.setBounds(110, 29, 400, 28);
-		contentPane.add(pesquisa_text_field);
-		pesquisa_text_field.setColumns(10);
+		this.pesquisa_text_field = new JTextField();
+		this.pesquisa_text_field.setBounds(110, 29, 400, 28);
+		contentPane.add(this.pesquisa_text_field);
+		this.pesquisa_text_field.setColumns(10);
 		
 		JLabel lblPesquisa = new JLabel("Pesquisa:");
 		lblPesquisa.setBounds(36, 35, 61, 16);
-		contentPane.add(lblPesquisa);
+		this.contentPane.add(lblPesquisa);
 		
 		JLabel lblResultados = new JLabel("Resultados");
 		lblResultados.setBounds(36, 116, 73, 16);
-		contentPane.add(lblResultados);
+		this.contentPane.add(lblResultados);
 		
 		JLabel lblFiltrarPor = new JLabel("Filtrar por:");
 		lblFiltrarPor.setBounds(36, 144, 84, 16);
-		contentPane.add(lblFiltrarPor);
+		this.contentPane.add(lblFiltrarPor);
 		
-		JRadioButton rdbtnNome = new JRadioButton("Nome");
-		rdbtnNome.setToolTipText("Pessoa");
-		rdbtnNome.setBounds(110, 196, 84, 23);
-		contentPane.add(rdbtnNome);
+		this.rdbtnNome = new JRadioButton("Nome");
+		this.rdbtnNome.setToolTipText("Pessoa");
+		this.rdbtnNome.setBounds(110, 196, 84, 23);
+		this.contentPane.add(this.rdbtnNome);
 		
-		JRadioButton rdbtnCpf = new JRadioButton("CPF");
-		rdbtnNome.setToolTipText("Pessoa");
-		rdbtnCpf.setBounds(217, 196, 73, 23);
-		contentPane.add(rdbtnCpf);
+		this.rdbtnCpf = new JRadioButton("CPF");
+		this.rdbtnCpf.setToolTipText("Pessoa");
+		this.rdbtnCpf.setBounds(217, 196, 73, 23);
+		this.contentPane.add(this.rdbtnCpf);
 		
-		JRadioButton rdbtnTodas = new JRadioButton("Todas");
-		rdbtnNome.setToolTipText("Peça");
-		rdbtnTodas.setBounds(110, 161, 90, 23);
-		contentPane.add(rdbtnTodas);
+		this.rdbtnTodas = new JRadioButton("Todas");
+		this.rdbtnTodas.setToolTipText("Peça");
+		this.rdbtnTodas.setBounds(110, 161, 90, 23);
+		this.contentPane.add(this.rdbtnTodas);
 		
-		JRadioButton rdbtnDisponiveis = new JRadioButton("Disponíveis");
-		rdbtnNome.setToolTipText("Peça");
-		rdbtnDisponiveis.setBounds(217, 161, 121, 23);
-		contentPane.add(rdbtnDisponiveis);
+		this.rdbtnDisponiveis = new JRadioButton("Disponíveis");
+		this.rdbtnDisponiveis.setToolTipText("Peça");
+		this.rdbtnDisponiveis.setBounds(217, 161, 121, 23);
+		this.contentPane.add(this.rdbtnDisponiveis);
 		
-		JRadioButton rdbtnAlugadas = new JRadioButton("Alugadas");
-		rdbtnNome.setToolTipText("Peça");
-		rdbtnAlugadas.setBounds(348, 161, 95, 23);
-		contentPane.add(rdbtnAlugadas);
+		this.rdbtnAlugadas = new JRadioButton("Alugadas");
+		this.rdbtnAlugadas.setToolTipText("Peça");
+		this.rdbtnAlugadas.setBounds(348, 161, 95, 23);
+		this.contentPane.add(this.rdbtnAlugadas);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(6, 104, 682, 12);
 		contentPane.add(separator);
 		
-		JRadioButton rdbtnPeca = new JRadioButton("Peça");
-		rdbtnPeca.setBounds(109, 69, 73, 23);
-		contentPane.add(rdbtnPeca);
+		this.rdbtnPeca = new JRadioButton("Peça");
+		this.rdbtnPeca.setBounds(109, 69, 73, 23);
+		this.contentPane.add(this.rdbtnPeca);
 		
-		JRadioButton rdbtnCliente = new JRadioButton("Cliente");
-		rdbtnCliente.setBounds(217, 69, 90, 23);
-		contentPane.add(rdbtnCliente);
+		this.rdbtnCliente = new JRadioButton("Cliente");
+		this.rdbtnCliente.setBounds(217, 69, 90, 23);
+		this.contentPane.add(this.rdbtnCliente);
 		
-		JRadioButton rdbtnFuncionario = new JRadioButton("Funcionário");
-		rdbtnFuncionario.setBounds(348, 69, 141, 23);
-		contentPane.add(rdbtnFuncionario);
+		this.rdbtnFuncionario = new JRadioButton("Funcionário");
+		this.rdbtnFuncionario.setBounds(348, 69, 141, 23);
+		this.contentPane.add(this.rdbtnFuncionario);
 		
 		ButtonGroup button_group_pesquisa = new ButtonGroup();
-		button_group_pesquisa.add(rdbtnPeca);
-		button_group_pesquisa.add(rdbtnCliente);
-		button_group_pesquisa.add(rdbtnFuncionario);
+		button_group_pesquisa.add(this.rdbtnPeca);
+		button_group_pesquisa.add(this.rdbtnCliente);
+		button_group_pesquisa.add(this.rdbtnFuncionario);
 		
 		ButtonGroup bg_filtro_pessoa = new ButtonGroup();
-		bg_filtro_pessoa.add(rdbtnCpf);
-		bg_filtro_pessoa.add(rdbtnNome);
+		bg_filtro_pessoa.add(this.rdbtnCpf);
+		bg_filtro_pessoa.add(this.rdbtnNome);
 		
 		ButtonGroup bg_filtro_peca = new ButtonGroup();
-		bg_filtro_peca.add(rdbtnAlugadas);
-		bg_filtro_peca.add(rdbtnDisponiveis);
-		bg_filtro_peca.add(rdbtnTodas);
+		bg_filtro_peca.add(this.rdbtnAlugadas);
+		bg_filtro_peca.add(this.rdbtnDisponiveis);
+		bg_filtro_peca.add(this.rdbtnTodas);
 		
 		/* Testar!! */
 		rdbtnPeca.addActionListener(new SetFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
@@ -121,24 +129,24 @@ public class FuncionarioFrame extends JFrame {
 		rdbtnFuncionario.addActionListener(new SetFiltrosPessoaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
 		
 
-		resultados_table = new JTable();
-		resultados_table.setBackground(UIManager.getColor("InternalFrame.inactiveTitleBackground"));
-		resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
-		resultados_table.setBounds(36, 231, 598, 330);
+		this.resultados_table = new JTable();
+		this.resultados_table.setBackground(UIManager.getColor("InternalFrame.inactiveTitleBackground"));
+		this.resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
+		this.resultados_table.setBounds(36, 231, 598, 330);
 		
 		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
 		resultados_scroll_pane.setBounds(36, 231, 598, 330);
 		contentPane.add(resultados_scroll_pane);
 		
 		JButton btnNewButton = new JButton("Pesquisar");
-		btnNewButton.addActionListener(new BotaoPesquisarAL(resultados_table, pesquisa_text_field, rdbtnPeca, rdbtnCliente, rdbtnFuncionario, rdbtnNome, rdbtnCpf, rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas));
+		btnNewButton.addActionListener(new BotaoPesquisarAL(this));
 		btnNewButton.setBounds(522, 30, 112, 29);
 		contentPane.add(btnNewButton);
 		
-		menu_bar = new JMenuBar();
-		menu_bar.setBorderPainted(false);
-		menu_bar.setBackground(SystemColor.windowBorder);
-		menu_bar.setBounds(0, 0, 132, 22);
+		this.menu_bar = new JMenuBar();
+		this.menu_bar.setBorderPainted(false);
+		this.menu_bar.setBackground(SystemColor.windowBorder);
+		this.menu_bar.setBounds(0, 0, 132, 22);
 		
 	    /* Menu cadastro - Atalho: C */
 	    JMenu cadastroMenu = new JMenu("Cadastro");
@@ -167,6 +175,94 @@ public class FuncionarioFrame extends JFrame {
 	    aluguelMenu.add(itemRegistrarDevolucao);
 
 	    this.setJMenuBar(menu_bar);
+	}
+
+	public JRadioButton getRdbtnNome() {
+		return rdbtnNome;
+	}
+
+	public void setRdbtnNome(JRadioButton rdbtnNome) {
+		this.rdbtnNome = rdbtnNome;
+	}
+
+	public JRadioButton getRdbtnCpf() {
+		return rdbtnCpf;
+	}
+
+	public void setRdbtnCpf(JRadioButton rdbtnCpf) {
+		this.rdbtnCpf = rdbtnCpf;
+	}
+
+	public JRadioButton getRdbtnTodas() {
+		return rdbtnTodas;
+	}
+
+	public void setRdbtnTodas(JRadioButton rdbtnTodas) {
+		this.rdbtnTodas = rdbtnTodas;
+	}
+
+	public JRadioButton getRdbtnDisponiveis() {
+		return rdbtnDisponiveis;
+	}
+
+	public void setRdbtnDisponiveis(JRadioButton rdbtnDisponiveis) {
+		this.rdbtnDisponiveis = rdbtnDisponiveis;
+	}
+
+	public JRadioButton getRdbtnAlugadas() {
+		return rdbtnAlugadas;
+	}
+
+	public void setRdbtnAlugadas(JRadioButton rdbtnAlugadas) {
+		this.rdbtnAlugadas = rdbtnAlugadas;
+	}
+
+	public JRadioButton getRdbtnPeca() {
+		return rdbtnPeca;
+	}
+
+	public void setRdbtnPeca(JRadioButton rdbtnPeca) {
+		this.rdbtnPeca = rdbtnPeca;
+	}
+
+	public JRadioButton getRdbtnCliente() {
+		return rdbtnCliente;
+	}
+
+	public void setRdbtnCliente(JRadioButton rdbtnCliente) {
+		this.rdbtnCliente = rdbtnCliente;
+	}
+
+	public JRadioButton getRdbtnFuncionario() {
+		return rdbtnFuncionario;
+	}
+
+	public void setRdbtnFuncionario(JRadioButton rdbtnFuncionario) {
+		this.rdbtnFuncionario = rdbtnFuncionario;
+	}
+
+	public JTextField getPesquisa_text_field() {
+		return pesquisa_text_field;
+	}
+
+	public void setPesquisa_text_field(JTextField pesquisa_text_field) {
+		this.pesquisa_text_field = pesquisa_text_field;
+	}
+
+	public JTable getResultados_table() {
+		return resultados_table;
+	}
+
+	public void setResultados_table(JTable resultados_table) {
+		this.resultados_table = resultados_table;
+	}
+
+	public JMenuBar getMenu_bar() {
+		return menu_bar;
+	}
+
+	public void setMenu_bar(JMenuBar menu_bar) {
+		this.menu_bar = menu_bar;
 	}
 }
 
