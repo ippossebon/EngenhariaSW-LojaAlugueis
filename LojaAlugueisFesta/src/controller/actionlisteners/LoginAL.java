@@ -6,25 +6,21 @@ import java.awt.event.ActionListener;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 
+import view.LoginFrame;
 import controller.LoginController;
 
 public class LoginAL implements ActionListener{
-	private JFormattedTextField text_field;
-	private JPasswordField password_field;
+	private LoginFrame frame;
 	
-	public LoginAL(JFormattedTextField text, JPasswordField password){
-		this.text_field = text;
-		this.password_field = password;
+	public LoginAL(LoginFrame frame){
+		this.frame = frame;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		String cpf_usuario = this.text_field.getText();
-		String password_usuario = this.password_field.getText();
-		
-		LoginController login_controller = new LoginController(cpf_usuario, password_usuario);
+		LoginController login_controller = new LoginController(this.frame.getCpf_text_field().getText(), this.frame.getPasswordField().getText());
 		login_controller.login();
 	}
 	

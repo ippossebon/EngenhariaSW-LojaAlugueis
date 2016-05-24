@@ -3,36 +3,45 @@ package controller.actionlisteners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import view.MensagemFrame;
+import view.cadastro.CadastroFuncionarioFrame;
+import controller.CadastroController;
 
 public class BotaoCadastrarFuncionarioAL implements ActionListener{
 	
-	private JTextField text_nome;
-	private JTextField text_cpf;
-	private JTextField text_email;
-	private JTextField text_telefone;
-	private JTextField text_endereco;
-	private JPasswordField text_senha;
-	private JPasswordField text_confirmacao_senha;
+	private CadastroFuncionarioFrame frame;
 	
-	public BotaoCadastrarFuncionarioAL(JTextField nome, JTextField cpf, JTextField email, JTextField telefone, JTextField endereco,
-													JPasswordField senha, JPasswordField confirmacao_senha){
-		this.text_nome = nome;
-		this.text_cpf = cpf;
-		this.text_email = email;
-		this.text_telefone = telefone;
-		this.text_endereco = endereco;
-		this.text_senha = senha;
-		this.text_confirmacao_senha = confirmacao_senha;
-		
+	public BotaoCadastrarFuncionarioAL(CadastroFuncionarioFrame frame){
+		this.frame = frame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		// Cria cadastro controller
-		// Envia dados - include: verificar se senha e confirmação da senha são iguais.
+		CadastroController cadastro_controller = new CadastroController();
+		boolean sucesso = false;
+		
+		if(this.frame.getRdbtnFuncionrio().isSelected()){
+			sucesso = cadastro_controller.cadastraFuncionario(this.frame.getNome_text_field().getText(), this.frame.getCPFTextField().getText(),
+					this.frame.getEmail_text_field().getText(), this.frame.getTelefone_text_field().getText(),
+					this.frame.getEndereco_text_field().getText(), this.frame.getPasswordField().getText(),
+					this.frame.getConfirmacao_senha_field().getText(), false);
+			
+		}
+		else if(this.frame.getRdbtnGerente().isSelected()){
+			sucesso = cadastro_controller.cadastraFuncionario(this.frame.getNome_text_field().getText(), this.frame.getCPFTextField().getText(),
+					this.frame.getEmail_text_field().getText(), this.frame.getTelefone_text_field().getText(),
+					this.frame.getEndereco_text_field().getText(), this.frame.getPasswordField().getText(),
+					this.frame.getConfirmacao_senha_field().getText(), true);
+			
+		}else{
+			MensagemFrame msg = new MensagemFrame("Selecione o cargo do funcionário.");
+			msg.setVisible(true);
+		} 
+		
+		if (sucesso){
+			this.frame.dispose();
+		}
 	}
 
 }

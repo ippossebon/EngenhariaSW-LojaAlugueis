@@ -2,14 +2,9 @@ package controller;
 
 import model.Cliente;
 import model.Funcionario;
+import model.Gerente;
 import view.MensagemFrame;
-import controller.exceptions.CPFInvalidoException;
-import controller.exceptions.ConfirmarSenhaException;
-import controller.exceptions.EmailInvalidoException;
-import controller.exceptions.EnderecoInvalidoException;
-import controller.exceptions.NomeInvalidoException;
 import controller.exceptions.PessoaCadastradaException;
-import controller.exceptions.TelefoneInvalidoException;
 import database.Database;
 import database.DatabaseController;
 
@@ -81,47 +76,81 @@ public class CadastroController {
 		return true;
 	}
 	
-	public void cadastraFuncionario(String nome, String cpf, String email, String telefone, String endereco, String senha, String confirmarSenha) {
+	public boolean cadastraFuncionario(String nome, String cpf, String email, String telefone, String endereco, String senha, String confirmarSenha, boolean is_gerente) {
 		
 		if(!this.validaNome(nome)) {
 			
-			throw new NomeInvalidoException("Nome invalido.");
+			//throw new NomeInvalidoException("Nome invalido.");
+			MensagemFrame msg = new MensagemFrame("Nome inválido.");
+			msg.setVisible(true);
+			return false;
 		}
 
 		if(!this.validaCpf(cpf)) {
 			
-			throw new CPFInvalidoException("CPF invalido.");
+			//throw new CPFInvalidoException("CPF invalido.");
+			MensagemFrame msg = new MensagemFrame("CPF inválido.");
+			msg.setVisible(true);
+			return false;
 		}
 		
 		PesquisaController pController = new PesquisaController();
 		
 		if(pController.existeFuncionario(cpf)) {
-			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema.");
+			//throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema.");
+			MensagemFrame msg = new MensagemFrame("Este CPF já possui cadastro no sistema.");
+			msg.setVisible(true);
+			return false;
 		}
 		
 		if(!this.validaEmail(email)) {
 			
-			throw new EmailInvalidoException("Email invalido.");
+			//throw new EmailInvalidoException("Email invalido.");
+			MensagemFrame msg = new MensagemFrame("E-mail inválido.");
+			msg.setVisible(true);
+			return false;
 		}
 		
 		if(!this.validaTelefone(telefone)) {
 			
-			throw new TelefoneInvalidoException("Telefone invalido.");
+			//throw new TelefoneInvalidoException("Telefone invalido.");
+			MensagemFrame msg = new MensagemFrame("Telefone inválido.");
+			msg.setVisible(true);
+			return false;
 		}
 		
 		if(!this.validaEndereco(endereco)) {
 			
-			throw new EnderecoInvalidoException("Endereco invalido.");
+			//throw new EnderecoInvalidoException("Endereco invalido.");
+			MensagemFrame msg = new MensagemFrame("Endereço inválido.");
+			msg.setVisible(true);
+			return false;
 		}
 		
 		if(!senha.equals(confirmarSenha)) {
 			
-			throw new ConfirmarSenhaException("lol");
+			//throw new ConfirmarSenhaException("lol");
+			MensagemFrame msg = new MensagemFrame("Senha e confirmação da senha são diferentes.");
+			msg.setVisible(true);
+			return false;
 		}
 		
-		Funcionario funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
-		DatabaseController dbController = new DatabaseController(Database.getInstance());
-		dbController.cadastrarFuncionario(funcionario);
+		if (is_gerente){
+			Gerente g = new Gerente(nome, cpf, email, endereco, telefone, senha);
+			DatabaseController dbController = new DatabaseController(Database.getInstance());
+			dbController.cadastrarFuncionario(g);
+			MensagemFrame mensagem_frame = new MensagemFrame("Gerente cadastrado com sucesso.");
+			mensagem_frame.setVisible(true);
+		}
+		else{
+			Funcionario funcionario = new Funcionario(nome, cpf, email, endereco, telefone, senha);
+			DatabaseController dbController = new DatabaseController(Database.getInstance());
+			dbController.cadastrarFuncionario(funcionario);
+			MensagemFrame mensagem_frame = new MensagemFrame("Funcionário cadastrado com sucesso.");
+			mensagem_frame.setVisible(true);
+		}
+		
+		return true;
 	}
 	
 	public boolean validaNome(String nome) {

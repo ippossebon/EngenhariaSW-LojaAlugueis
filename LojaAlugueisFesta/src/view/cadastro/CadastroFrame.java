@@ -78,11 +78,31 @@ public class CadastroFrame extends JFrame {
 		
 		btnOk = new JButton("OK");
 		btnOk.setBounds(277, 227, 117, 29);
-		btnOk.addActionListener(new BotaoCadastrarClienteAL(this, this.text_field_nome, this.formatted_text_field_cpf, this.text_field_email, this.text_field_telefone, this.text_field_endereco));
+		btnOk.addActionListener(new BotaoCadastrarClienteAL(this));
 		contentPane.add(btnOk);
 	}
 	
 	public JButton getButtonOk(){
 		return this.btnOk;
+	}
+	
+	public JTextField getNomeTextField(){
+		return this.text_field_nome;
+	}
+	
+	public JFormattedTextField getCPFTextField(){
+		return this.formatted_text_field_cpf;
+	}
+	
+	public JTextField getEmailTextField(){
+		return this.text_field_email;
+	}
+	
+	public JTextField getTelefoneTextField(){
+		return this.text_field_telefone;
+	}
+	
+	public JTextField getEnderecoTextField(){
+		return this.text_field_endereco;
 	}
 }
