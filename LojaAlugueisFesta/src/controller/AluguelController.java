@@ -11,7 +11,7 @@ public class AluguelController {
 		
 	}
 	
-	public void alugarPeca(ArrayList<Peca> carrinho, String cpf_cliente){
+	public void alugarPeca(ArrayList<Integer> codigos_pecas, String cpf_cliente){
 		
 	}
 
