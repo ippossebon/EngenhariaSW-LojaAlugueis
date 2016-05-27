@@ -93,12 +93,18 @@ public class DatabaseController {
 	}
 	
 	public void removerPecaEstoque(int codigo){
+		int indice = -1;
 		
-		for(Peca p : database.getPecas()){
-			if (p.getCodigo_peca() == codigo){
-				database.getPecas().remove(p);
+		for (int i = 0; i < database.getPecas().size(); i++){
+			if (database.getPecas().get(i).getCodigo_peca() == codigo){
+				indice = i;
 			}
 		}
+		
+		if (indice!= -1){
+			database.getPecas().remove(indice);
+		}
+		
 	}
 	
 	public void cadastrarGerente(Gerente g){
