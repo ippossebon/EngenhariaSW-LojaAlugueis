@@ -196,6 +196,11 @@ public class PesquisaController {
 	}
 	
 	public DefaultTableModel gerarDefaultTableModelPeca(ArrayList<Peca> pecas_encontradas){
+		
+		if(pecas_encontradas.isEmpty()){
+			return null;
+		}
+		
 		DefaultTableModel dft = new DefaultTableModel();
 		
 		ArrayList<Integer> codigos = new ArrayList<Integer>();
@@ -231,6 +236,11 @@ public class PesquisaController {
 	}
 	
 	public DefaultTableModel gerarDefaultTableModelCliente(ArrayList<Cliente> clientes_encontrados){
+		
+		if(clientes_encontrados.isEmpty()){
+			return null;
+		}
+		
 		DefaultTableModel dft = new DefaultTableModel();
 		
 		ArrayList<String> nomes = new ArrayList<String>();
@@ -266,7 +276,12 @@ public class PesquisaController {
 	}
 	
 	public DefaultTableModel gerarDefaultTableModelFuncionario(ArrayList<Funcionario> funcionarios_encontrados){
-DefaultTableModel dft = new DefaultTableModel();
+		
+		if(funcionarios_encontrados.isEmpty()){
+			return null;
+		}
+		
+		DefaultTableModel dft = new DefaultTableModel();
 		
 		ArrayList<String> nomes = new ArrayList<String>();
 		ArrayList<String> cpfs = new ArrayList<String>();

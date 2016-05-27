@@ -26,6 +26,7 @@ public class BotaoPesquisarPecaAL implements ActionListener{
 		// TODO Auto-generated method stub
 		PesquisaController pesquisa_controller = new PesquisaController();
 		
+		
 		if (this.frame.getChckbxApenasDisponveis().isSelected()){
 			// Pesquisa apenas pelas peças disponíveis
 			if (this.frame.getPesquisa_text_field().getText().isEmpty()){
@@ -78,6 +79,7 @@ public class BotaoPesquisarPecaAL implements ActionListener{
 				else if(this.frame.getRdbtnTipo().isSelected()){
 					// Pesquisa por tipo
 					ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_todas);
+					System.out.println("BotaoPesquisarPecaAL >> Encontrou " + pecas_encontradas.size() + " pecas");
 					DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
 					this.frame.getResultados_table().setModel(dft);
 					this.frame.getResultados_table().repaint();
