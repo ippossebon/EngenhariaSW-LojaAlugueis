@@ -9,11 +9,11 @@ import view.aluguel.DadosNovoAluguelFrame;
 import view.aluguel.NovoAluguelFrame;
 import controller.PesquisaController;
 
-public class BotaoConfirmaNovoAluguel implements ActionListener{
+public class BotaoOkNovoAluguel implements ActionListener{
 	
 	private NovoAluguelFrame frame;
 	
-	public BotaoConfirmaNovoAluguel(NovoAluguelFrame frame){
+	public BotaoOkNovoAluguel(NovoAluguelFrame frame){
 		this.frame = frame;
 	}
 

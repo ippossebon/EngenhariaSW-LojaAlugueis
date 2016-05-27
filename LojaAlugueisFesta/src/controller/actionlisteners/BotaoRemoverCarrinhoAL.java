@@ -26,7 +26,6 @@ public class BotaoRemoverCarrinhoAL implements ActionListener{
 			this.frame.getCarrinho_table().repaint();
 		}
 		
-		
 	}
 	
 	

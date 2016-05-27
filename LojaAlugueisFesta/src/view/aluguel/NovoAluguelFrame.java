@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.actionlisteners.BotaoAdicionarCarrinhoAL;
-import controller.actionlisteners.BotaoConfirmaNovoAluguel;
+import controller.actionlisteners.BotaoOkNovoAluguel;
 import controller.actionlisteners.BotaoPesquisarPecaAL;
 import controller.actionlisteners.BotaoRemoverCarrinhoAL;
 
@@ -106,7 +106,7 @@ public class NovoAluguelFrame extends JFrame {
 		
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setBounds(795, 437, 117, 29);
-		btnConfirmar.addActionListener(new BotaoConfirmaNovoAluguel(this));
+		btnConfirmar.addActionListener(new BotaoOkNovoAluguel(this));
 		this.contentPane.add(btnConfirmar);
 		
 		JButton btnAdicionarCarrinho = new JButton(">>");
