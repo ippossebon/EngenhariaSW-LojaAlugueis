@@ -15,6 +15,7 @@ public class AlterarValorPecaFrame extends JFrame {
 	private JTextField valor_atual_text_field;
 	private JTextField codigo_peca_text_field;
 	private JTextField tipo_text_field;
+	private JTextField novo_valor_text_field;
 
 	public AlterarValorPecaFrame(String codigo_peca, String tipo, String valor_atual) {
 		setTitle("Alterar valor de peça");
@@ -40,7 +41,7 @@ public class AlterarValorPecaFrame extends JFrame {
 		lblNovoValor.setBounds(16, 132, 85, 16);
 		contentPane.add(lblNovoValor);
 		
-		JTextField novo_valor_text_field = new JTextField();
+		novo_valor_text_field = new JTextField();
 		novo_valor_text_field.setBounds(99, 126, 149, 28);
 		contentPane.add(novo_valor_text_field);
 		
@@ -70,5 +71,13 @@ public class AlterarValorPecaFrame extends JFrame {
 		btnOk.setBounds(131, 166, 117, 29);
 		btnOk.addActionListener(new BotaoConfirmaNovoPrecoAL(this));
 		contentPane.add(btnOk);
+	}
+
+	public JTextField getNovo_valor_text_field() {
+		return novo_valor_text_field;
+	}
+
+	public void setNovo_valor_text_field(JTextField novo_valor_text_field) {
+		this.novo_valor_text_field = novo_valor_text_field;
 	}
 }
