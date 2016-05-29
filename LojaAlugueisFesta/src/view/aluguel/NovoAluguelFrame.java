@@ -15,10 +15,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.actionlisteners.BotaoAdicionarCarrinhoAL;
-import controller.actionlisteners.BotaoOkNovoAluguel;
-import controller.actionlisteners.BotaoPesquisarPecaAL;
-import controller.actionlisteners.BotaoRemoverCarrinhoAL;
+import controller.actionlisteners.aluguel.BotaoAdicionarCarrinhoAL;
+import controller.actionlisteners.aluguel.BotaoOkNovoAluguel;
+import controller.actionlisteners.aluguel.BotaoPesquisarPecaAL;
+import controller.actionlisteners.aluguel.BotaoRemoverCarrinhoAL;
 
 public class NovoAluguelFrame extends JFrame {
 

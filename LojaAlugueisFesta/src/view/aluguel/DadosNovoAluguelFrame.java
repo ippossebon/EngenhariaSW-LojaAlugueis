@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Peca;
 import view.Operacoes;
-import controller.actionlisteners.BotaoRemoverPecaCarrinhoAL;
+import controller.actionlisteners.aluguel.BotaoRemoverPecaCarrinhoAL;
 
 public class DadosNovoAluguelFrame extends JFrame {
 

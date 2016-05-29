@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import view.Operacoes;
-import controller.actionlisteners.BotaoCadastrarFuncionarioAL;
+import controller.actionlisteners.cadastro.BotaoCadastrarFuncionarioAL;
 
 public class CadastroFuncionarioFrame extends JFrame{
 

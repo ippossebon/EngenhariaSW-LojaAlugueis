@@ -7,15 +7,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import controller.actionlisteners.BotaoConfirmaNovoPrecoAL;
+import controller.actionlisteners.estoque.BotaoConfirmaNovoPrecoAL;
+
+import javax.swing.JFormattedTextField;
+
+import view.Operacoes;
 
 public class AlterarValorPecaFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField valor_atual_text_field;
 	private JTextField codigo_peca_text_field;
+	public JTextField getCodigo_peca_text_field() {
+		return codigo_peca_text_field;
+	}
+
+	public void setCodigo_peca_text_field(JTextField codigo_peca_text_field) {
+		this.codigo_peca_text_field = codigo_peca_text_field;
+	}
+
 	private JTextField tipo_text_field;
-	private JTextField novo_valor_text_field;
+	private JFormattedTextField novo_valor_text_field;
 
 	public AlterarValorPecaFrame(String codigo_peca, String tipo, String valor_atual) {
 		setTitle("Alterar valor de peça");
@@ -40,10 +52,6 @@ public class AlterarValorPecaFrame extends JFrame {
 		JLabel lblNovoValor = new JLabel("Novo valor:");
 		lblNovoValor.setBounds(16, 132, 85, 16);
 		contentPane.add(lblNovoValor);
-		
-		novo_valor_text_field = new JTextField();
-		novo_valor_text_field.setBounds(99, 126, 149, 28);
-		contentPane.add(novo_valor_text_field);
 		
 		codigo_peca_text_field = new JTextField();
 		codigo_peca_text_field.setEditable(false);
@@ -71,13 +79,18 @@ public class AlterarValorPecaFrame extends JFrame {
 		btnOk.setBounds(131, 166, 117, 29);
 		btnOk.addActionListener(new BotaoConfirmaNovoPrecoAL(this));
 		contentPane.add(btnOk);
+		
+		novo_valor_text_field = new JFormattedTextField(Operacoes.aplicaMascara("###.##"));
+		novo_valor_text_field.setToolTipText("Por favor, insira o valor com 3 dígitos antes da vírgula.");
+		novo_valor_text_field.setBounds(99, 126, 149, 28);
+		contentPane.add(novo_valor_text_field);
 	}
 
-	public JTextField getNovo_valor_text_field() {
+	public JFormattedTextField getNovo_valor_text_field() {
 		return novo_valor_text_field;
 	}
 
-	public void setNovo_valor_text_field(JTextField novo_valor_text_field) {
+	public void setNovo_valor_text_field(JFormattedTextField novo_valor_text_field) {
 		this.novo_valor_text_field = novo_valor_text_field;
 	}
 }

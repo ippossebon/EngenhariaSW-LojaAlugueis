@@ -123,6 +123,19 @@ public class PesquisaController {
 		return resultado;
 	}
 	
+	public int getPecaIndex(int codigo){
+		
+		DatabaseController db_controller = new DatabaseController(Database.getInstance());
+		
+		for (int i = 0; i < db_controller.getPecas().size(); i++){
+			if (db_controller.getPecas().get(i).getCodigo_peca() == codigo){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
 	/* Retorna os alugueis relativos ao intervalo estabelecido. Se a data de inicio estiver vazia, retorna todos os alugueis que têm a mesma data de
 	 * fim. Se a data de início estiver vazia, retorna todos os alugueis que têm início na mesma data.*/
 	public ArrayList<Aluguel> pesquisarAluguelPorData(Data data_inicio, Data data_fim){

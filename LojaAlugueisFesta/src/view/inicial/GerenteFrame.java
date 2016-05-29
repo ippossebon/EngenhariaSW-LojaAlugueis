@@ -7,8 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import controller.actionlisteners.SelecaoGerenciarEstoqueAL;
-import controller.actionlisteners.SelecaoRelatoriosAL;
+import controller.actionlisteners.estoque.SelecaoGerenciarEstoqueAL;
+import controller.actionlisteners.relatorios.SelecaoRelatoriosAL;
 
 public class GerenteFrame extends FuncionarioFrame {
 

@@ -20,13 +20,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import controller.actionlisteners.SelecaoCadastrarClienteAL;
-import controller.actionlisteners.SelecaoCadastrarFuncionarioAL;
-import controller.actionlisteners.SelecaoNovoAluguelAL;
-import controller.actionlisteners.SelecaoRegistrarDevolucaoAL;
-import controller.actionlisteners.SetFiltrosPecaAL;
-import controller.actionlisteners.SetFiltrosPessoaAL;
-import controller.actionlisteners.BotaoPesquisarAL;
+import view.DadosPecaFrame;
+import controller.actionlisteners.aluguel.SelecaoNovoAluguelAL;
+import controller.actionlisteners.aluguel.SelecaoRegistrarDevolucaoAL;
+import controller.actionlisteners.cadastro.SelecaoCadastrarClienteAL;
+import controller.actionlisteners.cadastro.SelecaoCadastrarFuncionarioAL;
+import controller.actionlisteners.pesquisa.BotaoPesquisarAL;
+import controller.actionlisteners.pesquisa.SetFiltrosPecaAL;
+import controller.actionlisteners.pesquisa.SetFiltrosPessoaAL;
 
 public class FuncionarioFrame extends JFrame {
 
@@ -123,16 +124,37 @@ public class FuncionarioFrame extends JFrame {
 		bg_filtro_peca.add(this.rdbtnDisponiveis);
 		bg_filtro_peca.add(this.rdbtnTodas);
 		
-		/* Testar!! */
 		rdbtnPeca.addActionListener(new SetFiltrosPecaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
 		rdbtnCliente.addActionListener(new SetFiltrosPessoaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
 		rdbtnFuncionario.addActionListener(new SetFiltrosPessoaAL(rdbtnTodas, rdbtnDisponiveis, rdbtnAlugadas, rdbtnNome, rdbtnCpf));
 		
-
 		this.resultados_table = new JTable();
 		this.resultados_table.setBackground(UIManager.getColor("InternalFrame.inactiveTitleBackground"));
 		this.resultados_table.setBorder(new LineBorder(UIManager.getColor("Button.shadow")));
 		this.resultados_table.setBounds(36, 231, 598, 330);
+		this.resultados_table.addMouseListener(new java.awt.event.MouseAdapter() {
+		    @Override
+		    public void mouseClicked(java.awt.event.MouseEvent evt) {
+		        int linha = resultados_table.rowAtPoint(evt.getPoint());
+		        int coluna = resultados_table.columnAtPoint(evt.getPoint());
+		        if (linha >= 0 && coluna >= 0) {
+		        	
+		        	// Verifica se a primeira coluna corresponde ao código de uma peça.
+		        	if(resultados_table.getValueAt(linha, 0) instanceof Integer){
+		        		DadosPecaFrame frame = new DadosPecaFrame(resultados_table.getValueAt(linha, 0).toString(), resultados_table.getValueAt(linha, 1).toString(), 
+		        													resultados_table.getValueAt(linha, 2).toString(), resultados_table.getValueAt(linha, 4).toString(),
+		        													resultados_table.getValueAt(linha, 3).toString(), resultados_table.getValueAt(linha, 5).toString());
+		        		frame.setVisible(true);
+		        		
+		        	}
+		        	
+		        	// if cliente
+		        	
+		        	
+		        	// if funcionario
+		        }
+		    }
+		});
 		
 		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
 		resultados_scroll_pane.setBounds(36, 231, 598, 330);
