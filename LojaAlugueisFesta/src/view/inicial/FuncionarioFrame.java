@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import view.DadosClienteFrame;
 import view.DadosPecaFrame;
 import controller.actionlisteners.aluguel.SelecaoNovoAluguelAL;
 import controller.actionlisteners.aluguel.SelecaoRegistrarDevolucaoAL;
@@ -147,8 +148,22 @@ public class FuncionarioFrame extends JFrame {
 		        		frame.setVisible(true);
 		        		
 		        	}
+		        	/* Informações cliente */
+		        	else if(resultados_table.getModel().getColumnName(5).equals("Status")){
+		        		DadosClienteFrame frame = new DadosClienteFrame(resultados_table.getValueAt(linha, 0).toString(), resultados_table.getValueAt(linha, 1).toString(),
+		        													resultados_table.getValueAt(linha, 2).toString(), resultados_table.getValueAt(linha, 3).toString(),
+		        													resultados_table.getValueAt(linha, 4).toString(), resultados_table.getValueAt(linha, 5).toString());
+		        		frame.setVisible(true);
+		        	}
+		        	/* Informações funcionário */
+		        	else{
+		        		DadosClienteFrame frame = new DadosClienteFrame(resultados_table.getValueAt(linha, 0).toString(), resultados_table.getValueAt(linha, 1).toString(),
+																		resultados_table.getValueAt(linha, 2).toString(), resultados_table.getValueAt(linha, 3).toString(),
+																		resultados_table.getValueAt(linha, 4).toString(), resultados_table.getValueAt(linha, 5).toString());
+frame.setVisible(true);
+		        	}
 		        	
-		        	// if cliente
+		        	
 		        	
 		        	
 		        	// if funcionario
