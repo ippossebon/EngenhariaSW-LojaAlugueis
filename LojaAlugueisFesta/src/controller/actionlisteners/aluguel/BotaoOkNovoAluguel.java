@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import model.Peca;
+import view.MensagemFrame;
 import view.aluguel.DadosNovoAluguelFrame;
 import view.aluguel.NovoAluguelFrame;
 import controller.PesquisaController;
@@ -33,8 +34,15 @@ public class BotaoOkNovoAluguel implements ActionListener{
 			pecas.add(pesquisa_controller.pesquisarPeca(c, PesquisaController.pesquisa_disponiveis).get(0));
 		}
 		
-		DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
-		frame.setVisible(true);
+		if(pecas.size() != 0){
+			DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
+			frame.setVisible(true);
+		}
+		else{
+			MensagemFrame msg = new MensagemFrame("Por favor, escolha as peças que deseja alugar.");
+			msg.setVisible(true);
+		}
+		
 	}
 
 }

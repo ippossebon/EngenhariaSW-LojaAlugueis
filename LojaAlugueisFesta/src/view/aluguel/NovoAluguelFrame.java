@@ -1,5 +1,7 @@
 package view.aluguel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -118,6 +120,15 @@ public class NovoAluguelFrame extends JFrame {
 		btnRemoverCarrinho.setBounds(430, 220, 70, 29);
 		btnRemoverCarrinho.addActionListener(new BotaoRemoverCarrinhoAL(this));
 		this.contentPane.add(btnRemoverCarrinho);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(18, 437, 117, 29);
+		btnCancelar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				dispose();
+			}
+		});
+		contentPane.add(btnCancelar);
 	}
 
 	public JTextField getPesquisa_text_field() {

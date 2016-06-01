@@ -42,6 +42,12 @@ public class EstoqueFrame extends JFrame {
 		
 		JButton btnAdicionarPea = new JButton("Adicionar peça");
 		btnAdicionarPea.setBounds(503, 6, 117, 29);
+		btnAdicionarPea.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				AdicionarPecaFrame addpecaframe = new AdicionarPecaFrame();
+				addpecaframe.setVisible(true);
+			}
+		});
 		contentPane.add(btnAdicionarPea);
 		
 		JButton btnRemoverPea = new JButton("Remover peça");
