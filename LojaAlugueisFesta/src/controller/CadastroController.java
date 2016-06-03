@@ -37,11 +37,6 @@ public class CadastroController {
 		
 		PesquisaController pController = new PesquisaController();
 		
-		if(pController.existeCliente(cpf)) {
-			
-			throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema");
-		}
-		
 		if(!this.validaEmail(email)) {
 			
 			//throw new EmailInvalidoException("Email invalido.");
@@ -65,14 +60,23 @@ public class CadastroController {
 			msg.setVisible(true);
 			return false;
 		}
+		if(pController.existeCliente(cpf)) {
+			
+			//throw new PessoaCadastradaException("Este CPF já possui cadastro no sistema");
+			MensagemFrame msg = new MensagemFrame ("Este CPF já possui cadastro no sistema.");
+			msg.setVisible(true);
+			return false;
+		}
+		else{
+			MensagemFrame mensagem_frame = new MensagemFrame("Cliente cadastrado com sucesso.");
+			mensagem_frame.setVisible(true);
+		}
 		
 		Cliente cliente = new Cliente(nome, cpf, email, endereco, telefone);
 		DatabaseController dbController = new DatabaseController(Database.getInstance());
 		dbController.cadastrarCliente(cliente);
 		dbController.printDatabase();
 		
-		MensagemFrame mensagem_frame = new MensagemFrame("Cliente cadastrado com sucesso.");
-		mensagem_frame.setVisible(true);
 		return true;
 	}
 	
