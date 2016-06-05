@@ -18,6 +18,7 @@ public class BotaoAluguelAL implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		AluguelController aluguel_controller = new AluguelController();
+		System.out.println("CLIQUEI");
 	}
 
 }

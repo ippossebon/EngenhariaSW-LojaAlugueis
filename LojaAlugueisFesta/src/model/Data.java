@@ -45,4 +45,24 @@ public class Data {
 		}
 		return false;
 	}
+	
+	public int converteDataParaDia(Data d) {
+		
+		int dias = 0;
+		
+		dias = d.getDia() + d.getMes() * this.retornaDiadoMes(d.getMes()) + d.getAno() * 365;
+		
+		return dias;
+		
+	}
+	
+	public int retornaDiadoMes(int mes) {
+		
+		int[] meses = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		
+		return meses[mes]; 
+		
+	}
+	
+	
 }

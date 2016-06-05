@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import controller.AluguelController;
+import controller.PesquisaController;
 import model.Peca;
 import view.aluguel.DadosNovoAluguelFrame;
-import controller.PesquisaController;
 
 public class BotaoEfetuarAluguelAL implements ActionListener{
 
@@ -27,14 +28,20 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 		for (int i = 0; i < this.frame.getItens_table().getModel().getRowCount(); i++){
 			codigos_pecas.add(Integer.parseInt(this.frame.getItens_table().getModel().getValueAt(i, 0).toString()));
 		}
-		
+	
 		PesquisaController pesquisa_controller = new PesquisaController();
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		for(Integer codigo: codigos_pecas){
 			pecas.add(pesquisa_controller.pesquisarPeca(codigo, PesquisaController.pesquisa_disponiveis).get(0));
 		}
 		
+		
+		 System.out.println("CLIQUEI");
 		// AluguelController
+		 
+		 AluguelController aluguel_controller = new AluguelController();
+		 aluguel_controller.alugarPeca(codigos_pecas, cpf_cliente, data_inicio, data_fim);
+
 	}
 
 }

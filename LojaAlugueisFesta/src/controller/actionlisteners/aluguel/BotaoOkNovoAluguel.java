@@ -35,6 +35,8 @@ public class BotaoOkNovoAluguel implements ActionListener{
 		
 		DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
 		frame.setVisible(true);
+		
+		System.out.println("Cliquei hehe");
 	}
 
 }

@@ -73,4 +73,9 @@ public class Peca {
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
+	
+	public void incAluguel() {
+		
+		this.numero_alugueis++;
+	}
 }
