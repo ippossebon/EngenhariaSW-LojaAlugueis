@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Peca;
 import view.Operacoes;
+import controller.actionlisteners.aluguel.BotaoEfetuarAluguelAL;
 import controller.actionlisteners.aluguel.BotaoRemoverPecaCarrinhoAL;
 
 public class DadosNovoAluguelFrame extends JFrame {
@@ -132,12 +133,7 @@ public class DadosNovoAluguelFrame extends JFrame {
 		
 		JButton btnOk = new JButton("Confirmar");
 		btnOk.setBounds(343, 480, 105, 29);
-		btnOk.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e)
-		    {
-		    	// vamos ver
-		    }
-		});
+		btnOk.addActionListener(new BotaoEfetuarAluguelAL(this));
 		contentPane.add(btnOk);
 		
 		JButton btnRemover = new JButton("Remover");
