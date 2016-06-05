@@ -33,7 +33,42 @@ public class DadosNovoAluguelFrame extends JFrame {
 	private JFormattedTextField data_inicio_text_field;
 	private JFormattedTextField data_fim_text_field;
 	private JTextField total_text_field;
+	private JRadioButton rdbtnCartoDeCrditodbito;
+	private JRadioButton rdbtnDinheiro;
+	private JRadioButton rdbtnNoEfetuado;
 	
+	public JTextField getTotal_text_field() {
+		return total_text_field;
+	}
+
+	public void setTotal_text_field(JTextField total_text_field) {
+		this.total_text_field = total_text_field;
+	}
+
+	public JRadioButton getRdbtnCartoDeCrditodbito() {
+		return rdbtnCartoDeCrditodbito;
+	}
+
+	public void setRdbtnCartoDeCrditodbito(JRadioButton rdbtnCartoDeCrditodbito) {
+		this.rdbtnCartoDeCrditodbito = rdbtnCartoDeCrditodbito;
+	}
+
+	public JRadioButton getRdbtnDinheiro() {
+		return rdbtnDinheiro;
+	}
+
+	public void setRdbtnDinheiro(JRadioButton rdbtnDinheiro) {
+		this.rdbtnDinheiro = rdbtnDinheiro;
+	}
+
+	public JRadioButton getRdbtnNoEfetuado() {
+		return rdbtnNoEfetuado;
+	}
+
+	public void setRdbtnNoEfetuado(JRadioButton rdbtnNoEfetuado) {
+		this.rdbtnNoEfetuado = rdbtnNoEfetuado;
+	}
+
 	public JFormattedTextField getCpf_text_field() {
 		return cpf_text_field;
 	}
@@ -156,7 +191,7 @@ public class DadosNovoAluguelFrame extends JFrame {
 		comboBox_cartoes.setBounds(300, 347, 148, 27);
 		contentPane.add(comboBox_cartoes);
 		
-		JRadioButton rdbtnCartoDeCrditodbito = new JRadioButton("Cartão de crédito/débito");
+		rdbtnCartoDeCrditodbito = new JRadioButton("Cartão de crédito/débito");
 		rdbtnCartoDeCrditodbito.setBounds(16, 347, 196, 23);
 		rdbtnCartoDeCrditodbito.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -165,11 +200,11 @@ public class DadosNovoAluguelFrame extends JFrame {
 		});
 		contentPane.add(rdbtnCartoDeCrditodbito);
 		
-		JRadioButton rdbtnDinheiro = new JRadioButton("Dinheiro");
+		rdbtnDinheiro = new JRadioButton("Dinheiro");
 		rdbtnDinheiro.setBounds(16, 382, 141, 23);
 		contentPane.add(rdbtnDinheiro);
 		
-		JRadioButton rdbtnNoEfetuado = new JRadioButton("Não efetuado");
+		rdbtnNoEfetuado = new JRadioButton("Não efetuado");
 		rdbtnNoEfetuado.setBounds(16, 417, 141, 23);
 		contentPane.add(rdbtnNoEfetuado);
 		
