@@ -20,11 +20,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-<<<<<<< Updated upstream
 import view.DadosClienteFrame;
 import view.DadosPecaFrame;
-=======
->>>>>>> Stashed changes
 import controller.actionlisteners.aluguel.SelecaoNovoAluguelAL;
 import controller.actionlisteners.aluguel.SelecaoRegistrarDevolucaoAL;
 import controller.actionlisteners.cadastro.SelecaoCadastrarClienteAL;
@@ -32,7 +29,6 @@ import controller.actionlisteners.cadastro.SelecaoCadastrarFuncionarioAL;
 import controller.actionlisteners.pesquisa.BotaoPesquisarAL;
 import controller.actionlisteners.pesquisa.SetFiltrosPecaAL;
 import controller.actionlisteners.pesquisa.SetFiltrosPessoaAL;
-import view.DadosPecaFrame;
 
 public class FuncionarioFrame extends JFrame {
 

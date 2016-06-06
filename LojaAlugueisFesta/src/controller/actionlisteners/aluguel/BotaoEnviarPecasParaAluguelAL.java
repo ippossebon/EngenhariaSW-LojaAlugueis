@@ -5,15 +5,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import model.Peca;
+import view.MensagemFrame;
 import view.aluguel.DadosNovoAluguelFrame;
 import view.aluguel.NovoAluguelFrame;
 import controller.PesquisaController;
 
-public class BotaoOkNovoAluguel implements ActionListener{
+public class BotaoEnviarPecasParaAluguelAL implements ActionListener{
 	
 	private NovoAluguelFrame frame;
 	
-	public BotaoOkNovoAluguel(NovoAluguelFrame frame){
+	public BotaoEnviarPecasParaAluguelAL(NovoAluguelFrame frame){
 		this.frame = frame;
 	}
 
@@ -33,10 +34,22 @@ public class BotaoOkNovoAluguel implements ActionListener{
 			pecas.add(pesquisa_controller.pesquisarPeca(c, PesquisaController.pesquisa_disponiveis).get(0));
 		}
 		
+<<<<<<< HEAD:LojaAlugueisFesta/src/controller/actionlisteners/aluguel/BotaoOkNovoAluguel.java
 		DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
 		frame.setVisible(true);
 		
 		System.out.println("Cliquei hehe");
+=======
+		if(pecas.size() != 0){
+			DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
+			frame.setVisible(true);
+		}
+		else{
+			MensagemFrame msg = new MensagemFrame("Por favor, escolha as peças que deseja alugar.");
+			msg.setVisible(true);
+		}
+		
+>>>>>>> origin/master:LojaAlugueisFesta/src/controller/actionlisteners/aluguel/BotaoEnviarPecasParaAluguelAL.java
 	}
 
 }
