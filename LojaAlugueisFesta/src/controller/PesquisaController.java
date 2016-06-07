@@ -208,45 +208,7 @@ public class PesquisaController {
 		return false;
 	}
 	
-	public DefaultTableModel gerarDefaultTableModelPeca(ArrayList<Peca> pecas_encontradas){
-		
-		if(pecas_encontradas.isEmpty()){
-			return null;
-		}
-		
-		DefaultTableModel dft = new DefaultTableModel();
-		
-		ArrayList<Integer> codigos = new ArrayList<Integer>();
-		ArrayList<String> tipos = new ArrayList<String>();
-		ArrayList<Integer> tamanhos = new ArrayList<Integer>();
-		ArrayList<String> status = new ArrayList<String>();
-		ArrayList<Float> valores = new ArrayList<Float>();
-		ArrayList<Integer> numero_alugueis = new ArrayList<Integer>();
-		
-		for(Peca p : pecas_encontradas){
-			codigos.add(p.getCodigo_peca());
-			tipos.add(p.getTipo());
-			tamanhos.add(p.getTamanho());
-			
-			if (p.isDisponivel()){
-				status.add("Disponível");
-			}
-			else{
-				status.add("Alugada");
-			}
-			
-			valores.add(p.getValor());
-			numero_alugueis.add(p.getNumero_alugueis());
-		}
-		dft.addColumn("Código", codigos.toArray());
-		dft.addColumn("Tipo", tipos.toArray());
-		dft.addColumn("Tamanho", tamanhos.toArray());
-		dft.addColumn("Status", status.toArray());
-		dft.addColumn("Valor", valores.toArray());
-		dft.addColumn("Número de alugueis", numero_alugueis.toArray());
-		
-		return dft;
-	}
+	
 	
 	public DefaultTableModel gerarDefaultTableModelCliente(ArrayList<Cliente> clientes_encontrados){
 		

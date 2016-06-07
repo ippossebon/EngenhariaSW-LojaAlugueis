@@ -22,27 +22,14 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		/***** DEBUG ****/
+		System.out.println("BotaoEfetuarAluguel clicado.");
+		
 		// Verifica se o pagamento foi efetuado.
 		boolean pagamento_efetuado;
 		if (this.frame.getRdbtnCartoDeCrditodbito().isSelected() || this.frame.getRdbtnDinheiro().isSelected()){
 			pagamento_efetuado = true;
 		}
-<<<<<<< HEAD
-	
-		PesquisaController pesquisa_controller = new PesquisaController();
-		ArrayList<Peca> pecas = new ArrayList<Peca>();
-		for(Integer codigo: codigos_pecas){
-			pecas.add(pesquisa_controller.pesquisarPeca(codigo, PesquisaController.pesquisa_disponiveis).get(0));
-		}
-		
-		
-		 System.out.println("CLIQUEI");
-		// AluguelController
-		 
-		 AluguelController aluguel_controller = new AluguelController();
-		 aluguel_controller.alugarPeca(codigos_pecas, cpf_cliente, data_inicio, data_fim);
-
-=======
 		else{
 			pagamento_efetuado = false;
 		}
@@ -71,7 +58,6 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado. O pagamento precisa ser realizado no ato.");
 			msg.setVisible(true);
 		}
->>>>>>> origin/master
 	}
 
 }

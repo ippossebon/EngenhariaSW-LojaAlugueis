@@ -1,6 +1,7 @@
 package database;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import model.Aluguel;
 import model.Cliente;
@@ -8,7 +9,7 @@ import model.Funcionario;
 import model.Gerente;
 import model.Peca;
 
-public class Database {
+public class Database extends Observable{
 	
 	private static Database database;
 	private ArrayList<Gerente> gerentes;
@@ -74,14 +75,20 @@ public class Database {
 	
 	public void cadastrarCliente(Cliente c){
 		this.clientes.add(c);
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public void cadastrarFuncionario(Funcionario f){
 		this.funcionarios.add(f);
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public void cadastrarGerente(Gerente g){
 		this.gerentes.add(g);
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public Database getDatabase() {
@@ -91,8 +98,6 @@ public class Database {
 	public void setDatabase(Database database) {
 		Database.database = database;
 	}
-	
-	
 	
 	public void printDatabase(){
 		System.out.println("** Database **");
@@ -156,13 +161,17 @@ public class Database {
 	
 	public void adicionarPeca(Peca p){
 		this.pecas.add(p);
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public void removerPeca(Peca p){
 		this.pecas.remove(p);
+		setChanged();
+	    notifyObservers();
 	}
 	
-public void popularDatabase(){
+	public void popularDatabase(){
 		
 		/* Clientes */
 		Cliente c1 = new Cliente("Ana Ribeiro", "123.233.111-11", "anar@gmail.com", "Rua A, 123", "(51) 3333 3333");
@@ -418,6 +427,18 @@ public void popularDatabase(){
 		Peca p48 = new Peca(48, 39, "Sapato feminino", (float)25.00);
 		Database.database.adicionarPeca(p48);
 		
+	}
+
+	public int gerarNovoCodigoPeca(){
+		int novo_codigo = 49; // 49 é o código da última peça adicionada em popularDatabase()
+		
+		for (Peca p : database.getPecas()){
+			if (p.getCodigo_peca() == novo_codigo){
+				novo_codigo = novo_codigo++;
+			}
+		}
+		
+		return novo_codigo;
 	}
 }
 

@@ -2,6 +2,8 @@ package view.inicial;
 
 import java.awt.SystemColor;
 import java.awt.event.KeyEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -30,7 +32,7 @@ import controller.actionlisteners.pesquisa.BotaoPesquisarAL;
 import controller.actionlisteners.pesquisa.SetFiltrosPecaAL;
 import controller.actionlisteners.pesquisa.SetFiltrosPessoaAL;
 
-public class FuncionarioFrame extends JFrame {
+public class FuncionarioFrame extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private JTextField pesquisa_text_field;
@@ -44,6 +46,7 @@ public class FuncionarioFrame extends JFrame {
 	private JRadioButton rdbtnPeca;
 	private JRadioButton rdbtnCliente;
 	private JRadioButton rdbtnFuncionario;
+	private JScrollPane resultados_scroll_pane;
 
 	public FuncionarioFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -171,7 +174,7 @@ frame.setVisible(true);
 		    }
 		});
 		
-		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
+		resultados_scroll_pane = new JScrollPane(resultados_table);
 		resultados_scroll_pane.setBounds(36, 231, 598, 330);
 		contentPane.add(resultados_scroll_pane);
 		
@@ -300,6 +303,13 @@ frame.setVisible(true);
 
 	public void setMenu_bar(JMenuBar menu_bar) {
 		this.menu_bar = menu_bar;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		resultados_table.repaint();
+		resultados_scroll_pane.repaint();
 	}
 }
 

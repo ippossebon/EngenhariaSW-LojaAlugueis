@@ -21,6 +21,9 @@ public class BotaoEnviarPecasParaAluguelAL implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		/***** DEBUG *****/
+		System.out.println("BotaoEnviarPecasParaAluguel clicado.");
+		
 		ArrayList<Integer> codigos_pecas = new ArrayList<Integer>();
 		
 		for (int i = 0; i < this.frame.getCarrinho_table().getModel().getRowCount(); i++){
@@ -34,12 +37,6 @@ public class BotaoEnviarPecasParaAluguelAL implements ActionListener{
 			pecas.add(pesquisa_controller.pesquisarPeca(c, PesquisaController.pesquisa_disponiveis).get(0));
 		}
 		
-<<<<<<< HEAD:LojaAlugueisFesta/src/controller/actionlisteners/aluguel/BotaoOkNovoAluguel.java
-		DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
-		frame.setVisible(true);
-		
-		System.out.println("Cliquei hehe");
-=======
 		if(pecas.size() != 0){
 			DadosNovoAluguelFrame frame = new DadosNovoAluguelFrame(pecas);
 			frame.setVisible(true);
@@ -48,8 +45,6 @@ public class BotaoEnviarPecasParaAluguelAL implements ActionListener{
 			MensagemFrame msg = new MensagemFrame("Por favor, escolha as peças que deseja alugar.");
 			msg.setVisible(true);
 		}
-		
->>>>>>> origin/master:LojaAlugueisFesta/src/controller/actionlisteners/aluguel/BotaoEnviarPecasParaAluguelAL.java
 	}
 
 }

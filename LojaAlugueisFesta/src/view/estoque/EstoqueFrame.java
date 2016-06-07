@@ -3,6 +3,8 @@ package view.estoque;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,10 +20,11 @@ import controller.actionlisteners.estoque.BotaoRemoverDoEstoqueAL;
 import database.Database;
 import database.DatabaseController;
 
-public class EstoqueFrame extends JFrame {
+public class EstoqueFrame extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private JTable estoque_table;
+	private JScrollPane estoque_scrollPane;
 
 	public EstoqueFrame() {
 		setTitle("Estoque");
@@ -36,9 +39,9 @@ public class EstoqueFrame extends JFrame {
 		
 		criaDFTEstoque();
 		
-		JScrollPane scrollPane = new JScrollPane(estoque_table);
-		scrollPane.setBounds(6, 6, 485, 461);
-		contentPane.add(scrollPane);
+		estoque_scrollPane = new JScrollPane(estoque_table);
+		estoque_scrollPane.setBounds(6, 6, 485, 461);
+		contentPane.add(estoque_scrollPane);
 		
 		JButton btnAdicionarPea = new JButton("Adicionar peça");
 		btnAdicionarPea.setBounds(503, 6, 117, 29);
@@ -110,5 +113,12 @@ public class EstoqueFrame extends JFrame {
 		dft.addColumn("Valor", valores.toArray());
 		dft.addColumn("Status", status.toArray());
 		estoque_table.setModel(dft);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		estoque_table.repaint();
+		estoque_scrollPane.repaint();
 	}
 }

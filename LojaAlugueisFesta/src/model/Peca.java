@@ -1,6 +1,8 @@
 package model;
 
-public class Peca {
+import java.util.Observable;
+
+public class Peca extends Observable{
 	private int codigo_peca;
 	private int tamanho;
 	private int numero_alugueis;
@@ -48,6 +50,8 @@ public class Peca {
 
 	public void setNumero_alugueis(int numero_alugueis) {
 		this.numero_alugueis = numero_alugueis;
+		setChanged();
+	    notifyObservers();
 	}
 
 	public String getTipo() {
@@ -64,6 +68,8 @@ public class Peca {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+		setChanged();
+	    notifyObservers();
 	}
 
 	public boolean isDisponivel() {
@@ -72,6 +78,8 @@ public class Peca {
 
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
+		setChanged();
+	    notifyObservers();
 	}
 	
 	public void incAluguel() {

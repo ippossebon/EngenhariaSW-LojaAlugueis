@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Funcionario;
 import model.Peca;
+import model.PecasDefaultTableModel;
 import view.MensagemFrame;
 import view.inicial.FuncionarioFrame;
 import controller.PesquisaController;
@@ -35,20 +36,27 @@ public class BotaoPesquisarAL implements ActionListener{
 					
 					if (this.frame.getRdbtnDisponiveis().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecasDisponiveis();
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
 					else if (this.frame.getRdbtnAlugadas().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecasAlugadas();
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}
 					else if(this.frame.getRdbtnTodas().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecas();
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						
+						/******************DEBUG ***********************/
+						if(pecas_encontradas.isEmpty()){
+							System.out.println("vish");
+						}
+						/**********************************************/
+						
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
@@ -57,21 +65,21 @@ public class BotaoPesquisarAL implements ActionListener{
 					if (this.frame.getRdbtnDisponiveis().isSelected()){
 						// Pesquisa pelo tipo informado em todas as peças disponíveis.
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_disponiveis);
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}else if(this.frame.getRdbtnAlugadas().isSelected()){
 						// Pesquisa pelo tipo informado em todas as peças alugadas.
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_alugadas);
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}else if (this.frame.getRdbtnTodas().isSelected()){
 						// Pesquisa pela palavra em todo o banco de dados
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_todas);
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelPeca(pecas_encontradas);
+						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}

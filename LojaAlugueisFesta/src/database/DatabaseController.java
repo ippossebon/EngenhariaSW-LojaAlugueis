@@ -130,4 +130,8 @@ public class DatabaseController {
 	public void popularDatabase(){
 		database.popularDatabase();
 	}
+	
+	public int gerarNovoCodigoPeca(){
+		return database.gerarNovoCodigoPeca();
+	}
 }
