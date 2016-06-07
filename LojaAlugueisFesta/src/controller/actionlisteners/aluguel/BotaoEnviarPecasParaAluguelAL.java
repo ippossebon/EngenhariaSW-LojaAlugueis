@@ -21,8 +21,6 @@ public class BotaoEnviarPecasParaAluguelAL implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		/***** DEBUG *****/
-		System.out.println("BotaoEnviarPecasParaAluguel clicado.");
 		
 		ArrayList<Integer> codigos_pecas = new ArrayList<Integer>();
 		

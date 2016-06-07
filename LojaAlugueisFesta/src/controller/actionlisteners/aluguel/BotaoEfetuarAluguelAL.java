@@ -57,6 +57,7 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 		else{
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado. O pagamento precisa ser realizado no ato.");
 			msg.setVisible(true);
+			this.frame.dispose();
 		}
 	}
 
