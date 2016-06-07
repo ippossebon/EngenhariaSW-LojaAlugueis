@@ -308,6 +308,8 @@ frame.setVisible(true);
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
+		System.out.println(" >>>>> Update FuncionarioFrame");
 		resultados_table.repaint();
 		resultados_scroll_pane.repaint();
 	}

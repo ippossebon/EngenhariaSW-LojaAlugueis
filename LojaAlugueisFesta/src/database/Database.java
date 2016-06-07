@@ -1,7 +1,6 @@
 package database;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 import model.Aluguel;
 import model.Cliente;
@@ -9,7 +8,7 @@ import model.Funcionario;
 import model.Gerente;
 import model.Peca;
 
-public class Database extends Observable{
+public class Database{
 	
 	private static Database database;
 	private ArrayList<Gerente> gerentes;
@@ -75,20 +74,14 @@ public class Database extends Observable{
 	
 	public void cadastrarCliente(Cliente c){
 		this.clientes.add(c);
-		setChanged();
-	    notifyObservers();
 	}
 	
 	public void cadastrarFuncionario(Funcionario f){
 		this.funcionarios.add(f);
-		setChanged();
-	    notifyObservers();
 	}
 	
 	public void cadastrarGerente(Gerente g){
 		this.gerentes.add(g);
-		setChanged();
-	    notifyObservers();
 	}
 	
 	public Database getDatabase() {
@@ -161,14 +154,10 @@ public class Database extends Observable{
 	
 	public void adicionarPeca(Peca p){
 		this.pecas.add(p);
-		setChanged();
-	    notifyObservers();
 	}
 	
 	public void removerPeca(Peca p){
 		this.pecas.remove(p);
-		setChanged();
-	    notifyObservers();
 	}
 	
 	public void popularDatabase(){

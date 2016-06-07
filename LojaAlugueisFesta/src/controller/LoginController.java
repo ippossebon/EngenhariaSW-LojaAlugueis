@@ -84,13 +84,11 @@ public class LoginController {
 				if(this.ativar_interface_gerente){
 					//Cria interface para gerente
 					GerenteFrame frame = new GerenteFrame();
-					Database.getInstance().addObserver(frame);
 					frame.setVisible(true);
 				}
 				else{
 					//Cria interface para funcionario
 					FuncionarioFrame frame = new FuncionarioFrame();
-					Database.getInstance().addObserver(frame);
 					frame.setVisible(true);
 				}
 			}

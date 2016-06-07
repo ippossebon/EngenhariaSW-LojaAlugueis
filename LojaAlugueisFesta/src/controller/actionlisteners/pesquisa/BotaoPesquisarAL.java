@@ -9,9 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Funcionario;
 import model.Peca;
-import model.PecasDefaultTableModel;
 import view.MensagemFrame;
 import view.inicial.FuncionarioFrame;
+import controller.OperacoesDefaultTableModel;
 import controller.PesquisaController;
 import database.Database;
 import database.DatabaseController;
@@ -36,27 +36,20 @@ public class BotaoPesquisarAL implements ActionListener{
 					
 					if (this.frame.getRdbtnDisponiveis().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecasDisponiveis();
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
 					else if (this.frame.getRdbtnAlugadas().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecasAlugadas();
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}
 					else if(this.frame.getRdbtnTodas().isSelected()){
 						ArrayList<Peca> pecas_encontradas = db.getPecas();
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
-						
-						/******************DEBUG ***********************/
-						if(pecas_encontradas.isEmpty()){
-							System.out.println("vish");
-						}
-						/**********************************************/
-						
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
@@ -65,21 +58,21 @@ public class BotaoPesquisarAL implements ActionListener{
 					if (this.frame.getRdbtnDisponiveis().isSelected()){
 						// Pesquisa pelo tipo informado em todas as peças disponíveis.
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_disponiveis);
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}else if(this.frame.getRdbtnAlugadas().isSelected()){
 						// Pesquisa pelo tipo informado em todas as peças alugadas.
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_alugadas);
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
 					}else if (this.frame.getRdbtnTodas().isSelected()){
 						// Pesquisa pela palavra em todo o banco de dados
 						ArrayList<Peca> pecas_encontradas = pesquisa_controller.pesquisarPeca(this.frame.getPesquisa_text_field().getText(), PesquisaController.pesquisa_todas);
-						PecasDefaultTableModel dft = new PecasDefaultTableModel(pecas_encontradas);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelPeca(pecas_encontradas);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
@@ -91,7 +84,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					// Lista todos os clientes.
 					DatabaseController db = new DatabaseController(Database.getInstance());
 					ArrayList<Cliente> clientes_encontrados = db.getClientes();
-					DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelCliente(clientes_encontrados);
+					DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelCliente(clientes_encontrados);
 					this.frame.getResultados_table().setModel(dft);
 					this.frame.getResultados_table().repaint();
 				
@@ -100,7 +93,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					if (this.frame.getRdbtnNome().isSelected()){
 						// Pesquisa cliente pelo nome
 						ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorNome(this.frame.getPesquisa_text_field().getText());
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelCliente(clientes_encontrados);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelCliente(clientes_encontrados);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
@@ -108,7 +101,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					else if (this.frame.getRdbtnCpf().isSelected()){
 						// Pesquisa cliente pelo cpf
 						ArrayList<Cliente> clientes_encontrados = pesquisa_controller.pesquisarClientePorCPF(this.frame.getPesquisa_text_field().getText());
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelCliente(clientes_encontrados);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelCliente(clientes_encontrados);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 					}
@@ -124,7 +117,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					// Lista todos os clientes.
 					DatabaseController db = new DatabaseController(Database.getInstance());
 					ArrayList<Funcionario> funcionarios_encontrados = db.getFuncionarios();
-					DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
+					DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
 					this.frame.getResultados_table().setModel(dft);
 					this.frame.getResultados_table().repaint();
 				}
@@ -132,7 +125,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					if (this.frame.getRdbtnNome().isSelected()){
 						// Pesquisa funcionario pelo nome
 						ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorNome(this.frame.getPesquisa_text_field().getText());
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
@@ -140,7 +133,7 @@ public class BotaoPesquisarAL implements ActionListener{
 					else if (this.frame.getRdbtnCpf().isSelected()){
 						// Pesquisa funcionario pelo cpf
 						ArrayList<Funcionario> funcionarios_encontrados = pesquisa_controller.pesquisarFuncionarioPorCPF(this.frame.getPesquisa_text_field().getText());
-						DefaultTableModel dft = pesquisa_controller.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
+						DefaultTableModel dft = OperacoesDefaultTableModel.gerarDefaultTableModelFuncionario(funcionarios_encontrados);
 						this.frame.getResultados_table().setModel(dft);
 						this.frame.getResultados_table().repaint();
 						
