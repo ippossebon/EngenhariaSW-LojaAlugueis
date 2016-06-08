@@ -154,6 +154,8 @@ public class OperacoesDefaultTableModel {
 				codigos = codigos + " " + String.valueOf(p.getCodigo_peca());
 			}
 			System.out.println("GerarDefaultTableModelAlugueis >>> string de codigos de peça = \" " + codigos + "\"");
+			String dia, mes, ano;
+			
 		}
 		
 		

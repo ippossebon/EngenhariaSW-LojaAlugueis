@@ -116,7 +116,42 @@ public class AluguelController {
 			msg.setVisible(true);
 		}
 		
+	}
+	
+	public float calcularValorTotal(ArrayList<Peca> pecas) {
 		
+		float valor_total = 0;
+		boolean existe_sapato_feminino = false;
+		boolean existe_vestido = false;
+		int conta_pecas_masculinas = 0;
 		
+		for(Peca p: pecas){
+			System.out.println(p.getTipo());
+			
+			if(p.getTipo().contains("Vestido")) {
+			
+				existe_vestido = true;
+				valor_total += p.getValor();
+			} 
+			else if(p.getTipo().contains("feminino")) { // Contém um sapato feminino
+				
+				existe_sapato_feminino = true;
+				valor_total += p.getValor();
+			}
+			else{
+				conta_pecas_masculinas++;
+				valor_total += p.getValor();
+			}
+		}
+		
+		if((existe_vestido && existe_sapato_feminino)) {
+			valor_total *= 0.85;
+		}
+		
+		if ((conta_pecas_masculinas >= 4)){
+			valor_total *= 0.85;
+		}
+		
+		return valor_total;
 	}
 }
