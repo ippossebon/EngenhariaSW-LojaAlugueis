@@ -43,4 +43,5 @@ public class SelecionarDevolucoesFrame extends JFrame {
 		btnCancelar.addActionListener(new FecharFrameAL(this));
 		contentPane.add(btnCancelar);
 	}
+	
 }
