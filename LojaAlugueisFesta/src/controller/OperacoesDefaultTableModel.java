@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
-import database.Database;
-import database.DatabaseController;
+import model.Aluguel;
 import model.Cliente;
 import model.Funcionario;
 import model.Peca;
+import database.Database;
+import database.DatabaseController;
 
 public class OperacoesDefaultTableModel {
 
@@ -133,6 +134,28 @@ public class OperacoesDefaultTableModel {
 		dft.addColumn("Endereço", enderecos.toArray());
 		dft.addColumn("Telefone", telefones.toArray());
 		dft.addColumn("Cargo", cargos.toArray());
+		
+		return dft;
+	}
+	
+	public static DefaultTableModel gerarDefaultTableModelAlugueis(ArrayList<Aluguel> alugueis){
+		if (alugueis.isEmpty()){
+			return null;
+		}
+		
+		ArrayList<String> codigo_pecas = new ArrayList<String>();
+		ArrayList<String> datas_entrega = new ArrayList<String>();
+		DatabaseController db_controller = new DatabaseController(Database.getInstance());
+		DefaultTableModel dft = new DefaultTableModel();
+		
+		for (Aluguel a: alugueis){
+			String codigos = " ";
+			for(Peca p: a.getPecas()){
+				codigos = codigos + " " + String.valueOf(p.getCodigo_peca());
+			}
+			System.out.println("GerarDefaultTableModelAlugueis >>> string de codigos de peça = \" " + codigos + "\"");
+		}
+		
 		
 		return dft;
 	}

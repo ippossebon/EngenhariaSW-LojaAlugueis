@@ -1,22 +1,50 @@
 package view.aluguel;
 
-import java.awt.BorderLayout;
-
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import view.Operacoes;
 
 public class RegistrarDevolucaoFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JFormattedTextField cpf_text_field;
 
 	public RegistrarDevolucaoFrame() {
+		setTitle("Registrar devolução");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 291, 153);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblCpfCliente = new JLabel("CPF cliente:");
+		lblCpfCliente.setBounds(25, 25, 81, 16);
+		contentPane.add(lblCpfCliente);
+		
+		cpf_text_field = new JFormattedTextField(Operacoes.aplicaMascara("###.###.###-##"));
+		cpf_text_field.setBounds(118, 19, 153, 28);
+		contentPane.add(cpf_text_field);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.setBounds(154, 96, 117, 29);
+		contentPane.add(btnOk);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(6, 96, 117, 29);
+		contentPane.add(btnCancelar);
 	}
 
+	public JFormattedTextField getCpf_text_field() {
+		return cpf_text_field;
+	}
+
+	public void setCpf_text_field(JFormattedTextField cpf_text_field) {
+		this.cpf_text_field = cpf_text_field;
+	}
 }
