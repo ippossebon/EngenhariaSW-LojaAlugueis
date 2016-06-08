@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Peca;
 import view.Operacoes;
+import controller.AluguelController;
 import controller.actionlisteners.aluguel.BotaoEfetuarAluguelAL;
-import controller.actionlisteners.aluguel.BotaoRemoverPecaCarrinhoAL;
 
 public class DadosNovoAluguelFrame extends JFrame {
 
@@ -248,10 +248,8 @@ public class DadosNovoAluguelFrame extends JFrame {
 	private float calculaValorTotalAluguel(){
 		float total = 0;
 		
-		for (Peca p : this.pecas){
-			total+= p.getValor();
-		}
-		
+		AluguelController aluguel_controller = new AluguelController();
+		total = aluguel_controller.calcularValorTotal(this.pecas);
 		return total;
 	}
 }

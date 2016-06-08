@@ -22,9 +22,6 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		/***** DEBUG ****/
-		System.out.println("BotaoEfetuarAluguel clicado.");
-		
 		// Verifica se o pagamento foi efetuado.
 		boolean pagamento_efetuado;
 		if (this.frame.getRdbtnCartoDeCrditodbito().isSelected() || this.frame.getRdbtnDinheiro().isSelected()){
@@ -52,7 +49,7 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 				pecas.add(pesquisa_controller.pesquisarPeca(codigo, PesquisaController.pesquisa_disponiveis).get(0));
 			}
 			
-			// AluguelController - verificar se os campos não são vazios e são válidos
+			// AluguelController - verificar se os campos não são vazios e são válidos (cliente cadastrado e nao bloqueado, datas são possiveis)
 		}
 		else{
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado. O pagamento precisa ser realizado no ato.");
