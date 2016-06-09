@@ -10,6 +10,13 @@ public class Data {
 		this.setMes(mes);
 		this.setAno(ano);
 	}
+	
+	/* Formato ##/##/#### */
+	public Data(String d){
+		this.dia = Integer.parseInt(d.substring(0, 1));
+		this.mes = Integer.parseInt(d.substring(3,4));
+		this.ano = Integer.parseInt(d.substring(6,9));
+	}
 
 	public int getDia() {
 		return dia;
@@ -64,5 +71,10 @@ public class Data {
 		
 	}
 	
-	
+	public String gerarString(){
+		String data = "";
+		data = String.valueOf(this.dia) + "/" + String.valueOf(this.mes) + "/" + String.valueOf(this.ano);
+		
+		return data;
+	}
 }

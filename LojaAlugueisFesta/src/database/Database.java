@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Aluguel;
 import model.Cliente;
+import model.Data;
 import model.Funcionario;
 import model.Gerente;
 import model.Peca;
@@ -158,6 +159,14 @@ public class Database{
 	
 	public void removerPeca(Peca p){
 		this.pecas.remove(p);
+	}
+	
+	public void adicionarAluguel(Aluguel a){
+		this.alugueis.add(a);
+	}
+	
+	public void removerAluguel(Aluguel a){
+		this.alugueis.remove(a);
 	}
 	
 	public void popularDatabase(){
@@ -416,6 +425,21 @@ public class Database{
 		Peca p48 = new Peca(48, 39, "Sapato feminino", (float)25.00);
 		Database.database.adicionarPeca(p48);
 		
+		ArrayList<Peca> pecas = new ArrayList<Peca>();
+		pecas.add(p48);
+		pecas.add(p47);
+		Data inicio = new Data(8, 06, 2016);
+		Data entrega = new Data(12, 06, 2016);
+		Aluguel a = new Aluguel(pecas, inicio, null, entrega, "187.654.321-25", (float)50.0);
+		Database.database.adicionarAluguel(a);
+		
+		ArrayList<Peca> pecas2 = new ArrayList<Peca>();
+		pecas2.add(p45);
+		pecas2.add(p44);
+		Data inicio2 = new Data(8, 06, 2016);
+		Data entrega2 = new Data(12, 06, 2016);
+		Aluguel a2 = new Aluguel(pecas2, inicio2, null, entrega2, "187.654.321-25", (float)350.0);
+		Database.database.adicionarAluguel(a2);
 	}
 
 	public int gerarNovoCodigoPeca(){
@@ -423,11 +447,22 @@ public class Database{
 		
 		for (Peca p : database.getPecas()){
 			if (p.getCodigo_peca() == novo_codigo){
-				novo_codigo = novo_codigo++;
+				novo_codigo++;
 			}
 		}
 		
 		return novo_codigo;
+	}
+	
+	public int gerarNovoIdAluguel(){
+		int count = 0;
+		
+		for (Aluguel a : database.getAlugueis()){
+			if (a.getId() == count){
+				count++;
+			}
+		}
+		return count;
 	}
 }
 

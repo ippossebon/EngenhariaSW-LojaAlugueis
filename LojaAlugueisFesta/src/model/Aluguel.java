@@ -2,7 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import database.Database;
+import database.DatabaseController;
+
 public class Aluguel {
+	private int id;
 	private ArrayList<Peca> pecas;
 	private Data data_inicio;
 	private Data data_fim;
@@ -12,6 +16,10 @@ public class Aluguel {
 	private float valor_multa;
 	private boolean entregue;
 
+	public Aluguel(){
+		
+	}
+	
 	public Aluguel(ArrayList<Peca> carrinho, Data inicio, Data fim, Data entrega, String cpf_cliente, float total){
 		this.setPecas(carrinho);
 		this.setData_inicio(inicio);
@@ -21,6 +29,9 @@ public class Aluguel {
 		this.setValor_total(total);
 		this.setValor_multa(0);
 		this.setEntregue(false);
+		
+		DatabaseController dbc = new DatabaseController(Database.getInstance());
+		this.setId(dbc.gerarNovoIdAluguel());
 	}
 
 	public ArrayList<Peca> getPecas() {
@@ -85,6 +96,14 @@ public class Aluguel {
 
 	public void setEntregue(boolean entregue) {
 		this.entregue = entregue;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

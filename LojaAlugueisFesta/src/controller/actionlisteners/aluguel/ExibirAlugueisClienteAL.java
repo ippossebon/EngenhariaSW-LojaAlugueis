@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import model.Aluguel;
 import view.MensagemFrame;
 import view.aluguel.RegistrarDevolucaoFrame;
-import view.aluguel.SelecionarDevolucoesFrame;
+import view.aluguel.SelecionarAluguelDevolucaoFrame;
+import controller.OperacoesDefaultTableModel;
 import controller.PesquisaController;
 import database.Database;
 import database.DatabaseController;
 
-public class BotaoProcurarAlugueisClienteAL implements ActionListener{
+public class ExibirAlugueisClienteAL implements ActionListener{
 
 	private RegistrarDevolucaoFrame frame;
 	
-	public BotaoProcurarAlugueisClienteAL(RegistrarDevolucaoFrame frame){
+	public ExibirAlugueisClienteAL(RegistrarDevolucaoFrame frame){
 		this.frame = frame;
 	}
 
@@ -41,7 +42,7 @@ public class BotaoProcurarAlugueisClienteAL implements ActionListener{
 				msg.setVisible(true);
 			}
 			else{
-				SelecionarDevolucoesFrame frame = new SelecionarDevolucoesFrame(alugueis_cliente);
+				SelecionarAluguelDevolucaoFrame frame = new SelecionarAluguelDevolucaoFrame(alugueis_cliente, OperacoesDefaultTableModel.gerarDefaultTableModelAlugueis(alugueis_cliente));
 				frame.setVisible(true);
 				this.frame.dispose();
 			}

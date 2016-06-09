@@ -134,4 +134,8 @@ public class DatabaseController {
 	public int gerarNovoCodigoPeca(){
 		return database.gerarNovoCodigoPeca();
 	}
+	
+	public int gerarNovoIdAluguel(){
+		return database.gerarNovoIdAluguel();
+	}
 }

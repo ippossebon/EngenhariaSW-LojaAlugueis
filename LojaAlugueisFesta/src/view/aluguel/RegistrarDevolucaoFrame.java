@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.Operacoes;
+import controller.FecharFrameAL;
+import controller.actionlisteners.aluguel.ExibirAlugueisClienteAL;
 
 public class RegistrarDevolucaoFrame extends JFrame {
 
@@ -33,10 +35,12 @@ public class RegistrarDevolucaoFrame extends JFrame {
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(154, 96, 117, 29);
+		btnOk.addActionListener(new ExibirAlugueisClienteAL(this));
 		contentPane.add(btnOk);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(6, 96, 117, 29);
+		btnCancelar.addActionListener(new FecharFrameAL(this));
 		contentPane.add(btnCancelar);
 	}
 

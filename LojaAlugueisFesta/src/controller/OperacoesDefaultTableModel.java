@@ -143,21 +143,18 @@ public class OperacoesDefaultTableModel {
 			return null;
 		}
 		
-		ArrayList<String> codigo_pecas = new ArrayList<String>();
+		ArrayList<Integer> ids_aluguel = new ArrayList<Integer>();
 		ArrayList<String> datas_entrega = new ArrayList<String>();
-		DatabaseController db_controller = new DatabaseController(Database.getInstance());
+		
 		DefaultTableModel dft = new DefaultTableModel();
 		
 		for (Aluguel a: alugueis){
-			String codigos = " ";
-			for(Peca p: a.getPecas()){
-				codigos = codigos + " " + String.valueOf(p.getCodigo_peca());
-			}
-			System.out.println("GerarDefaultTableModelAlugueis >>> string de codigos de peça = \" " + codigos + "\"");
-			String dia, mes, ano;
-			
+			ids_aluguel.add(a.getId());
+			datas_entrega.add(a.getData_entrega().gerarString());
 		}
 		
+		dft.addColumn("ID", ids_aluguel.toArray());
+		dft.addColumn("Data de entrega", datas_entrega.toArray());
 		
 		return dft;
 	}
