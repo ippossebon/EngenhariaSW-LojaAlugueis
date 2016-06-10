@@ -21,7 +21,7 @@ public class RelatoriosController {
 	public void getRelatorioLucro(Data data_inicio, Data data_fim){
 		
 	}
-	
+	/*
 	public ArrayList<Cliente> getClientesBloqueados(Data data_inicio, Data data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
@@ -37,7 +37,7 @@ public class RelatoriosController {
 		
 		return resultado;
 	}
-	
+	*/
 	public void getAlugueisEmAndamento(Data data_inicio, Data data_fim){
 		
 	}

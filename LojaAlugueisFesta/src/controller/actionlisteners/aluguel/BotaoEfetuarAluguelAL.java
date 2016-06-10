@@ -49,6 +49,9 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 				pecas.add(pesquisa_controller.pesquisarPeca(codigo, PesquisaController.pesquisa_disponiveis).get(0));
 			}
 			
+			AluguelController ac = new AluguelController();
+			ac.alugarPeca(codigos_pecas, cpf_cliente, data_inicio, data_fim);
+			
 			// AluguelController - verificar se os campos não são vazios e são válidos (cliente cadastrado e nao bloqueado, datas são possiveis)
 		}
 		else{
