@@ -25,8 +25,10 @@ public class RelatoriosController {
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		
 		
+		
 	}
 	
+	/*--------------------Retorna Lista com Clientes Bloqueados--------------------------*/
 	public ArrayList<Cliente> getClientesBloqueados(String data_inicio, String data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
@@ -81,7 +83,18 @@ public class RelatoriosController {
 		return resultado;
 	}
 	
-	public void getAlugueisEmAndamento(Data data_inicio, Data data_fim){
+	public ArrayList<Aluguel> getAlugueisEmAndamento(String data_inicio, String data_fim){
+		
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
+		
+		for(Aluguel a:database_controller.getAlugueis()){
+			if(a.getData_entrega() == null){
+				resultado.add(a);
+			}
+		}
+		
+		return resultado;
 		
 	}
 	
