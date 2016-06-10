@@ -61,12 +61,8 @@ public class Data {
 	public int converteDataParaDia() {
 		
 		int dias = 0;
-		
-		System.out.println("DIA: " + this.getDia() + " MES: " + this.getMes() +" ANO: " + this.getAno());
-		
 		dias = this.getDia();
 	
-		
 		for(int i = this.getMes() - 2; i >= 0; i--) {
 			
 			dias += this.retornaDiadoMes(i);
@@ -74,6 +70,8 @@ public class Data {
 		
 		dias += this.getAno() * 365;
 		
+
+		dias += this.getAno() * 365;
 		return dias;
 		
 	}
