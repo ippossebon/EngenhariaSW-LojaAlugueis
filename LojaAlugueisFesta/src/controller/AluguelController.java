@@ -2,12 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 
-import database.Database;
-import database.DatabaseController;
 import model.Aluguel;
 import model.Data;
 import model.Peca;
+import model.RegistroReceita;
 import view.MensagemFrame;
+import database.Database;
+import database.DatabaseController;
 
 public class AluguelController {
 	
@@ -53,6 +54,10 @@ public class AluguelController {
 		
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		db.adicionarAluguel(aluguel);
+		
+		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
+		db.adicionarRegistroReceita(reg);
+		db.printReceita();
 	}
 
 	public void confirmarPagamento(){
@@ -114,6 +119,13 @@ public class AluguelController {
 			
 			MensagemFrame msg = new MensagemFrame("gerou multa");
 			msg.setVisible(true);
+			
+			double total = (double) aluguel.getValor_multa();
+			
+			RegistroReceita reg = new RegistroReceita(data, total);
+			DatabaseController db_controller = new DatabaseController(Database.getInstance());
+			db_controller.adicionarRegistroReceita(reg);
+			db_controller.printReceita();
 		}
 		
 	}

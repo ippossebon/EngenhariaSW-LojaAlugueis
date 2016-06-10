@@ -8,6 +8,7 @@ import model.Data;
 import model.Funcionario;
 import model.Gerente;
 import model.Peca;
+import model.RegistroReceita;
 
 public class Database{
 	
@@ -17,6 +18,7 @@ public class Database{
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Aluguel> alugueis;
 	private ArrayList<Peca> pecas;
+	private ArrayList<RegistroReceita> receita;
 	
 	private Database(){
 		this.setGerentes(new ArrayList<Gerente>());
@@ -463,6 +465,29 @@ public class Database{
 			}
 		}
 		return count;
+	}
+
+	public ArrayList<RegistroReceita> getReceita() {
+		return receita;
+	}
+
+	public void setReceita(ArrayList<RegistroReceita> receita) {
+		this.receita = receita;
+	}
+	
+	public void adicionarRegistroReceita(RegistroReceita reg){
+		this.receita.add(reg);
+	}
+	
+	public void removerRegistroReceita(RegistroReceita reg){
+		this.receita.remove(reg);
+	}
+	
+	public void printReceita(){
+		System.out.println(">>>>> RECEITA <<<<<<");
+		for(int i = 0; i < this.receita.size(); i++){
+			System.out.println(i + " - " + this.receita.get(i).getData().gerarString() + " - " + this.receita.get(i).getValor());
+		}
 	}
 }
 

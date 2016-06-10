@@ -7,6 +7,7 @@ import model.Cliente;
 import model.Funcionario;
 import model.Gerente;
 import model.Peca;
+import model.RegistroReceita;
 
 public class DatabaseController {
 	private static Database database;
@@ -137,5 +138,17 @@ public class DatabaseController {
 	
 	public int gerarNovoIdAluguel(){
 		return database.gerarNovoIdAluguel();
+	}
+	
+	public void adicionarRegistroReceita(RegistroReceita reg){
+		database.adicionarRegistroReceita(reg);
+	}
+	
+	public void removerRegistroReceita(RegistroReceita reg){
+		database.removerRegistroReceita(reg);
+	}
+	
+	public void printReceita(){
+		database.printReceita();
 	}
 }
