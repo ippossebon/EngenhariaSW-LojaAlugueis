@@ -53,12 +53,16 @@ public class Data {
 		return false;
 	}
 	
-	public int converteDataParaDia(Data d) {
-		
+	/*------Ta dando problema nisso aqui não sei por que------*/
+	public int converteDataParaDia() {
 		int dias = 0;
-		
-		dias = d.getDia() + d.getMes() * this.retornaDiadoMes(d.getMes()) + d.getAno() * 365;
-		
+		dias = this.getDia();
+	
+		for(int i = this.getMes() - 2; i >= 0; i--) {
+			
+			dias += this.retornaDiadoMes(i);
+		}
+		dias += this.getAno() * 365;
 		return dias;
 		
 	}

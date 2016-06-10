@@ -2,7 +2,12 @@ package controller.actionlisteners.relatorios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//-----------TESTE--------------------------
+import java.util.ArrayList;
+import model.Data;
+import model.Cliente;
+import controller.RelatoriosController;
+//-----------TESTE---------------------------
 import view.RelatoriosFrame;
 
 public class BotaoGerarRelatorioAL implements ActionListener{
@@ -17,6 +22,13 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		/*Teste - REMOVER DEPOIS*/
+		RelatoriosController relatorios_controller = new RelatoriosController();
+		
+		for (Cliente c: relatorios_controller.getClientesBloqueados("01/01/1992", "01/01/2016")){
+			System.out.println(c.getNome());
+		}
+		/*Teste - REMOVER DEPOIS*/
 	}
 
 	
