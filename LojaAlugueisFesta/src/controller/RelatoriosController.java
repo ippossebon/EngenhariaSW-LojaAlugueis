@@ -11,18 +11,19 @@ import model.Funcionario;
 import model.Peca;
 import database.Database;
 import database.DatabaseController;
-
+//----------------------------------
 import controller.AluguelController;
-
+//----------------------------------
 public class RelatoriosController {
 
 	public RelatoriosController(){
 		
 	}
 	
-	public void getRelatorioLucro(String data_inicio, String data_fim){
+	public void getRelatorioReceita(String data_inicio, String data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		
 		
 		
 	}
@@ -31,6 +32,22 @@ public class RelatoriosController {
 	public ArrayList<Cliente> getClientesBloqueados(Data data_inicio, Data data_fim){
 =======
 	
+	/*--------------------Retorna Valor Total de Receita Acumulada neste período--------------------------*/
+	public float calculaTotalReceita(String data_inicio, String data_fim){
+		
+		float resultado = 0;
+		for(Aluguel a: this.getAlugueis(data_inicio, data_fim)){
+			resultado += a.getValor_total();
+			if(a.isEntregue()){
+				resultado += a.getValor_multa();
+			}
+		}
+		
+		
+		return resultado;
+	}
+	
+	/*--------------------Retorna Lista com Clientes Bloqueados--------------------------*/
 	public ArrayList<Cliente> getClientesBloqueados(String data_inicio, String data_fim){
 >>>>>>> origin/master
 		
@@ -55,8 +72,10 @@ public class RelatoriosController {
 		AluguelController aluguel_controller = new AluguelController();
 		i = 1;
 		int ano = 1990;
-		ArrayList<Integer> codigos_pecas = new ArrayList<Integer>();
+		ArrayList<Integer> codigos_pecas;
 		for(Cliente t2: database_controller.getClientes()){
+			codigos_pecas = new ArrayList<Integer>();
+			codigos_pecas.add(i+3);
 			aluguel_controller.alugarPeca(codigos_pecas, t2.getCpf(), "01/01/1989", "01/01/"+Integer.toString(ano));
 			ano++;
 			i++;
@@ -83,8 +102,43 @@ public class RelatoriosController {
 		
 		return resultado;
 	}
+<<<<<<< HEAD
 	*/
 	public void getAlugueisEmAndamento(Data data_inicio, Data data_fim){
+=======
+	
+	/*--------------------Retorna Lista com Alugueis em andamento--------------------------*/
+	public ArrayList<Aluguel> getAlugueisEmAndamento(String data_inicio, String data_fim){
+		
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
+		
+		for(Aluguel a:database_controller.getAlugueis()){
+			if(a.getData_entrega() == null){
+				resultado.add(a);
+			}
+		}
+		
+		return resultado;
+		
+	}
+	
+	/*--------------------Retorna Lista com Todos os Aluguéis neste período--------------------------*/
+	public ArrayList<Aluguel> getAlugueis (String data_inicio, String data_fim){
+		
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
+		Data periodo_inicio = new Data(data_inicio);
+		Data periodo_fim = new Data(data_fim);
+		
+		for (Aluguel a: database_controller.getAlugueis()){
+			//if (a.getData_inicio().converteDataParaDia() >= periodo_inicio.converteDataParaDia() && a.getData_inicio().converteDataParaDia() <= periodo_fim.converteDataParaDia()){
+				resultado.add(a);
+			//}
+		}
+		
+		return resultado;
+>>>>>>> origin/master
 		
 	}
 	
