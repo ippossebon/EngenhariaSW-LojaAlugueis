@@ -27,6 +27,10 @@ public class RelatoriosController {
 		
 		
 	}
+
+	/*
+	public ArrayList<Cliente> getClientesBloqueados(Data data_inicio, Data data_fim){
+=======
 	
 	/*--------------------Retorna Valor Total de Receita Acumulada neste período--------------------------*/
 	public float calculaTotalReceita(String data_inicio, String data_fim){
@@ -45,6 +49,7 @@ public class RelatoriosController {
 	
 	/*--------------------Retorna Lista com Clientes Bloqueados--------------------------*/
 	public ArrayList<Cliente> getClientesBloqueados(String data_inicio, String data_fim){
+>>>>>>> origin/master
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
@@ -63,7 +68,7 @@ public class RelatoriosController {
 			}
 		}
 		
-		//-------Efetuando aluguéis para os Clientes para Teste
+		//-------Efetuando aluguï¿½is para os Clientes para Teste
 		AluguelController aluguel_controller = new AluguelController();
 		i = 1;
 		int ano = 1990;
@@ -79,7 +84,7 @@ public class RelatoriosController {
 			}
 		}
 		
-		//-------Seleciona os Clientes Bloqueados (falta implementação de comparação de datas)
+		//-------Seleciona os Clientes Bloqueados (falta implementaï¿½ï¿½o de comparaï¿½ï¿½o de datas)
 		for (Cliente c : database_controller.getClientes()){
 			if (c.isBloqueado()){
 				for(Aluguel a: database_controller.getAlugueis()){
@@ -97,6 +102,10 @@ public class RelatoriosController {
 		
 		return resultado;
 	}
+<<<<<<< HEAD
+	*/
+	public void getAlugueisEmAndamento(Data data_inicio, Data data_fim){
+=======
 	
 	/*--------------------Retorna Lista com Alugueis em andamento--------------------------*/
 	public ArrayList<Aluguel> getAlugueisEmAndamento(String data_inicio, String data_fim){
@@ -129,6 +138,7 @@ public class RelatoriosController {
 		}
 		
 		return resultado;
+>>>>>>> origin/master
 		
 	}
 	

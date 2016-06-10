@@ -26,6 +26,9 @@ public class AluguelController {
 		Data fim;
 		Data entregue = null;
 		
+		int dias_inicio;
+		int dias_fim;
+		
 		String[] data;
 		float valor_total = 0;
 		
@@ -41,13 +44,19 @@ public class AluguelController {
 			valor_total += p.getValor();
 		}
 		
-		// criando Data
-		data = data_inicio.split("/");
-		inicio = new Data(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+		inicio = new Data(data_inicio);
+		fim = new Data(data_fim);
 		
-		data = data_fim.split("/");
-		fim  = new Data(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+		// criando Data
+		//data = data_inicio.split("/");
+		//inicio = new Data(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+		
+		//data = data_fim.split("/");
+		//fim  = new Data(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]));
 
+		dias_inicio = inicio.converteDataParaDia();
+		
+		System.out.println("LOL" + dias_inicio);
 		
 		Aluguel aluguel = new Aluguel(pecas, inicio, fim, entregue, cpf_cliente, valor_total);
 		aluguel.setEntregue(false);

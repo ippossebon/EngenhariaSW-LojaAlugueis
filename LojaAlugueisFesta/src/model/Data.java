@@ -13,9 +13,14 @@ public class Data {
 	
 	/* Formato ##/##/#### */
 	public Data(String d){
-		this.dia = Integer.parseInt(d.substring(0, 1));
-		this.mes = Integer.parseInt(d.substring(3,4));
-		this.ano = Integer.parseInt(d.substring(6,9));
+		//this.dia = Integer.parseInt(d.substring(0, 1));
+		//this.mes = Integer.parseInt(d.substring(3,4));
+		//this.ano = Integer.parseInt(d.substring(6,9));
+		String[] data;
+		data = d.split("/");
+		this.dia = Integer.parseInt(data[0]);
+		this.mes = Integer.parseInt(data[1]);
+		this.ano = Integer.parseInt(data[2]);
 	}
 
 	public int getDia() {
@@ -53,8 +58,8 @@ public class Data {
 		return false;
 	}
 	
-	/*------Ta dando problema nisso aqui não sei por que------*/
 	public int converteDataParaDia() {
+		
 		int dias = 0;
 		dias = this.getDia();
 	
@@ -62,6 +67,10 @@ public class Data {
 			
 			dias += this.retornaDiadoMes(i);
 		}
+		
+		dias += this.getAno() * 365;
+		
+
 		dias += this.getAno() * 365;
 		return dias;
 		
