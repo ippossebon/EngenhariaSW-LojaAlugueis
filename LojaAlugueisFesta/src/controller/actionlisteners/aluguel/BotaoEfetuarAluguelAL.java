@@ -50,9 +50,14 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 			}
 			
 			AluguelController ac = new AluguelController();
-			ac.alugarPeca(codigos_pecas, cpf_cliente, data_inicio, data_fim);
-			
 			// AluguelController - verificar se os campos não são vazios e são válidos (cliente cadastrado e nao bloqueado, datas são possiveis)
+			
+			/* Exibe resultado da operação */
+			if(ac.alugarPeca(codigos_pecas, cpf_cliente, data_inicio, data_fim)){
+				MensagemFrame msg = new MensagemFrame("Aluguel efetuado com sucesso!");
+				msg.setVisible(true);
+			}
+			this.frame.dispose();
 		}
 		else{
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado. O pagamento precisa ser realizado no ato.");

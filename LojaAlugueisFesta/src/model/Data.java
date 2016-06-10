@@ -70,8 +70,6 @@ public class Data {
 		
 		dias += this.getAno() * 365;
 		
-
-		dias += this.getAno() * 365;
 		return dias;
 		
 	}

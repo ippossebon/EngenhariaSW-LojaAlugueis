@@ -32,7 +32,7 @@ public class RelatoriosController {
 	public ArrayList<Cliente> getClientesBloqueados(Data data_inicio, Data data_fim){
 =======
 	
-	/*--------------------Retorna Valor Total de Receita Acumulada neste período--------------------------*/
+	/*--------------------Retorna Valor Total de Receita Acumulada neste perï¿½odo--------------------------*/
 	public float calculaTotalReceita(String data_inicio, String data_fim){
 		
 		float resultado = 0;
@@ -49,7 +49,6 @@ public class RelatoriosController {
 	
 	/*--------------------Retorna Lista com Clientes Bloqueados--------------------------*/
 	public ArrayList<Cliente> getClientesBloqueados(String data_inicio, String data_fim){
->>>>>>> origin/master
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		ArrayList<Cliente> resultado = new ArrayList<Cliente>();
@@ -102,10 +101,6 @@ public class RelatoriosController {
 		
 		return resultado;
 	}
-<<<<<<< HEAD
-	*/
-	public void getAlugueisEmAndamento(Data data_inicio, Data data_fim){
-=======
 	
 	/*--------------------Retorna Lista com Alugueis em andamento--------------------------*/
 	public ArrayList<Aluguel> getAlugueisEmAndamento(String data_inicio, String data_fim){
@@ -123,7 +118,7 @@ public class RelatoriosController {
 		
 	}
 	
-	/*--------------------Retorna Lista com Todos os Aluguéis neste período--------------------------*/
+	/*--------------------Retorna Lista com Todos os Aluguï¿½is neste perï¿½odo--------------------------*/
 	public ArrayList<Aluguel> getAlugueis (String data_inicio, String data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
@@ -138,8 +133,6 @@ public class RelatoriosController {
 		}
 		
 		return resultado;
->>>>>>> origin/master
-		
 	}
 	
 	

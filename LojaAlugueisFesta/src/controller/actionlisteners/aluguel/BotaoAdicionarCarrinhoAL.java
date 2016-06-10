@@ -22,8 +22,6 @@ public class BotaoAdicionarCarrinhoAL implements ActionListener{
 		int linha_item_selecionado = this.frame.getResultados_table().getSelectedRow();
 		DefaultTableModel dft_carrinho = (DefaultTableModel) this.frame.getCarrinho_table().getModel();
 		
-		System.out.println("Adicionar ao carrinho peça: " + this.frame.getResultados_table().getValueAt(linha_item_selecionado, 0).toString());
-		
 		if(this.frame.getResultados_table().getValueAt(linha_item_selecionado, 3).toString().equals("Disponível") &&
 				! itemJaNoCarrinho(dft_carrinho, this.frame.getResultados_table().getValueAt(linha_item_selecionado, 0).toString()) ){
 			

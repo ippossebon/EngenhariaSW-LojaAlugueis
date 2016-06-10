@@ -26,6 +26,7 @@ public class Database{
 		this.setClientes(new ArrayList<Cliente>());
 		this.setAlugueis(new ArrayList<Aluguel>());
 		this.setPecas(new ArrayList<Peca>());
+		this.setReceita(new ArrayList<RegistroReceita>());
 	}
 	
 	public static synchronized Database getInstance() {
@@ -115,11 +116,21 @@ public class Database{
 		}
 		System.out.println();
 		
-		System.out.print("PEÇAS:");
+		System.out.println("PEÇAS:");
 		for(Peca p: this.pecas){
 			System.out.println(p.getTipo());
 		}
 		System.out.println();
+		
+		System.out.println("ALUGUEIS: ");
+		for (Aluguel a: this.alugueis){
+			System.out.println("* Aluguel para: " + a.getCpf_cliente());
+			System.out.print("Peças: ");
+			for (Peca p: a.getPecas()){
+				System.out.print(p.getCodigo_peca() + " ");
+			}
+			System.out.println("Data inicio: " + a.getData_inicio().gerarString());
+		}
 	}
 	
 	public boolean isGerente(String cpf){
@@ -175,6 +186,7 @@ public class Database{
 		
 		/* Clientes */
 		Cliente c1 = new Cliente("Ana Ribeiro", "123.233.111-11", "anar@gmail.com", "Rua A, 123", "(51) 3333 3333");
+		c1.setBloqueado(true);
 		Database.database.cadastrarCliente(c1);
 		
 		Cliente c2 = new Cliente("João Pedro", "000.000.111-23", "joaop@gmail.com", "Rua B, 123", "(51) 2222 3333");
