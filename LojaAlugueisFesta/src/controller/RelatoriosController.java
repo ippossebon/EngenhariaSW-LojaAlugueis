@@ -50,8 +50,10 @@ public class RelatoriosController {
 		AluguelController aluguel_controller = new AluguelController();
 		i = 1;
 		int ano = 1990;
-		ArrayList<Integer> codigos_pecas = new ArrayList<Integer>();
+		ArrayList<Integer> codigos_pecas;
 		for(Cliente t2: database_controller.getClientes()){
+			codigos_pecas = new ArrayList<Integer>();
+			codigos_pecas.add(i+3);
 			aluguel_controller.alugarPeca(codigos_pecas, t2.getCpf(), "01/01/1989", "01/01/"+Integer.toString(ano));
 			ano++;
 			i++;
