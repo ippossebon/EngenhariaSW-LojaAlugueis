@@ -11,21 +11,36 @@ import model.Funcionario;
 import model.Peca;
 import database.Database;
 import database.DatabaseController;
-
+//----------------------------------
 import controller.AluguelController;
-
+//----------------------------------
 public class RelatoriosController {
 
 	public RelatoriosController(){
 		
 	}
 	
-	public void getRelatorioLucro(String data_inicio, String data_fim){
+	public void getRelatorioReceita(String data_inicio, String data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
 		
 		
 		
+	}
+	
+	/*--------------------Retorna Valor Total de Receita Acumulada neste período--------------------------*/
+	public float calculaTotalReceita(String data_inicio, String data_fim){
+		
+		float resultado = 0;
+		for(Aluguel a: this.getAlugueis(data_inicio, data_fim)){
+			resultado += a.getValor_total();
+			if(a.isEntregue()){
+				resultado += a.getValor_multa();
+			}
+		}
+		
+		
+		return resultado;
 	}
 	
 	/*--------------------Retorna Lista com Clientes Bloqueados--------------------------*/
@@ -83,6 +98,7 @@ public class RelatoriosController {
 		return resultado;
 	}
 	
+	/*--------------------Retorna Lista com Alugueis em andamento--------------------------*/
 	public ArrayList<Aluguel> getAlugueisEmAndamento(String data_inicio, String data_fim){
 		
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
@@ -92,6 +108,24 @@ public class RelatoriosController {
 			if(a.getData_entrega() == null){
 				resultado.add(a);
 			}
+		}
+		
+		return resultado;
+		
+	}
+	
+	/*--------------------Retorna Lista com Todos os Aluguéis neste período--------------------------*/
+	public ArrayList<Aluguel> getAlugueis (String data_inicio, String data_fim){
+		
+		DatabaseController database_controller = new DatabaseController(Database.getInstance());
+		ArrayList<Aluguel> resultado = new ArrayList<Aluguel>();
+		Data periodo_inicio = new Data(data_inicio);
+		Data periodo_fim = new Data(data_fim);
+		
+		for (Aluguel a: database_controller.getAlugueis()){
+			//if (a.getData_inicio().converteDataParaDia() >= periodo_inicio.converteDataParaDia() && a.getData_inicio().converteDataParaDia() <= periodo_fim.converteDataParaDia()){
+				resultado.add(a);
+			//}
 		}
 		
 		return resultado;
