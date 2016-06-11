@@ -28,7 +28,6 @@ public class AluguelController {
 		Data entregue = null;
 		int dias_inicio, dias_fim;
 	
-		String[] data;
 		float valor_total = 0;
 		
 		if (pc.pesquisarClientePorCPF(cpf_cliente).isEmpty()){
@@ -86,10 +85,13 @@ public class AluguelController {
 		/* DEBUG */
 		db.printDatabase();
 		
+<<<<<<< Updated upstream
 		//System.out.println("Remover");
 		//this.registrarDevolucao(2, 10, "17/11/2011");
 		
 		
+=======
+>>>>>>> Stashed changes
 		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
 		db.adicionarRegistroReceita(reg);
 		/* DEBUG */
@@ -114,6 +116,7 @@ public class AluguelController {
 			msg.setVisible(true);
 			return;
 		}
+<<<<<<< Updated upstream
 		
 		// atualiza multa
 		aluguel.setValor_multa(valor_multa + aluguel.getValor_multa());
@@ -130,9 +133,18 @@ public class AluguelController {
 	
 	// devolve com multa
 	public void registrarDevolucao(int id_aluguel, int codigo_peca, String multa, String data_entregue) {
+=======
+
+		// % por dia atrasado
+		multa += aluguel.getValor_total() * (dias_atrasados / 10);
+		aluguel.setValor_multa(multa);
+	}
+	
+	//public void registrarDevolucao(Aluguel aluguel, String valor_multa, String data_entregue) {
+	public void registrarDevolucao(int id_aluguel, int codigo_peca, Data data_entregue) {
+>>>>>>> Stashed changes
 		
 		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
-		Data entrega = new Data(data_entregue);
 		int dias_atrasados = 0;
 		float valor_multa;
 		
@@ -146,8 +158,16 @@ public class AluguelController {
 			// encontra o aluguel pelo id
 			if(a.getId() == id_aluguel) {
 				
+<<<<<<< Updated upstream
 				a.removePecaDevolucao(codigo_peca); // remove a peça devolvida
 				a.setData_entrega(entrega); // atualiza data entrega
+=======
+				a.removePecaDevolucao(codigo_peca);
+				a.setData_entrega(data_entregue);
+				dias_atrasados = a.getData_fim().converteDataParaDia() - a.getData_inicio().converteDataParaDia();
+				
+				this.calcularMulta(a, 100, dias_atrasados); // 100 o que?
+>>>>>>> Stashed changes
 				
 				// se multa por dano/perda
 				if(!multa.isEmpty()) {
@@ -163,6 +183,7 @@ public class AluguelController {
 						// se devolveu tudo, desbloqueia
 						if(a.getPecasDevolucao() == null) {
 							
+<<<<<<< Updated upstream
 							valor_multa = this.calcularMultaAtraso(a);
 							
 							// se não houve atraso
@@ -175,6 +196,10 @@ public class AluguelController {
 								a.setValor_multa(a.getValor_multa() + valor_multa);
 								c.setBloqueado(true);
 							}
+=======
+							c.setBloqueado(false); // o cliente só é bloqueado quando tem multa ou quando a multa nao foi paga. deve verificar o nro de dias
+						} else {
+>>>>>>> Stashed changes
 							
 						} else {
 							// não devolveu true

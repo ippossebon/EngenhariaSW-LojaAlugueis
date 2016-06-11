@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Peca;
 import view.Operacoes;
 import controller.AluguelController;
+import controller.FecharFrameAL;
 import controller.actionlisteners.aluguel.BotaoEfetuarAluguelAL;
 
 public class DadosNovoAluguelFrame extends JFrame {
@@ -158,12 +159,7 @@ public class DadosNovoAluguelFrame extends JFrame {
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(11, 480, 93, 29);
-		btnCancelar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e)
-		    {
-		      dispose();
-		    }
-		});
+		btnCancelar.addActionListener(new FecharFrameAL(this));
 		contentPane.add(btnCancelar);
 		
 		JButton btnOk = new JButton("Confirmar");
