@@ -120,16 +120,25 @@ public class AluguelController {
 				}
 			}
 		}
-	
 		return valor_multa; 
 		
 	}
 	
 	// Retorna TRUE se o aluguel está atrasado; FALSE, caso contrário.
-	public boolean verificaSeAluguelAtrasado(int codigo_aluguel, String data){
+	public boolean verificaSeAluguelAtrasado(int id_aluguel, String entrega){
+		int dias_atraso;
+		DatabaseController db = new DatabaseController(Database.getInstance());
+		Data data_entrega = new Data(entrega);
 		
-		// TO DO
-		
+		for (Aluguel aluguel : db.getAlugueis()){
+			if (aluguel.getId() == id_aluguel){
+				dias_atraso = data_entrega.converteDataParaDia() - aluguel.getData_fim().converteDataParaDia();
+				
+				if (dias_atraso > 0){
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	

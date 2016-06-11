@@ -37,6 +37,7 @@ public class DevolverPecaAL implements ActionListener{
 				// Multa por dano ou perda será cobrada.
 				if(this.frame.getChckbxMulta().isSelected()){
 					aluguel_controller.registrarDevolucaoMulta(id_aluguel, codigo_peca_selecionada, data_entrega);
+					this.frame.dispose();
 					
 					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso. O cliente deve pagar a multa para não estar mais bloqueado no sistema.");
 					msg.setVisible(true);
@@ -48,6 +49,7 @@ public class DevolverPecaAL implements ActionListener{
 				}
 				else if(aluguel_atrasado){
 					aluguel_controller.registrarDevolucaoMulta(id_aluguel, codigo_peca_selecionada, data_entrega);
+					this.frame.dispose();
 					
 					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso. O cliente deve pagar a multa para não estar mais bloqueado no sistema.");
 					msg.setVisible(true);
