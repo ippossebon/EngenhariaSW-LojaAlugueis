@@ -176,9 +176,14 @@ public class AluguelController {
 					// Procura o cliente do aluguel
 					if(c.getCpf().equals(a.getCpf_cliente())) {
 						
+						db.printDatabase();
+					
 						// Se devolveu tudo, desbloqueia
 						if(a.getPecasDevolucao().isEmpty()) {
+							
 							c.setBloqueado(false);
+							a.setEntregue(true);
+							System.out.println("ANDRE GATO");
 						} else {
 							c.setBloqueado(true);
 						}		

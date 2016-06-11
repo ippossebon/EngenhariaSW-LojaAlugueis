@@ -33,6 +33,7 @@ public class PagamentoMultaAL implements ActionListener{
 			
 			for (Aluguel a: db.getAlugueis()){
 				if (a.getId() == this.id_aluguel){
+					a.setEntregue(true);
 					PesquisaController pc = new PesquisaController();
 					pc.pesquisarClientePorCPF(a.getCpf_cliente()).get(0).setBloqueado(false);
 				}
