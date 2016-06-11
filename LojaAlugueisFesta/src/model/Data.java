@@ -68,7 +68,7 @@ public class Data {
 			dias += this.retornaDiadoMes(i);
 		}
 		
-		dias += this.getAno() * 365;
+		dias += (this.getAno() - 1) * 365;
 		
 		return dias;
 		

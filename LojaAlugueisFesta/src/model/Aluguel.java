@@ -8,6 +8,7 @@ import database.DatabaseController;
 public class Aluguel {
 	private int id;
 	private ArrayList<Peca> pecas;
+	private ArrayList<Peca> pecas_devolucao;
 	private Data data_inicio;
 	private Data data_fim;
 	private Data data_entrega;
@@ -22,6 +23,7 @@ public class Aluguel {
 	
 	public Aluguel(ArrayList<Peca> carrinho, Data inicio, Data fim, Data entrega, String cpf_cliente, float total){
 		this.setPecas(carrinho);
+		this.setPecasDevolucao((ArrayList<Peca>) carrinho.clone());
 		this.setData_inicio(inicio);
 		this.setData_fim(fim);
 		this.setData_entrega(entrega);
@@ -40,6 +42,35 @@ public class Aluguel {
 
 	public void setPecas(ArrayList<Peca> pecas) {
 		this.pecas = pecas;
+	}
+	
+	public ArrayList<Peca> getPecasDevolucao() {
+		return pecas_devolucao;
+	}
+
+	public void setPecasDevolucao(ArrayList<Peca> pecas) {
+		this.pecas_devolucao = pecas;
+	}
+	
+	public void removePecaDevolucao(int codigo_peca) {
+		
+		for(Peca p: this.pecas_devolucao) {
+			
+			if(p.getCodigo_peca() == codigo_peca) {
+				
+				this.pecas_devolucao.remove(p);
+				p.setDisponivel(true);
+			}
+		}
+	}
+	
+	public boolean devolveuTudo() {
+		
+		if(this.pecas_devolucao == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Data getData_inicio() {

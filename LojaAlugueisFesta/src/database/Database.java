@@ -124,9 +124,14 @@ public class Database{
 		
 		System.out.println("ALUGUEIS: ");
 		for (Aluguel a: this.alugueis){
+			System.out.println("ID Aluguel: " + a.getId());
 			System.out.println("* Aluguel para: " + a.getCpf_cliente());
-			System.out.print("Peças: ");
+			System.out.println("Peças: ");
 			for (Peca p: a.getPecas()){
+				System.out.print(p.getCodigo_peca() + " ");
+			}
+			System.out.println("Peças Devolução: ");
+			for (Peca p: a.getPecasDevolucao()){
 				System.out.print(p.getCodigo_peca() + " ");
 			}
 			System.out.println("Data inicio: " + a.getData_inicio().gerarString());
