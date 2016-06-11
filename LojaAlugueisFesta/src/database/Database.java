@@ -439,6 +439,7 @@ public class Database{
 		Peca p48 = new Peca(48, 39, "Sapato feminino", (float)25.00);
 		Database.database.adicionarPeca(p48);
 		
+		
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		pecas.add(p48);
 		pecas.add(p47);
