@@ -150,7 +150,7 @@ public class OperacoesDefaultTableModel {
 		
 		for (Aluguel a: alugueis){
 			ids_aluguel.add(a.getId());
-			datas_entrega.add(a.getData_entrega().gerarString());
+			datas_entrega.add(a.getData_fim().gerarString());
 		}
 		
 		dft.addColumn("ID", ids_aluguel.toArray());
