@@ -136,5 +136,19 @@ public class Aluguel {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public void printAluguel(){
+		System.out.println("ID: " + this.id);
+		System.out.println("Peças: ");
+		for (Peca p : this.pecas){
+			System.out.println(p.getCodigo_peca() + " entregue: " + p.isDisponivel());
+		}
+		
+		System.out.println("Peças para devolver:");
+		for (Peca p : this.pecas_devolucao){
+			System.out.print(p.getCodigo_peca() + " ");
+		}
+		
+	}
 
 }

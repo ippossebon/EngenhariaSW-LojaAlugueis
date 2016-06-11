@@ -46,7 +46,6 @@ public class AluguelController {
 		
 		// precisa ter alugueis pra pesquisar por alugueis
 		if(alugueis != null) {
-			
 			for(Aluguel a: alugueis) {
 				
 				// buscar em todos os alugueis do cliente
@@ -85,13 +84,6 @@ public class AluguelController {
 		/* DEBUG */
 		db.printDatabase();
 		
-<<<<<<< Updated upstream
-		//System.out.println("Remover");
-		//this.registrarDevolucao(2, 10, "17/11/2011");
-		
-		
-=======
->>>>>>> Stashed changes
 		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
 		db.adicionarRegistroReceita(reg);
 		/* DEBUG */
@@ -116,7 +108,6 @@ public class AluguelController {
 			msg.setVisible(true);
 			return;
 		}
-<<<<<<< Updated upstream
 		
 		// atualiza multa
 		aluguel.setValor_multa(valor_multa + aluguel.getValor_multa());
@@ -131,78 +122,51 @@ public class AluguelController {
 		
 	}
 	
-	// devolve com multa
+	// Devolve com multa
 	public void registrarDevolucao(int id_aluguel, int codigo_peca, String multa, String data_entregue) {
-=======
-
-		// % por dia atrasado
-		multa += aluguel.getValor_total() * (dias_atrasados / 10);
-		aluguel.setValor_multa(multa);
-	}
 	
-	//public void registrarDevolucao(Aluguel aluguel, String valor_multa, String data_entregue) {
-	public void registrarDevolucao(int id_aluguel, int codigo_peca, Data data_entregue) {
->>>>>>> Stashed changes
-		
-		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
 		int dias_atrasados = 0;
 		float valor_multa;
-		
 		DatabaseController db = new DatabaseController(Database.getInstance());
-		
-		// pega todos os alugueis
-		alugueis = db.getAlugueis();
-		
-		for(Aluguel a: alugueis) {
+		Data entrega = new Data(data_entregue);
+
+		for(Aluguel a: db.getAlugueis()) {
 			
-			// encontra o aluguel pelo id
+			// Encontra o aluguel pelo id
 			if(a.getId() == id_aluguel) {
-				
-<<<<<<< Updated upstream
-				a.removePecaDevolucao(codigo_peca); // remove a peça devolvida
-				a.setData_entrega(entrega); // atualiza data entrega
-=======
 				a.removePecaDevolucao(codigo_peca);
-				a.setData_entrega(data_entregue);
+				a.setData_entrega(entrega);
 				dias_atrasados = a.getData_fim().converteDataParaDia() - a.getData_inicio().converteDataParaDia();
 				
-				this.calcularMulta(a, 100, dias_atrasados); // 100 o que?
->>>>>>> Stashed changes
+				//this.calcularMulta(a, 100, dias_atrasados); // 100 o que?
 				
-				// se multa por dano/perda
+				// Se vai ser cobrada uma multa por dano ou perda
 				if(!multa.isEmpty()) {
-					
+		
 					valor_multa = Float.parseFloat(multa);
 					this.setMultaDano(a, valor_multa);
 				}	
 
 				for(Cliente c: db.getClientes()) {
-					// procura o cliente do aluguel
+					// Procura o cliente do aluguel
 					if(c.getCpf().equals(a.getCpf_cliente())) {
 						
-						// se devolveu tudo, desbloqueia
-						if(a.getPecasDevolucao() == null) {
-							
-<<<<<<< Updated upstream
+						// Se devolveu tudo, desbloqueia
+						if(a.getPecasDevolucao().isEmpty()) {
 							valor_multa = this.calcularMultaAtraso(a);
 							
-							// se não houve atraso
+							// Se não houve atraso
 							if(valor_multa <= 0) {
-								
 								c.setBloqueado(false);
 							} else {
 								
-								// atualiza com valor da multa por atraso
-								a.setValor_multa(a.getValor_multa() + valor_multa);
+								// Atualiza com valor da multa por atraso
+								a.setValor_multa(a.getValor_multa() + valor_multa); // Multa do aluguel corresponde a soma de todas as multas cobradas
 								c.setBloqueado(true);
 							}
-=======
-							c.setBloqueado(false); // o cliente só é bloqueado quando tem multa ou quando a multa nao foi paga. deve verificar o nro de dias
+							c.setBloqueado(false);	
 						} else {
->>>>>>> Stashed changes
-							
-						} else {
-							// não devolveu true
+							// Cliente não devolveu todas as peças
 							c.setBloqueado(true);
 						}		
 					}
@@ -211,103 +175,54 @@ public class AluguelController {
 		}
 		
 		db.printDatabase();
-		
-		/*
-		Data data;
-		String[] d;
-		
-		int data_inicio;
-		int data_fim;
-		
-		d = data_entregue.split("/");
-		data = new Data(Integer.parseInt(d[0]), Integer.parseInt(d[1]), Integer.parseInt(d[2]));
-		
-		
-		this.calcularMulta(aluguel, Float.parseFloat(valor_multa), 2);
-		
-		for(Peca p: aluguel.getPecas()) {
-			
-			p.setDisponivel(true);
-		}
-		
-		aluguel.setEntregue(true);
-		
-		if(aluguel.getValor_multa() != 0) {
-			
-			MensagemFrame msg = new MensagemFrame("gerou multa");
-			msg.setVisible(true);
-			
-			double total = (double) aluguel.getValor_multa();
-			
-			/* Rever se deve ser feito aqui mesmo 
-			RegistroReceita reg = new RegistroReceita(data, total);
-			DatabaseController db_controller = new DatabaseController(Database.getInstance());
-			db_controller.adicionarRegistroReceita(reg);
-			db_controller.printReceita();
-		}
-			*/
-		
 	}
 	
 	
-	// devolve sem multa
+	// Devolve sem multa
 	public void registrarDevolucao(int id_aluguel, int codigo_peca, String data_entregue) {
 		
-		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
 		Data entrega = new Data(data_entregue);
-		int dias_atrasados = 0;
-		float valor_multa;
-		
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		
-		// pega todos os alugueis
-		alugueis = db.getAlugueis();
-		
-		for(Aluguel a: alugueis) {
+		for(Aluguel a: db.getAlugueis()) {
 			
-			// encontra o aluguel pelo id
+			// Encontra o aluguel pelo id
 			if(a.getId() == id_aluguel) {
 				
-				a.removePecaDevolucao(codigo_peca); // remove a peça devolvida
-				a.setData_entrega(entrega); // atualiza data entrega
+				a.removePecaDevolucao(codigo_peca); // Remove a peça devolvida
+				a.setData_entrega(entrega); // Atualiza data entrega
 
 				for(Cliente c: db.getClientes()) {
-					// procura o cliente do aluguel
+					// Procura o cliente do aluguel
 					if(c.getCpf().equals(a.getCpf_cliente())) {
 						
-						// se devolveu tudo, desbloqueia
+						// Se devolveu tudo, desbloqueia
 						if(a.getPecasDevolucao() == null) {
-							
 							c.setBloqueado(false);
 						} else {
-							
 							c.setBloqueado(true);
 						}		
 					}
 				}	
 			}
 		}
-		
 		db.printDatabase();
 	}
 	
 	public float calcularValorTotal(ArrayList<Peca> pecas) {
-		
 		float valor_total = 0;
 		boolean existe_sapato_feminino = false;
 		boolean existe_vestido = false;
 		int conta_pecas_masculinas = 0;
 		
 		for(Peca p: pecas){
-			System.out.println(p.getTipo());
-			
 			if(p.getTipo().contains("Vestido")) {
 			
 				existe_vestido = true;
 				valor_total += p.getValor();
 			} 
-			else if(p.getTipo().contains("feminino")) { // Contém um sapato feminino
-				
+			else if(p.getTipo().contains("feminino")) { 
+				/* Contém sapato feminino */
 				existe_sapato_feminino = true;
 				valor_total += p.getValor();
 			}
