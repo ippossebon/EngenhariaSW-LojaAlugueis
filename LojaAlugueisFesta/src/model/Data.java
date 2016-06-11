@@ -13,9 +13,6 @@ public class Data {
 	
 	/* Formato ##/##/#### */
 	public Data(String d){
-		//this.dia = Integer.parseInt(d.substring(0, 1));
-		//this.mes = Integer.parseInt(d.substring(3,4));
-		//this.ano = Integer.parseInt(d.substring(6,9));
 		String[] data;
 		data = d.split("/");
 		this.dia = Integer.parseInt(data[0]);

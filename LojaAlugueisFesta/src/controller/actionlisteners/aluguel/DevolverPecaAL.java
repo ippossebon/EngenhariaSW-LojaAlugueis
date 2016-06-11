@@ -3,7 +3,6 @@ package controller.actionlisteners.aluguel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Data;
 import view.MensagemFrame;
 import view.aluguel.PagamentoMultaFrame;
 import view.aluguel.SelecionarPecasDevolucaoFrame;
@@ -28,7 +27,7 @@ public class DevolverPecaAL implements ActionListener{
 			String data_entrega = this.frame.getData_entrega_text_field().getText();
 			AluguelController aluguel_controller = new AluguelController();
 			
-			if(!data_entrega.isEmpty()){
+			try{
 				if(this.frame.getChckbxMulta().isSelected()){
 					// Contabiliza o valor da multa, e encaminha para a janela de pagamento da multa.
 					
@@ -56,7 +55,7 @@ public class DevolverPecaAL implements ActionListener{
 					this.frame.dispose();
 				}
 			}
-			else{
+			catch(NumberFormatException nfe){
 				MensagemFrame msg = new MensagemFrame("Data inválida!");
 				msg.setVisible(true);
 			}

@@ -53,14 +53,19 @@ public class Aluguel {
 	}
 	
 	public void removePecaDevolucao(int codigo_peca) {
+		int i = 0;
+		Peca p = this.pecas_devolucao.get(i);
 		
-		for(Peca p: this.pecas_devolucao) {
-			
-			if(p.getCodigo_peca() == codigo_peca) {
-				
-				this.pecas_devolucao.remove(p);
-				p.setDisponivel(true);
-			}
+		while(p.getCodigo_peca() != codigo_peca && i < this.pecas_devolucao.size()){
+			i++;
+			p = this.pecas_devolucao.get(i);
+		}
+		if(p.getCodigo_peca() == codigo_peca){
+			this.pecas_devolucao.get(i).setDisponivel(true);
+			this.pecas_devolucao.remove(i);
+		}
+		else{
+			System.out.println("Aluguel >> Erro ao remover peça da lista de devoluções: peça não encontrada.");
 		}
 	}
 	

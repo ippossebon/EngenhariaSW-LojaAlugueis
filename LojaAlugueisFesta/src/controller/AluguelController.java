@@ -81,8 +81,6 @@ public class AluguelController {
 		aluguel.setEntregue(false);
 		
 		db.adicionarAluguel(aluguel);
-		/* DEBUG */
-		db.printDatabase();
 		
 		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
 		db.adicionarRegistroReceita(reg);
@@ -129,7 +127,7 @@ public class AluguelController {
 		float valor_multa;
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		Data entrega = new Data(data_entregue);
-
+		
 		for(Aluguel a: db.getAlugueis()) {
 			
 			// Encontra o aluguel pelo id
@@ -158,6 +156,7 @@ public class AluguelController {
 							// Se não houve atraso
 							if(valor_multa <= 0) {
 								c.setBloqueado(false);
+								a.setEntregue(true);
 							} else {
 								
 								// Atualiza com valor da multa por atraso
@@ -165,6 +164,7 @@ public class AluguelController {
 								c.setBloqueado(true);
 							}
 							c.setBloqueado(false);	
+							a.setEntregue(true);
 						} else {
 							// Cliente não devolveu todas as peças
 							c.setBloqueado(true);
@@ -173,14 +173,11 @@ public class AluguelController {
 				}	
 			}
 		}
-		
-		db.printDatabase();
 	}
 	
 	
 	// Devolve sem multa
 	public void registrarDevolucao(int id_aluguel, int codigo_peca, String data_entregue) {
-		
 		Data entrega = new Data(data_entregue);
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		
@@ -206,7 +203,6 @@ public class AluguelController {
 				}	
 			}
 		}
-		db.printDatabase();
 	}
 	
 	public float calcularValorTotal(ArrayList<Peca> pecas) {

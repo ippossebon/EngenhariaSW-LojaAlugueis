@@ -37,8 +37,5 @@ public class SelecionarAluguelDevolucaoAL implements ActionListener{
 			MensagemFrame msg = new MensagemFrame("Selecione um aluguel para registrar a devolução.");
 			msg.setVisible(true);
 		}
-		
-		
-		
 	}
 }

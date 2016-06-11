@@ -32,7 +32,7 @@ public class ExibirAlugueisClienteAL implements ActionListener{
 			ArrayList<Aluguel> alugueis_cliente = new ArrayList<Aluguel>();
 			
 			for (Aluguel a : db_controller.getAlugueis()){
-				if (a.getCpf_cliente().equals(cpf)){
+				if (a.getCpf_cliente().equals(cpf) && !a.isEntregue()){
 					alugueis_cliente.add(a);
 				}
 			}
