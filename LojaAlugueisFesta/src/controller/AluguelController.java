@@ -22,6 +22,8 @@ public class AluguelController {
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		PesquisaController pc = new PesquisaController();
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
+		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
+		
 		Data inicio, fim;
 		Data entregue = null;
 		int dias_inicio, dias_fim;
@@ -39,6 +41,26 @@ public class AluguelController {
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado! Este cliente está bloqueado para realizar alugueis. Para efetuar um novo aluguel, deve regularizar sua situação");
 			msg.setVisible(true);
 			return false;
+		}
+		
+		alugueis = db.getAlugueis();
+		
+		// precisa ter alugueis pra pesquisar por alugueis
+		if(alugueis != null) {
+			
+			for(Aluguel a: alugueis) {
+				
+				// buscar em todos os alugueis do cliente
+				if(a.getCpf_cliente().equals(cpf_cliente)) {
+					
+					// basta um pendente para cancelar a ação
+					if(a.isEntregue() == false) {
+						MensagemFrame msg = new MensagemFrame("Este cliente possui alugueis pendentes.  Para efetuar um novo aluguel, deve regularizar sua situação");
+						msg.setVisible(true);
+						return false;
+					}
+				}
+			}
 		}
 		
 		// Pesquisa as peças pelos códigos
@@ -64,8 +86,8 @@ public class AluguelController {
 		/* DEBUG */
 		db.printDatabase();
 		
-		System.out.println("Remover");
-		this.registrarDevolucao(2, 10, "17/11/2011");
+		//System.out.println("Remover");
+		//this.registrarDevolucao(2, 10, "17/11/2011");
 		
 		
 		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
@@ -83,11 +105,18 @@ public class AluguelController {
 			
 			multa = valor_multa;
 			System.out.println("Multa > 200%");
+			MensagemFrame msg = new MensagemFrame("Erro no sistema: multa inválida.");
+			msg.setVisible(true);
+			return;
+			
 		} if (valor_multa < 0) {
 			
 			MensagemFrame msg = new MensagemFrame("Erro no sistema: multa inválida.");
 			msg.setVisible(true);
+			return;
 		}
+		
+		multa = valor_multa;
 
 		// % por dia atrasado
 		multa += aluguel.getValor_total() * (dias_atrasados / 10);
@@ -96,32 +125,42 @@ public class AluguelController {
 		
 	}
 	
-	//public void registrarDevolucao(Aluguel aluguel, String valor_multa, String data_entregue) {
-	public void registrarDevolucao(int id_aluguel, int codigo_peca, String data_entregue) {
+	public void registrarDevolucao(int id_aluguel, int codigo_peca, String multa, String data_entregue) {
 		
 		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
 		Data entrega = new Data(data_entregue);
 		int dias_atrasados = 0;
+		float valor_multa;
 		
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		
+		// pega todos os alugueis
 		alugueis = db.getAlugueis();
 		
 		for(Aluguel a: alugueis) {
 			
+			// encontra o aluguel pelo id
 			if(a.getId() == id_aluguel) {
 				
-				a.removePecaDevolucao(codigo_peca);
-				a.setData_entrega(entrega);
+				a.removePecaDevolucao(codigo_peca); // remove a peça devolvida
+				a.setData_entrega(entrega); // atualiza data entrega
 				dias_atrasados = a.getData_fim().converteDataParaDia() - a.getData_inicio().converteDataParaDia();
-				this.calcularMulta(a, 100, dias_atrasados);
-				System.out.println("DIAS ATRASADOS:" + dias_atrasados);
+				
+				// se teve algum tipo de multa (atrasdo ou dano/perda)
+				if((dias_atrasados > 0) || (!multa.isEmpty())) {
+					
+					valor_multa = Float.parseFloat(multa);
+					this.calcularMulta(a, valor_multa, dias_atrasados);
+					System.out.println("DIAS ATRASADOS:" + dias_atrasados);
+				}
+				
 				
 				for(Cliente c: db.getClientes()) {
-					
+					// procura o cliente do aluguel
 					if(c.getCpf().equals(a.getCpf_cliente())) {
 						
-						if(a.getPecas().size() == a.getPecasDevolucao().size()) {
+						// se devolveu tudo, desbloqueia
+						if(a.getPecasDevolucao() == null) {
 							
 							c.setBloqueado(false);
 						} else {
