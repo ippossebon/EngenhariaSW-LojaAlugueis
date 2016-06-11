@@ -2,13 +2,14 @@ package controller;
 
 import java.util.ArrayList;
 
+import database.Database;
+import database.DatabaseController;
 import model.Aluguel;
+import model.Cliente;
 import model.Data;
 import model.Peca;
 import model.RegistroReceita;
 import view.MensagemFrame;
-import database.Database;
-import database.DatabaseController;
 
 public class AluguelController {
 	
@@ -73,6 +74,10 @@ public class AluguelController {
 		/* DEBUG */
 		db.printDatabase();
 		
+		System.out.println("Remover");
+		this.registrarDevolucao(2, 10, "17/11/2011");
+		
+		
 		RegistroReceita reg = new RegistroReceita(inicio, valor_total);
 		db.adicionarRegistroReceita(reg);
 		/* DEBUG */
@@ -101,8 +106,46 @@ public class AluguelController {
 		
 	}
 	
-	public void registrarDevolucao(Aluguel aluguel, String valor_multa, String data_entregue) {
+	//public void registrarDevolucao(Aluguel aluguel, String valor_multa, String data_entregue) {
+	public void registrarDevolucao(int id_aluguel, int codigo_peca, String data_entregue) {
 		
+		ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
+		Data entrega = new Data(data_entregue);
+		int dias_atrasados = 0;
+		
+		DatabaseController db = new DatabaseController(Database.getInstance());
+		
+		alugueis = db.getAlugueis();
+		
+		for(Aluguel a: alugueis) {
+			
+			if(a.getId() == id_aluguel) {
+				
+				a.removePecaDevolucao(codigo_peca);
+				a.setData_entrega(entrega);
+				dias_atrasados = a.getData_fim().converteDataParaDia() - a.getData_inicio().converteDataParaDia();
+				this.calcularMulta(a, 100, dias_atrasados);
+				System.out.println("DIAS ATRASADOS:" + dias_atrasados);
+				
+				for(Cliente c: db.getClientes()) {
+					
+					if(c.getCpf().equals(a.getCpf_cliente())) {
+						
+						if(a.getPecas().size() == a.getPecasDevolucao().size()) {
+							
+							c.setBloqueado(false);
+						} else {
+							
+							c.setBloqueado(true);
+						}		
+					}
+				}	
+			}
+		}
+		
+		db.printDatabase();
+		
+		/*
 		Data data;
 		String[] d;
 		
@@ -129,12 +172,13 @@ public class AluguelController {
 			
 			double total = (double) aluguel.getValor_multa();
 			
-			/* Rever se deve ser feito aqui mesmo */
+			/* Rever se deve ser feito aqui mesmo 
 			RegistroReceita reg = new RegistroReceita(data, total);
 			DatabaseController db_controller = new DatabaseController(Database.getInstance());
 			db_controller.adicionarRegistroReceita(reg);
 			db_controller.printReceita();
 		}
+			*/
 		
 	}
 	
