@@ -55,7 +55,7 @@ public class PagamentoMultaFrame extends JFrame {
 		this.rdbtnNoEfetuado = rdbtnNoEfetuado;
 	}
 
-	public PagamentoMultaFrame(float valor) {
+	public PagamentoMultaFrame(float valor, int id_aluguel) {
 		
 		this.valor = valor;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class PagamentoMultaFrame extends JFrame {
 		contentPane.add(cartoes_combo_box);
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.addActionListener(new PagamentoMultaAL(this));
+		btnOk.addActionListener(new PagamentoMultaAL(this, id_aluguel));
 		btnOk.setBounds(217, 243, 117, 29);
 		
 		contentPane.add(btnOk);

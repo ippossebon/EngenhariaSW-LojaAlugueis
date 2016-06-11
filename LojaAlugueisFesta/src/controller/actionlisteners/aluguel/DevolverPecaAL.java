@@ -3,10 +3,13 @@ package controller.actionlisteners.aluguel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Aluguel;
 import view.MensagemFrame;
 import view.aluguel.PagamentoMultaFrame;
 import view.aluguel.SelecionarPecasDevolucaoFrame;
 import controller.AluguelController;
+import database.Database;
+import database.DatabaseController;
 
 public class DevolverPecaAL implements ActionListener{
 
@@ -27,32 +30,40 @@ public class DevolverPecaAL implements ActionListener{
 			String data_entrega = this.frame.getData_entrega_text_field().getText();
 			AluguelController aluguel_controller = new AluguelController();
 			
+			// Verifica se a entrega está atrasada.
+			boolean aluguel_atrasado = aluguel_controller.verificaSeAluguelAtrasado(id_aluguel, data_entrega);
+			
 			try{
+				// Multa por dano ou perda será cobrada.
 				if(this.frame.getChckbxMulta().isSelected()){
-					// Contabiliza o valor da multa, e encaminha para a janela de pagamento da multa.
+					aluguel_controller.registrarDevolucaoMulta(id_aluguel, codigo_peca_selecionada, data_entrega);
 					
-					// TO DO
-					
-					// Calcula multa
-					float valor_multa = 0;
-					PagamentoMultaFrame frame_pagamento_multa = new PagamentoMultaFrame(valor_multa);
-					frame_pagamento_multa.setVisible(true);
-					
-					// cobra multa
-					
-					// Devolve peças
-					
-					
-					// atualiza tela
-					
-					
-					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso.");
+					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso. O cliente deve pagar a multa para não estar mais bloqueado no sistema.");
 					msg.setVisible(true);
+					
+					float valor_multa = aluguel_controller.calculaMultaDano(id_aluguel, this.frame.getPorcentagem_multa().getValue().toString());
+					
+					PagamentoMultaFrame frame_pagamento_multa = new PagamentoMultaFrame(valor_multa, id_aluguel);
+					frame_pagamento_multa.setVisible(true);
+				}
+				else if(aluguel_atrasado){
+					aluguel_controller.registrarDevolucaoMulta(id_aluguel, codigo_peca_selecionada, data_entrega);
+					
+					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso. O cliente deve pagar a multa para não estar mais bloqueado no sistema.");
+					msg.setVisible(true);
+					
+					double valor_multa = aluguel_controller.calcularMultaAtraso(id_aluguel);
+					
+					PagamentoMultaFrame frame_pagamento_multa = new PagamentoMultaFrame((float)valor_multa, id_aluguel);
+					frame_pagamento_multa.setVisible(true);
 				}
 				else{
 					// Devolve a peça normalmente.
 					aluguel_controller.registrarDevolucao(id_aluguel, codigo_peca_selecionada, data_entrega);
 					this.frame.dispose();
+					
+					MensagemFrame msg = new MensagemFrame("Peça " + codigo_peca_selecionada + " devolvida com sucesso.");
+					msg.setVisible(true);
 				}
 			}
 			catch(NumberFormatException nfe){

@@ -26,7 +26,7 @@ public class SelecionarPecasDevolucaoFrame extends JFrame {
 	private JPanel contentPane;
 	private Aluguel aluguel;
 	private JTable pecas_table;
-	private JSpinner porcentagem_multa;
+	private JSpinner porcentagem_multa_dano_perda;
 	private JCheckBox chckbxMulta;
 	private JLabel lblSobreO;
 	private JLabel lblDataDaDevoluo;
@@ -77,22 +77,18 @@ public class SelecionarPecasDevolucaoFrame extends JFrame {
 			btnCancelar.addActionListener(new FecharFrameAL(this));
 			contentPane.add(btnCancelar);
 			
-			chckbxMulta = new JCheckBox("Multa");
+			chckbxMulta = new JCheckBox("Multa (dano/perda)");
 			chckbxMulta.addActionListener(new AtivaCampoMultaAL(this));
-			chckbxMulta.setBounds(22, 247, 80, 23);
+			chckbxMulta.setBounds(22, 247, 250, 23);
 			contentPane.add(chckbxMulta);
 			
 			// Valor inicial = 10, varia entre 10 e 200, incremento de 10 
 			SpinnerNumberModel spinner_model = new SpinnerNumberModel(10, 10, 200, 10);
 			
-			porcentagem_multa = new JSpinner(spinner_model);
-			porcentagem_multa.setEnabled(false);
-			porcentagem_multa.setBounds(286, 245, 80, 28);
-			contentPane.add(porcentagem_multa);
-			
-			lblSobreO = new JLabel("(% sobre o valor da peça)");
-			lblSobreO.setBounds(101, 251, 173, 16);
-			contentPane.add(lblSobreO);
+			porcentagem_multa_dano_perda = new JSpinner(spinner_model);
+			porcentagem_multa_dano_perda.setEnabled(false);
+			porcentagem_multa_dano_perda.setBounds(290, 245, 80, 28);
+			contentPane.add(porcentagem_multa_dano_perda);
 			
 			lblDataDaDevoluo = new JLabel("Data da devolução:");
 			lblDataDaDevoluo.setBounds(22, 290, 138, 16);
@@ -126,11 +122,11 @@ public class SelecionarPecasDevolucaoFrame extends JFrame {
 	}
 	
 	public JSpinner getPorcentagem_multa() {
-		return porcentagem_multa;
+		return porcentagem_multa_dano_perda;
 	}
 
 	public void setPorcentagem_multa(JSpinner porcentagem_multa) {
-		this.porcentagem_multa = porcentagem_multa;
+		this.porcentagem_multa_dano_perda = porcentagem_multa;
 	}
 
 	public JCheckBox getChckbxMulta() {

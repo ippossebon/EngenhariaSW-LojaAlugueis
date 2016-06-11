@@ -89,94 +89,68 @@ public class AluguelController {
 		return true;
 	}
 	
-	// incrementa multa de dano/perda de acordo com devoluções
-	public void setMultaDano(Aluguel aluguel, float valor_multa){
+	public float calculaMultaDano(int id_aluguel, String porcentagem_multa){
+		float valor_multa = 0;
+		float porcentagem = Float.parseFloat(porcentagem_multa);
 		
-		// 200%
-		if(valor_multa > 3 * aluguel.getValor_total()) {
-			
-			System.out.println("Multa > 200%");
-			MensagemFrame msg = new MensagemFrame("Erro no sistema: multa inválida.");
-			msg.setVisible(true);
-			return;
-			
-		} if (valor_multa < 0) {
-			
-			MensagemFrame msg = new MensagemFrame("Erro no sistema: multa inválida.");
-			msg.setVisible(true);
-			return;
+		DatabaseController db = new DatabaseController(Database.getInstance());
+		for (Aluguel a : db.getAlugueis()){
+			if (a.getId() == id_aluguel){
+				valor_multa = porcentagem * a.getValor_total();
+				float valor_antigo = a.getValor_multa();
+				a.setValor_multa(valor_multa + valor_antigo);
+			}
 		}
 		
-		// atualiza multa
-		aluguel.setValor_multa(valor_multa + aluguel.getValor_multa());
+		return valor_multa;
+	}
+	
+	public double calcularMultaAtraso(int id_aluguel) {
+		
+		int dias_atraso;
+		double valor_multa = 0;
+		
+		DatabaseController db = new DatabaseController(Database.getInstance());
+		for (Aluguel aluguel : db.getAlugueis()){
+			if (aluguel.getId() == id_aluguel){
+				dias_atraso = aluguel.getData_entrega().converteDataParaDia() - aluguel.getData_fim().converteDataParaDia();
+				
+				if (dias_atraso > 0){
+					valor_multa = 0.1 * aluguel.getValor_total() * dias_atraso;
+				}
+			}
+		}
+	
+		return valor_multa; 
 		
 	}
 	
-	public float calcularMultaAtraso(Aluguel aluguel) {
+	// Retorna TRUE se o aluguel está atrasado; FALSE, caso contrário.
+	public boolean verificaSeAluguelAtrasado(int codigo_aluguel, String data){
 		
-		float dias_atraso = aluguel.getData_entrega().converteDataParaDia() - aluguel.getData_fim().converteDataParaDia();
+		// TO DO
 		
-		return aluguel.getValor_total() * (dias_atraso / 10); 
-		
+		return false;
 	}
 	
-	// Devolve com multa
-	public void registrarDevolucao(int id_aluguel, int codigo_peca, String multa, String data_entregue) {
-	
-		int dias_atrasados = 0;
-		float valor_multa;
+	// Devolve com multa - o cliente permanece bloqueado até que a multa seja paga.
+	public void registrarDevolucaoMulta(int id_aluguel, int codigo_peca, String data_entregue) {
+
 		DatabaseController db = new DatabaseController(Database.getInstance());
 		Data entrega = new Data(data_entregue);
-		
-		for(Aluguel a: db.getAlugueis()) {
 			
+		for(Aluguel a: db.getAlugueis()) {
+
 			// Encontra o aluguel pelo id
 			if(a.getId() == id_aluguel) {
-				a.removePecaDevolucao(codigo_peca);
-				a.setData_entrega(entrega);
-				dias_atrasados = a.getData_fim().converteDataParaDia() - a.getData_inicio().converteDataParaDia();
-				
-				//this.calcularMulta(a, 100, dias_atrasados); // 100 o que?
-				
-				// Se vai ser cobrada uma multa por dano ou perda
-				if(!multa.isEmpty()) {
-		
-					valor_multa = Float.parseFloat(multa);
-					this.setMultaDano(a, valor_multa);
-				}	
-
-				for(Cliente c: db.getClientes()) {
-					// Procura o cliente do aluguel
-					if(c.getCpf().equals(a.getCpf_cliente())) {
-						
-						// Se devolveu tudo, desbloqueia
-						if(a.getPecasDevolucao().isEmpty()) {
-							valor_multa = this.calcularMultaAtraso(a);
-							
-							// Se não houve atraso
-							if(valor_multa <= 0) {
-								c.setBloqueado(false);
-								a.setEntregue(true);
-							} else {
-								
-								// Atualiza com valor da multa por atraso
-								a.setValor_multa(a.getValor_multa() + valor_multa); // Multa do aluguel corresponde a soma de todas as multas cobradas
-								c.setBloqueado(true);
-							}
-							c.setBloqueado(false);	
-							a.setEntregue(true);
-						} else {
-							// Cliente não devolveu todas as peças
-							c.setBloqueado(true);
-						}		
-					}
-				}	
+				a.removePecaDevolucao(codigo_peca); // Remove a peça devolvida
+				a.setData_entrega(entrega); // Atualiza data entrega
 			}
 		}
 	}
 	
 	
-	// Devolve sem multa
+	// Devolve sem multa - o cliente é desbloqueado após devolver todas as peças.
 	public void registrarDevolucao(int id_aluguel, int codigo_peca, String data_entregue) {
 		Data entrega = new Data(data_entregue);
 		DatabaseController db = new DatabaseController(Database.getInstance());
@@ -194,7 +168,7 @@ public class AluguelController {
 					if(c.getCpf().equals(a.getCpf_cliente())) {
 						
 						// Se devolveu tudo, desbloqueia
-						if(a.getPecasDevolucao() == null) {
+						if(a.getPecasDevolucao().isEmpty()) {
 							c.setBloqueado(false);
 						} else {
 							c.setBloqueado(true);
