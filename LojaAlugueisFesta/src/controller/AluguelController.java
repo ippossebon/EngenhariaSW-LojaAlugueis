@@ -28,6 +28,12 @@ public class AluguelController {
 		String[] data;
 		float valor_total = 0;
 		
+		if (pc.pesquisarClientePorCPF(cpf_cliente).isEmpty()){
+			MensagemFrame msg = new MensagemFrame("Este cliente não está cadastrado no sistema.");
+			msg.setVisible(true);
+			return false;
+		}
+		
 		if (pc.pesquisarClientePorCPF(cpf_cliente).get(0).isBloqueado()){
 			MensagemFrame msg = new MensagemFrame("Aluguel cancelado! Este cliente está bloqueado para realizar alugueis. Para efetuar um novo aluguel, deve regularizar sua situação");
 			msg.setVisible(true);
@@ -73,27 +79,18 @@ public class AluguelController {
 		db.printReceita();
 		return true;
 	}
-
-	public void confirmarPagamento(){
-		
-	}
-	
-	public void confirmarPagamentoMulta(){
-		
-	}
 	
 	public void calcularMulta(Aluguel aluguel, float valor_multa, int dias_atrasados){
-		
 		float multa = 0;
 		
 		// 200%
 		if(valor_multa > 3 * aluguel.getValor_total()) {
 			
 			multa = valor_multa;
-			System.out.println("multa > 200%");
+			System.out.println("Multa > 200%");
 		} if (valor_multa < 0) {
 			
-			MensagemFrame msg = new MensagemFrame("multa invalida");
+			MensagemFrame msg = new MensagemFrame("Erro no sistema: multa inválida.");
 			msg.setVisible(true);
 		}
 
@@ -101,10 +98,6 @@ public class AluguelController {
 		multa += aluguel.getValor_total() * (dias_atrasados / 10);
 		
 		aluguel.setValor_multa(multa);
-		
-	}
-	
-	public void registrarPagamento(){
 		
 	}
 	

@@ -36,6 +36,9 @@ public class BotaoAdicionarPecaAL implements ActionListener{
 		Peca peca = new Peca(codigo, tamanho, tipo, valor);
 		db_controller.adicionarPecaEstoque(peca);
 		
+		/* DEBUG */
+		db_controller.printDatabase();
+		
 		MensagemFrame msg = new MensagemFrame("Peça adicionada com sucesso!");
 		msg.setVisible(true);
 		this.frame.dispose();

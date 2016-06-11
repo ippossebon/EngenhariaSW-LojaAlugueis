@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.table.DefaultTableModel;
 
+import view.MensagemFrame;
 import view.estoque.EstoqueFrame;
 import database.Database;
 import database.DatabaseController;
@@ -22,7 +23,7 @@ public class BotaoRemoverDoEstoqueAL implements ActionListener{
 		// TODO Auto-generated method stub
 		int linha_item_selecionado = this.frame.getEstoque_table().getSelectedRow();
 		
-		if(linha_item_selecionado != -1){
+		try{
 			DefaultTableModel dft_carrinho = (DefaultTableModel) this.frame.getEstoque_table().getModel();
 			dft_carrinho.removeRow(linha_item_selecionado);
 			
@@ -31,5 +32,10 @@ public class BotaoRemoverDoEstoqueAL implements ActionListener{
 			
 			this.frame.getEstoque_table().repaint();
 		}
+		catch(ArrayIndexOutOfBoundsException a){
+			MensagemFrame msg = new MensagemFrame("Por favor, selecione um item para remover.");
+			msg.setVisible(true);
+		}
+		
 	}
 }
