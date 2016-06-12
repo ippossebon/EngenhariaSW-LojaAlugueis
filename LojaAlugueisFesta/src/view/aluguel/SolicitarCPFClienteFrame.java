@@ -8,16 +8,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.Operacoes;
+import controller.EncaminhaPagamentoMultaAL;
 import controller.FecharFrameAL;
 import controller.actionlisteners.aluguel.ExibirAlugueisClienteAL;
 
-public class RegistrarDevolucaoFrame extends JFrame {
+public class SolicitarCPFClienteFrame extends JFrame {
 
+	public static final int registrar_devolucao = 1;
+	public static final int pagar_multa = 2;
+	
 	private JPanel contentPane;
 	private JFormattedTextField cpf_text_field;
+	
 
-	public RegistrarDevolucaoFrame() {
-		setTitle("Registrar devolução");
+	public SolicitarCPFClienteFrame(int operacao) {
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 291, 153);
 		contentPane = new JPanel();
@@ -35,7 +40,18 @@ public class RegistrarDevolucaoFrame extends JFrame {
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(154, 96, 117, 29);
-		btnOk.addActionListener(new ExibirAlugueisClienteAL(this));
+		if (operacao == registrar_devolucao){
+			setTitle("Registrar devolução");
+			btnOk.addActionListener(new ExibirAlugueisClienteAL(this));
+		}
+		else if(operacao == pagar_multa){
+			setTitle("Pagar multa");
+			btnOk.addActionListener(new EncaminhaPagamentoMultaAL(this));
+		}
+		else{
+			System.out.println("RegistrarDevolucaoFrame >> operacao inválida.");
+		}
+		
 		contentPane.add(btnOk);
 		
 		JButton btnCancelar = new JButton("Cancelar");

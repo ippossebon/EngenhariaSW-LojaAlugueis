@@ -3,7 +3,7 @@ package controller.actionlisteners.aluguel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.aluguel.RegistrarDevolucaoFrame;
+import view.aluguel.SolicitarCPFClienteFrame;
 
 public class SelecaoRegistrarDevolucaoAL implements ActionListener{
 	
@@ -14,7 +14,7 @@ public class SelecaoRegistrarDevolucaoAL implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		RegistrarDevolucaoFrame frame = new RegistrarDevolucaoFrame();
+		SolicitarCPFClienteFrame frame = new SolicitarCPFClienteFrame(SolicitarCPFClienteFrame.registrar_devolucao);
 		frame.setVisible(true);
 	}
 }

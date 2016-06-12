@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import model.Aluguel;
 import view.MensagemFrame;
-import view.aluguel.RegistrarDevolucaoFrame;
+import view.aluguel.SolicitarCPFClienteFrame;
 import view.aluguel.SelecionarAluguelDevolucaoFrame;
 import controller.OperacoesDefaultTableModel;
 import controller.PesquisaController;
@@ -15,9 +15,9 @@ import database.DatabaseController;
 
 public class ExibirAlugueisClienteAL implements ActionListener{
 
-	private RegistrarDevolucaoFrame frame;
+	private SolicitarCPFClienteFrame frame;
 	
-	public ExibirAlugueisClienteAL(RegistrarDevolucaoFrame frame){
+	public ExibirAlugueisClienteAL(SolicitarCPFClienteFrame frame){
 		this.frame = frame;
 	}
 
