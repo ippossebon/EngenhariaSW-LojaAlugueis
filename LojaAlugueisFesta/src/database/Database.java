@@ -126,11 +126,11 @@ public class Database{
 		for (Aluguel a: this.alugueis){
 			System.out.println("ID Aluguel: " + a.getId());
 			System.out.println("* Aluguel para: " + a.getCpf_cliente());
-			System.out.println("Pe√ßas: ");
+			System.out.println("PeÁas: ");
 			for (Peca p: a.getPecas()){
 				System.out.print(p.getCodigo_peca() + " ");
 			}
-			System.out.println("Pe√ßas Devolu√ß√£o: ");
+			System.out.println("PeÁas DevoluÁ„o: ");
 			for (Peca p: a.getPecasDevolucao()){
 				System.out.print(p.getCodigo_peca() + " ");
 			}
@@ -194,7 +194,7 @@ public class Database{
 		c1.setBloqueado(true);
 		Database.database.cadastrarCliente(c1);
 		
-		Cliente c2 = new Cliente("Jo√£o Pedro", "000.000.111-23", "joaop@gmail.com", "Rua B, 123", "(51) 2222 3333");
+		Cliente c2 = new Cliente("Jo„o Pedro", "000.000.111-23", "joaop@gmail.com", "Rua B, 123", "(51) 2222 3333");
 		Database.database.cadastrarCliente(c2);
 		
 		Cliente c3 = new Cliente("Joana Silva", "443.233.111-11", "joanas@gmail.com", "Rua X, 22", "(51) 2222 8888");
@@ -206,7 +206,7 @@ public class Database{
 		Cliente c5 = new Cliente("Beatriz Ramos", "123.456.789-10", "beatrizr@gmail.com", "Rua Beta, 124", "(51) 3233 3435");
 		Database.database.cadastrarCliente(c5);
 		
-		Cliente c6 = new Cliente("Sofia Abra√£o", "123.456.789-12", "sofiaa@gmail.com", "Rua Afonso , 126", "(51) 3233 3437");
+		Cliente c6 = new Cliente("Sofia Abra„o", "123.456.789-12", "sofiaa@gmail.com", "Rua Afonso , 126", "(51) 3233 3437");
 		Database.database.cadastrarCliente(c6);
 		
 		Cliente c7 = new Cliente("Isabela Fiorentino", "123.456.789-13", "isabelaf@gmail.com", "Rua Flores , 127", "(51) 3233 3438");
@@ -230,10 +230,10 @@ public class Database{
 		Cliente c13 = new Cliente("Antonia Almeida", "123.456.789-19", "antoniaa@gmail.com", "Rua Armindo, 132", "(51) 3233 3444");
 		Database.database.cadastrarCliente(c13);
 		
-		Cliente c14 = new Cliente("Luiza Gon√ßalves", "123.456.789-20", "luizag@gmail.com", "Rua Bento Gon√ßalves, 133", "(51) 3233 3445");
+		Cliente c14 = new Cliente("Luiza GonÁalves", "123.456.789-20", "luizag@gmail.com", "Rua Bento GonÁalves, 133", "(51) 3233 3445");
 		Database.database.cadastrarCliente(c14);
 		
-		Cliente c15 = new Cliente("F√°tima Farias", "123.456.789-21", "fatimaf@gmail.com", "Rua Coronel Vicente, 134", "(51) 3233 3446");
+		Cliente c15 = new Cliente("F·tima Farias", "123.456.789-21", "fatimaf@gmail.com", "Rua Coronel Vicente, 134", "(51) 3233 3446");
 		Database.database.cadastrarCliente(c15);
 		
 		Cliente c16 = new Cliente("Arnaldo Antunes", "187.654.321-22", "arnaldoa@gmail.com", "Rua Lima e Silva, 135", "(51) 3233 3447");
@@ -242,16 +242,16 @@ public class Database{
 		Cliente c17 = new Cliente("Laura Vargas", "123.456.789-11", "laurav@gmail.com", "Rua Alameda dos Ricos, 125", "(51) 3233 3436");
 		Database.database.cadastrarCliente(c17);
 		
-		Cliente c18 = new Cliente("Ot√°vio Gomes", "187.654.321-23", "otaviog@gmail.com", "Rua Alameda dos Pobres, 136", "(51) 3233 3448");
+		Cliente c18 = new Cliente("Ot·vio Gomes", "187.654.321-23", "otaviog@gmail.com", "Rua Alameda dos Pobres, 136", "(51) 3233 3448");
 		Database.database.cadastrarCliente(c18);
 		
-		Cliente c19 = new Cliente("√Årton Dorneles", "187.654.321-24", "artond@gmail.com", "Av. Paran√°, 136", "(51) 3233 3449");
+		Cliente c19 = new Cliente("¡rton Dorneles", "187.654.321-24", "artond@gmail.com", "Av. Paran·, 136", "(51) 3233 3449");
 		Database.database.cadastrarCliente(c19);
 		
 		Cliente c20 = new Cliente("Amanda Torbes", "187.654.321-25", "amandat@gmail.com", "Av. Buriti, 137", "(51) 3233 3450");
 		Database.database.cadastrarCliente(c20);
 		
-		Cliente c21 = new Cliente("Breno Portella", "187.654.321-26", "brenop@gmail.com", "Av. J√∫lio de Castilhos, 138", "(51) 3233 3451");
+		Cliente c21 = new Cliente("Breno Portella", "187.654.321-26", "brenop@gmail.com", "Av. J˙lio de Castilhos, 138", "(51) 3233 3451");
 		Database.database.cadastrarCliente(c21);
 		
 		Cliente c22 = new Cliente("Lorenzo da Cunha", "187.654.321-27", "lorenzoc@gmail.com", "Av. Carlos Gomes, 222", "(51) 3233 3452");
@@ -281,7 +281,7 @@ public class Database{
 		Cliente c30 = new Cliente("Leonel Borba", "187.654.321-35", "leonelb@gmail.com", "Rua Cururi, 155", "(51) 3233 3557");
 		Database.database.cadastrarCliente(c30);
 		
-		/* Funcion√°rios */
+		/* Funcion·rios */
 		Funcionario f1 = new Funcionario("Isadora Possebon", "222.222.222-22", "isadorapossebon@gmail.com", "Rua B 123", "(51) 2222 2222", "senha");
 		Database.database.cadastrarFuncionario(f1);
 		
@@ -298,7 +298,7 @@ public class Database{
 		Gerente g2 = new Gerente("Victoria Simonetti", "000.000.000-00", "victoria@gmail.com", "Rua Bento Goncalves 99", "(51) 2222 9999", "senha");
 		Database.database.cadastrarGerente(g2);
 		
-		/* Pe√ßas */
+		/* PeÁas */
 		// Codigo, tamanho, tipo, valor
 		Peca p1 = new Peca(1, 40, "Gravata normal", (float)15.00);
 		Database.database.adicionarPeca(p1);
@@ -336,10 +336,10 @@ public class Database{
 		Peca p12 = new Peca(12, 42, "Terno com corte italiano", (float)100.00);
 		Database.database.adicionarPeca(p12);
 		
-		Peca p13 = new Peca(13, 42, "Terno com corte ingl√™s", (float)85.00);
+		Peca p13 = new Peca(13, 42, "Terno com corte inglÍs", (float)85.00);
 		Database.database.adicionarPeca(p13);
 		
-		Peca p14 = new Peca(14, 50, "Terno com corte ingl√™s", (float)85.00);
+		Peca p14 = new Peca(14, 50, "Terno com corte inglÍs", (float)85.00);
 		Database.database.adicionarPeca(p14);
 		
 		Peca p15 = new Peca(15, 52, "Terno com corte tradicional", (float)70.00);
@@ -354,22 +354,22 @@ public class Database{
 		Peca p18 = new Peca(18, 42, "Fraque", (float)120.00);
 		Database.database.adicionarPeca(p18);
 		
-		Peca p20 = new Peca(20, 46, "Cal√ßa social b√°sica", (float)40.00);
+		Peca p20 = new Peca(20, 46, "CalÁa social b·sica", (float)40.00);
 		Database.database.adicionarPeca(p20);
 		
-		Peca p19 = new Peca(19, 40, "Cal√ßa social b√°sica", (float)40.00);
+		Peca p19 = new Peca(19, 40, "CalÁa social b·sica", (float)40.00);
 		Database.database.adicionarPeca(p19);
 		
-		Peca p21 = new Peca(21, 42, "Cal√ßa social larga", (float)50.00);
+		Peca p21 = new Peca(21, 42, "CalÁa social larga", (float)50.00);
 		Database.database.adicionarPeca(p21);
 		
-		Peca p22 = new Peca(22, 44, "Cal√ßa social larga", (float)50.00);
+		Peca p22 = new Peca(22, 44, "CalÁa social larga", (float)50.00);
 		Database.database.adicionarPeca(p22);
 		
-		Peca p23 = new Peca(23, 44, "Cal√ßa social em microfibra", (float)65.00);
+		Peca p23 = new Peca(23, 44, "CalÁa social em microfibra", (float)65.00);
 		Database.database.adicionarPeca(p23);
 		
-		Peca p24 = new Peca(24, 40, "Cal√ßa social em microfibra", (float)65.00);
+		Peca p24 = new Peca(24, 40, "CalÁa social em microfibra", (float)65.00);
 		Database.database.adicionarPeca(p24);
 		
 		Peca p25 = new Peca(25, 40, "Camisa social de colarinho de pontas abertas", (float)25.00);
@@ -449,21 +449,23 @@ public class Database{
 		pecas.add(p48);
 		pecas.add(p47);
 		Data inicio = new Data(8, 06, 2016);
+		Data fim = new Data(12, 06, 2016);
 		Data entrega = new Data(12, 06, 2016);
-		Aluguel a = new Aluguel(pecas, inicio, null, entrega, "187.654.321-25", (float)50.0);
+		Aluguel a = new Aluguel(pecas, inicio, fim, entrega, "187.654.321-25", (float)50.0);
 		Database.database.adicionarAluguel(a);
 		
 		ArrayList<Peca> pecas2 = new ArrayList<Peca>();
 		pecas2.add(p45);
 		pecas2.add(p44);
 		Data inicio2 = new Data(8, 06, 2016);
+		Data fim2 = new Data(12, 06, 2016);
 		Data entrega2 = new Data(12, 06, 2016);
-		Aluguel a2 = new Aluguel(pecas2, inicio2, null, entrega2, "187.654.321-25", (float)350.0);
+		Aluguel a2 = new Aluguel(pecas2, inicio2, fim2, entrega2, "187.654.321-25", (float)350.0);
 		Database.database.adicionarAluguel(a2);
 	}
 
 	public int gerarNovoCodigoPeca(){
-		int novo_codigo = 49; // 49 √© o c√≥digo da √∫ltima pe√ßa adicionada em popularDatabase()
+		int novo_codigo = 49; // 49 È o cÛdigo da ˙ltima peÁa adicionada em popularDatabase()
 		
 		for (Peca p : database.getPecas()){
 			if (p.getCodigo_peca() == novo_codigo){

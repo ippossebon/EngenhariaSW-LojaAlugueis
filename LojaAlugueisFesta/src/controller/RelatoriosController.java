@@ -68,44 +68,17 @@ public class RelatoriosController {
 		Data periodo_inicio = new Data(data_inicio);
 		Data periodo_fim = new Data(data_fim);
 		
-		//-------Efetuando alugu�is para os Clientes para Teste
-		AluguelController aluguel_controller = new AluguelController();
-		int i = 1;
-		int ano = 1993;
-		ArrayList<Integer> codigos_pecas;
-		for(Cliente t2: database_controller.getClientes()){
-			codigos_pecas = new ArrayList<Integer>();
-			codigos_pecas.add(i+3);
-			aluguel_controller.alugarPeca(codigos_pecas, t2.getCpf(), "01/01/1992", "01/01/2016");
-			ano++;
-			i++;
-			if (i>14){
-				break;
-			}
-		}
-		
-		//------Bloqueando Clientes para teste
-		i = 1;
-		for(Cliente t: database_controller.getClientes()){
-			t.setBloqueado(true);
-			i++;
-			if (i>15){
-				break;
-			}
-		}
-		
 		
 		//-------Seleciona os Clientes Bloqueados (falta implementa��o de compara��o de datas)
 		for (Cliente c : database_controller.getClientes()){
 			if (c.isBloqueado()){
 				for(Aluguel a: database_controller.getAlugueis()){
-					//data_bloqueio = a.getData_fim().converteDataParaDia();
-					System.out.println(Integer.toString(a.getData_fim().getAno()));
+					data_bloqueio = a.getData_fim().converteDataParaDia();
 					if(c.getCpf().equals(a.getCpf_cliente())){
-						//if(data_bloqueio >= periodo_inicio.converteDataParaDia() && data_bloqueio <= periodo_fim.converteDataParaDia()){
+						if(data_bloqueio >= periodo_inicio.converteDataParaDia() && data_bloqueio <= periodo_fim.converteDataParaDia()){
 							resultado.add(c);
-						//}
-						//else {break;}
+						}
+						else {break;}
 					}
 					
 				}
