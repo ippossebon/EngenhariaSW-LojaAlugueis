@@ -65,6 +65,14 @@ public class DatabaseController {
 		database.setPecas(estoque);
 	}
 	
+	public ArrayList<RegistroReceita> getReceita() {
+		return database.getReceita();
+	}
+	
+	public void setReceita(ArrayList<RegistroReceita> receita) {
+		database.setReceita(receita);
+	}
+	
 	public void cadastrarCliente(Cliente c){
 		database.cadastrarCliente(c);
 	}
