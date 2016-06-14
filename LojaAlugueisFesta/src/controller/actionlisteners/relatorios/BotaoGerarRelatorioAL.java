@@ -33,25 +33,27 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		RelatoriosController relatorios_controller = new RelatoriosController();
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
-		
-		//try {
+		MensagemFrame msg = new MensagemFrame("Erro na geração de relatório");
+		try {
 			String data_inicio = this.frame.getData_inicio_text_field().getText();
 			String data_fim = this.frame.getData_fim_text_field().getText();
-			
 			DefaultTableModel dft;
 			
 			switch((String)this.frame.getFiltro_combo_box().getSelectedItem()){
 			case "Alugueis efetuados":
+				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				ArrayList<Aluguel> alugueis_efetuados = relatorios_controller.getAlugueisEmAndamento(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelAlugueis(alugueis_efetuados);
 				this.frame.getResultados_table().setModel(dft);
 				break;
 			case "Quantidade de alugueis":
+				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				ArrayList<Aluguel> alugueis_efetuados2 = relatorios_controller.getAlugueisEmAndamento(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelQtdAlugueis(alugueis_efetuados2);
 				this.frame.getResultados_table().setModel(dft);
 				break;
 			case "Alugueis por peça":
+				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelAlugueisPorPeca();
 				int qtd_alugueis = 0;
 				for(Peca p: database_controller.getPecas()){
@@ -61,11 +63,13 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				this.frame.getResultados_table().setModel(dft);
 				break;
 			case "Clientes bloqueados":
+				msg = new MensagemFrame("Nenhum cliente bloqueado nesse período.");
 				ArrayList<Cliente> clientes_bloqueados = relatorios_controller.getClientesBloqueados(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelCliente(clientes_bloqueados);
 				this.frame.getResultados_table().setModel(dft);
 				break;
 			case "Lucro":
+				msg = new MensagemFrame("Nenhum aluguel realizado nesse período.");
 				ArrayList<RegistroReceita> receita = relatorios_controller.getRelatorioReceita(data_inicio, data_fim);
 				double total_receita = relatorios_controller.getValorTotalReceita(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelReceita(receita, total_receita);
@@ -73,10 +77,9 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				this.frame.getResultados_table().repaint();
 				break;
 			}
-		//} catch(IllegalArgumentException exception){
-		//	MensagemFrame msg = new MensagemFrame("Erro ao gerar relatório.");
-		//	msg.setVisible(true);
-		//}
+		} catch(IllegalArgumentException exception){
+			msg.setVisible(true);
+		}
 		
 		/*Teste - REMOVER DEPOIS
 		RelatoriosController relatorios_controller = new RelatoriosController();
