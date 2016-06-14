@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import controller.AluguelController;
 import controller.PesquisaController;
+import model.Data;
 import model.Peca;
 import view.MensagemFrame;
 import view.aluguel.DadosNovoAluguelFrame;
@@ -36,6 +37,34 @@ public class BotaoEfetuarAluguelAL implements ActionListener{
 			String data_inicio = this.frame.getData_inicio_text_field().getText();
 			String data_fim = this.frame.getData_fim_text_field().getText();
 			Float total = Float.parseFloat(this.frame.getTotal_text_field().getText());
+			
+			Data inicio = new Data(data_inicio);
+			Data fim = new Data(data_fim);
+			
+			if(!(inicio.validaData())) {
+				
+				MensagemFrame msg = new MensagemFrame("ERRO: Data de inicio invalida.");
+				msg.setVisible(true);
+				
+				return;
+			}
+			
+			if(!(fim.validaData())) {
+				
+				MensagemFrame msg = new MensagemFrame("ERRO: Data de fim invalida.");
+				msg.setVisible(true);
+				
+				return;
+			}
+			
+			// pra usar um método sem ter que instanciar um objeto?
+			if(!(inicio.intervaloValido(inicio, fim))) {
+				
+				MensagemFrame msg = new MensagemFrame("ERRO: Intervalo de datas invalido");
+				msg.setVisible(true);
+				
+				return;
+			}
 			
 			ArrayList<Integer> codigos_pecas = new ArrayList<Integer>();
 			

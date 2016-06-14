@@ -60,6 +60,8 @@ public class Data {
 		int dias = 0;
 		dias = this.getDia();
 	
+		// -1 porque quando se pega o dia, já se considera o mês atual. ex.: 07/06/2015 -> ao contar os 7 dias, o mês de junho (6) já foi contabilizado
+		// -1 porque o array de mes é de 0 a 11
 		for(int i = this.getMes() - 2; i >= 0; i--) {
 			
 			dias += this.retornaDiadoMes(i);
@@ -68,6 +70,28 @@ public class Data {
 		dias += (this.getAno() - 1) * 365;
 		
 		return dias;
+		
+	}
+	
+	public boolean validaData() {
+		
+		if((this.dia < 1) || (this.dia > this.retornaDiadoMes(this.mes - 1))) {
+			
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean intervaloValido(Data inicio, Data fim) {
+		
+		if((fim.converteDataParaDia() - inicio.converteDataParaDia()) <= 0) {
+		
+			return false;
+		} else {
+			
+			return true;
+		}
 		
 	}
 	
