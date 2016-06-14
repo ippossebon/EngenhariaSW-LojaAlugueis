@@ -28,6 +28,7 @@ public class RelatoriosController {
 		Data periodo_inicio = new Data(data_inicio);
 		Data periodo_fim = new Data(data_fim);
 		
+		
 		for(RegistroReceita r: database_controller.getReceita()){
 			if(r.getData().converteDataParaDia() >= periodo_inicio.converteDataParaDia() && r.getData().converteDataParaDia() <= periodo_fim.converteDataParaDia()){
 				resultado.add(r);
@@ -38,10 +39,10 @@ public class RelatoriosController {
 		
 	}
 	
-	public int getValorTotalReceita(String data_inicio, String data_fim){
+	public double getValorTotalReceita(String data_inicio, String data_fim){
 
 		DatabaseController database_controller = new DatabaseController(Database.getInstance());
-		int resultado = 0;
+		double resultado = 0;
 		Data periodo_inicio = new Data(data_inicio);
 		Data periodo_fim = new Data(data_fim);
 		
@@ -132,11 +133,16 @@ public class RelatoriosController {
 				for(Peca p: a.getPecas()){
 					if (p.getCodigo_peca() == peca.getCodigo_peca()){
 						resultado.add(a);
+						break;
 					}
 				}
 			}
 		}
 		
 		return resultado;
+	}
+	
+	public int getQtdAlugueisPorPeca (Peca peca, String data_inicio, String data_fim){
+		return this.getAlugueisPorPeca(peca, data_inicio, data_fim).size();
 	}
 }
