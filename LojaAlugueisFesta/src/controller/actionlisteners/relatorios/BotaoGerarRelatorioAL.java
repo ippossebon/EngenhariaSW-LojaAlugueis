@@ -45,8 +45,8 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				ArrayList<Aluguel> alugueis_efetuados2 = relatorios_controller.getAlugueisEmAndamento(data_inicio, data_fim);
 				int quantidade_alugueis = alugueis_efetuados2.size();
 				break;
-			case "Alugueis por peça":
-				ArrayList<Aluguel> alugueis_por_peca = relatorios_controller.getAlugueisPorPeca(peca, data_inicio, data_fim);
+			case "Alugueis por peï¿½a":
+				//ArrayList<Aluguel> alugueis_por_peca = relatorios_controller.getAlugueisPorPeca(peca, data_inicio, data_fim);
 				break;
 			case "Clientes bloqueados":
 				ArrayList<Cliente> clientes_bloqueados = relatorios_controller.getClientesBloqueados(data_inicio, data_fim);
@@ -58,7 +58,7 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				break;
 			}
 		} catch(IllegalArgumentException exception){
-			MensagemFrame msg = new MensagemFrame("Erro ao gerar relatório.");
+			MensagemFrame msg = new MensagemFrame("Erro ao gerar relatï¿½rio.");
 			msg.setVisible(true);
 		}
 		
@@ -72,7 +72,7 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 		System.out.println("");
 		
 		for (Aluguel a: relatorios_controller.getAlugueisEmAndamento("01/01/1992", "01/01/2016")){
-			System.out.print("ID: "+Integer.toString(a.getId())+" Peças Alugadas:");
+			System.out.print("ID: "+Integer.toString(a.getId())+" Peï¿½as Alugadas:");
 			for (Peca p: a.getPecas()){
 				System.out.print(" "+p.getTipo());
 			}
