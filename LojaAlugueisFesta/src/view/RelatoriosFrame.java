@@ -81,8 +81,8 @@ public class RelatoriosFrame extends JFrame implements Observer{
 		lblPeriodo.setBounds(20, 72, 62, 16);
 		contentPane.add(lblPeriodo);
 		
-		resultados_table = new JTable();
-		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
+		this.resultados_table = new JTable();
+		JScrollPane resultados_scroll_pane = new JScrollPane(this.resultados_table);
 		resultados_scroll_pane.setBounds(20, 394, 568, -280);
 		contentPane.add(resultados_scroll_pane);
 		

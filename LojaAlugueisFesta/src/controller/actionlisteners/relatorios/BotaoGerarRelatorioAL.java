@@ -52,10 +52,8 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelQtdAlugueis(alugueis_efetuados2);
 				this.frame.getResultados_table().setModel(dft);
 				break;
-<<<<<<< HEAD
 			case "Alugueis por peï¿½a":
 				//ArrayList<Aluguel> alugueis_por_peca = relatorios_controller.getAlugueisPorPeca(peca, data_inicio, data_fim);
-=======
 			case "Alugueis por peça":
 				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelAlugueisPorPeca();
@@ -65,7 +63,6 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 					OperacoesDefaultTableModel.addDefaultTableModelAlugueisPorPeca(p, qtd_alugueis, dft);
 				}
 				this.frame.getResultados_table().setModel(dft);
->>>>>>> origin/master
 				break;
 			case "Clientes bloqueados":
 				msg = new MensagemFrame("Nenhum cliente bloqueado nesse período.");
@@ -80,13 +77,10 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelReceita(receita, total_receita);
 				this.frame.getResultados_table().setModel(dft);
 				this.frame.getResultados_table().repaint();
+				this.frame.getResultados_table().setVisible(true);
 				break;
 			}
 		} catch(IllegalArgumentException exception){
-<<<<<<< HEAD
-			MensagemFrame msg = new MensagemFrame("Erro ao gerar relatï¿½rio.");
-=======
->>>>>>> origin/master
 			msg.setVisible(true);
 		}
 		
