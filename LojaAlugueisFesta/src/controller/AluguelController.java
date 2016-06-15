@@ -183,7 +183,6 @@ public class AluguelController {
 							
 							c.setBloqueado(false);
 							a.setEntregue(true);
-							System.out.println("ANDRE GATO");
 						} else {
 							c.setBloqueado(true);
 						}		

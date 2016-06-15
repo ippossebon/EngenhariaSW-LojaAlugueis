@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -8,6 +9,7 @@ import model.Aluguel;
 import model.Cliente;
 import model.Funcionario;
 import model.Peca;
+import model.RegistroReceita;
 import database.Database;
 import database.DatabaseController;
 
@@ -159,4 +161,83 @@ public class OperacoesDefaultTableModel {
 		return dft;
 	}
 	
+	public static DefaultTableModel gerarDefaultTableModelQtdAlugueis(ArrayList<Aluguel> alugueis){
+		if (alugueis.isEmpty()){
+			return null;
+		}
+		
+		ArrayList<String> datas = new ArrayList<String>();
+		ArrayList<Integer> qtds = new ArrayList<Integer>();
+		
+		DefaultTableModel dft = new DefaultTableModel();
+		
+		String iterador_data = alugueis.get(0).getData_inicio().gerarString();
+		datas.add(iterador_data);
+		int cont_alugueis = 1;
+		for(Aluguel a: alugueis){
+			if(a.getData_inicio().gerarString() != iterador_data){
+				qtds.add(cont_alugueis);
+				cont_alugueis = 1;
+				iterador_data = a.getData_inicio().gerarString();
+				datas.add(iterador_data);
+			}
+			else {
+				cont_alugueis++;
+			}
+		}
+		qtds.add(cont_alugueis);
+		datas.add("Total");
+		qtds.add(alugueis.size());
+		
+		dft.addColumn("Data", datas.toArray());
+		dft.addColumn("Quantidade de Aluguéis", qtds.toArray());
+		
+		return dft;
+	}
+	
+	public static DefaultTableModel gerarDefaultTableModelAlugueisPorPeca(){
+		DefaultTableModel dft = new DefaultTableModel();
+		Vector<String> rowData = new  Vector<String>();
+		rowData.add("ID peça");
+		rowData.add("Tipo");
+		rowData.add("Tamanho");
+		rowData.add("Aluguéis");
+		
+		dft.addRow(rowData);
+		
+		return dft;
+	}
+	
+	public static void addDefaultTableModelAlugueisPorPeca(Peca peca, int qtd_alugueis, DefaultTableModel dft){
+		Vector<String> rowData = new  Vector<String>();
+		rowData.add(Integer.toString(peca.getCodigo_peca()));
+		rowData.add(peca.getTipo());
+		rowData.add(Integer.toString(peca.getTamanho()));
+		rowData.add(Integer.toString(qtd_alugueis));
+		
+		dft.addRow(rowData);
+	}
+	
+	public static DefaultTableModel gerarDefaultTableModelReceita(ArrayList<RegistroReceita> registro_receita, double total_receita){
+		if(registro_receita.isEmpty()){
+			return null;
+		}
+		
+		ArrayList<String> data_receita = new ArrayList<String>();
+		ArrayList<Double> valor_receita = new ArrayList<Double>();
+		
+		DefaultTableModel dft = new DefaultTableModel();
+		
+		for(RegistroReceita r: registro_receita){
+			data_receita.add(r.getData().gerarString());
+			valor_receita.add(r.getValor());
+		}
+		data_receita.add("Total");
+		valor_receita.add(total_receita);
+		
+		dft.addColumn("Data", data_receita.toArray());
+		dft.addColumn("Valor", valor_receita.toArray());
+
+		return dft;
+	}
 }

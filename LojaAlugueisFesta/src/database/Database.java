@@ -454,14 +454,20 @@ public class Database{
 		Aluguel a = new Aluguel(pecas, inicio, fim, entrega, "187.654.321-25", (float)50.0);
 		Database.database.adicionarAluguel(a);
 		
+		RegistroReceita reg = new RegistroReceita(inicio, (float)50.0);
+		Database.database.adicionarRegistroReceita(reg);
+		
 		ArrayList<Peca> pecas2 = new ArrayList<Peca>();
 		pecas2.add(p45);
 		pecas2.add(p44);
-		Data inicio2 = new Data(8, 06, 2016);
+		Data inicio2 = new Data(6, 06, 2016);
 		Data fim2 = new Data(12, 06, 2016);
 		Data entrega2 = new Data(12, 06, 2016);
-		Aluguel a2 = new Aluguel(pecas2, inicio2, fim2, entrega2, "187.654.321-25", (float)350.0);
+		Aluguel a2 = new Aluguel(pecas2, inicio2, fim2, entrega2, "123.233.111-11", (float)350.0);
 		Database.database.adicionarAluguel(a2);
+		
+		RegistroReceita reg2 = new RegistroReceita(inicio2, (float)350.0);
+		Database.database.adicionarRegistroReceita(reg2);
 	}
 
 	public int gerarNovoCodigoPeca(){
