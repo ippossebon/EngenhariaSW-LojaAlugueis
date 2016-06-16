@@ -45,15 +45,15 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				ArrayList<Aluguel> alugueis_efetuados = relatorios_controller.getAlugueisEmAndamento(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelAlugueis(alugueis_efetuados);
 				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 				break;
 			case "Quantidade de alugueis":
 				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				ArrayList<Aluguel> alugueis_efetuados2 = relatorios_controller.getAlugueisEmAndamento(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelQtdAlugueis(alugueis_efetuados2);
 				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 				break;
-			case "Alugueis por peï¿½a":
-				//ArrayList<Aluguel> alugueis_por_peca = relatorios_controller.getAlugueisPorPeca(peca, data_inicio, data_fim);
 			case "Alugueis por peça":
 				msg = new MensagemFrame("Nenhum aluguel encontrado nesse período.");
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelAlugueisPorPeca();
@@ -63,12 +63,14 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 					OperacoesDefaultTableModel.addDefaultTableModelAlugueisPorPeca(p, qtd_alugueis, dft);
 				}
 				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 				break;
 			case "Clientes bloqueados":
 				msg = new MensagemFrame("Nenhum cliente bloqueado nesse período.");
 				ArrayList<Cliente> clientes_bloqueados = relatorios_controller.getClientesBloqueados(data_inicio, data_fim);
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelCliente(clientes_bloqueados);
 				this.frame.getResultados_table().setModel(dft);
+				this.frame.getResultados_table().repaint();
 				break;
 			case "Lucro":
 				msg = new MensagemFrame("Nenhum aluguel realizado nesse período.");
@@ -77,7 +79,6 @@ public class BotaoGerarRelatorioAL implements ActionListener{
 				dft = OperacoesDefaultTableModel.gerarDefaultTableModelReceita(receita, total_receita);
 				this.frame.getResultados_table().setModel(dft);
 				this.frame.getResultados_table().repaint();
-				this.frame.getResultados_table().setVisible(true);
 				break;
 			}
 		} catch(IllegalArgumentException exception){

@@ -448,7 +448,7 @@ public class Database{
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		pecas.add(p48);
 		pecas.add(p47);
-		Data inicio = new Data(8, 06, 2016);
+		Data inicio = new Data(10, 06, 2016);
 		Data fim = new Data(12, 06, 2016);
 		Data entrega = new Data(12, 06, 2016);
 		Aluguel a = new Aluguel(pecas, inicio, fim, entrega, "187.654.321-25", (float)50.0);

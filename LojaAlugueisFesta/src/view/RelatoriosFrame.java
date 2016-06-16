@@ -73,24 +73,24 @@ public class RelatoriosFrame extends JFrame implements Observer{
 		contentPane.add(filtro_combo_box);
 		filtro_combo_box.addItem("Alugueis efetuados");
 		filtro_combo_box.addItem("Quantidade de alugueis");
-		filtro_combo_box.addItem("Alugueis por peÃ§a");
+		filtro_combo_box.addItem("Alugueis por peça");
 		filtro_combo_box.addItem("Clientes bloqueados");
 		filtro_combo_box.addItem("Lucro");
 		
-		JLabel lblPeriodo = new JLabel("PerÃ­odo:");
+		JLabel lblPeriodo = new JLabel("Período:");
 		lblPeriodo.setBounds(20, 72, 62, 16);
 		contentPane.add(lblPeriodo);
 		
-		this.resultados_table = new JTable();
-		JScrollPane resultados_scroll_pane = new JScrollPane(this.resultados_table);
-		resultados_scroll_pane.setBounds(20, 394, 568, -280);
+		resultados_table = new JTable();
+		JScrollPane resultados_scroll_pane = new JScrollPane(resultados_table);
+		resultados_scroll_pane.setBounds(20, 104, 568, 280);
 		contentPane.add(resultados_scroll_pane);
 		
 		data_inicio_text_field = new JFormattedTextField(Operacoes.aplicaMascara("##/##/####"));
 		data_inicio_text_field.setBounds(104, 66, 102, 28);
 		contentPane.add(data_inicio_text_field);
 		
-		JLabel lblAt = new JLabel("atÃ©:");
+		JLabel lblAt = new JLabel("até:");
 		lblAt.setBounds(227, 72, 30, 16);
 		contentPane.add(lblAt);
 		
@@ -98,7 +98,7 @@ public class RelatoriosFrame extends JFrame implements Observer{
 		data_fim_text_field.setBounds(269, 66, 102, 28);
 		contentPane.add(data_fim_text_field);
 		
-		JButton btnGerar = new JButton("Gerar relatÃ³rio");
+		JButton btnGerar = new JButton("Gerar relatório");
 		btnGerar.setBounds(481, 411, 117, 29);
 		btnGerar.addActionListener(new BotaoGerarRelatorioAL(this));
 		contentPane.add(btnGerar);
